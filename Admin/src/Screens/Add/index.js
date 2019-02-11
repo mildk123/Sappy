@@ -58,7 +58,7 @@ class AddEmp extends Component {
     render() {
         return (
             <Fragment>
-
+                <div style={{padding: 10}}>
                 {/* App Bar//////////////////////// */}
                 <AppBar {...this.props}
                     variant={'h5'}
@@ -103,6 +103,7 @@ class AddEmp extends Component {
                             </div>
                         </Form>
                     </Card>
+                </div>
                 </div>
             </Fragment>
         );

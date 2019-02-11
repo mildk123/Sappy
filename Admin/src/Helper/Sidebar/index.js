@@ -28,7 +28,7 @@ class SideBar extends Component {
             onHide={this.handleSidebarHide}
             vertical
             visible={visible}
-          // width='very thin'
+          width='thin'
           >
             <Menu.Item as='a'>
               <Icon name='dashboard' />
