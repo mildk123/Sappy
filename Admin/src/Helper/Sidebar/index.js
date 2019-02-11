@@ -1,8 +1,14 @@
-import React, { Component } from 'react'
-import { Button, Header, Icon, Image, Menu, Segment, Sidebar } from 'semantic-ui-react'
+import React, { Component } from "react";
 
-export default class SidebarExampleSidebar extends Component {
-  state = { visible: false }
+import {  Icon, Menu, Sidebar } from 'semantic-ui-react'
+
+
+class SideBar extends Component {
+  constructor() {
+    super()
+    this.state = { visible: false }
+  }
+
 
   handleHideClick = () => this.setState({ visible: false })
   handleShowClick = () => this.setState({ visible: true })
@@ -12,49 +18,38 @@ export default class SidebarExampleSidebar extends Component {
     const { visible } = this.state
 
     return (
-      <div>
-        <Button.Group>
-          <Button disabled={visible} onClick={this.handleShowClick}>
-            Show sidebar
-          </Button>
-          <Button disabled={!visible} onClick={this.handleHideClick}>
-            Hide sidebar
-          </Button>
-        </Button.Group>
+      <Sidebar.Pushable>
+        <Sidebar
+          as={Menu}
+          animation='push'
+          icon='labeled'
+          inverted
+          onHide={this.handleSidebarHide}
+          vertical
+          visible={visible}
+        // width='very thin'
+        >
+          <Menu.Item as='a'>
+            <Icon name='dashboard' />
+            Dashboard
+            </Menu.Item>
+          <Menu.Item as='a'>
+            <Icon name='edit' />
+            Edit User
+            </Menu.Item>
+          <Menu.Item as='a'>
+            <Icon name='servicestack' />
+            Add Services
+            </Menu.Item>
+        </Sidebar>
 
-        <Sidebar.Pushable as={Segment}>
-          <Sidebar
-            as={Menu}
-            animation='overlay'
-            icon='labeled'
-            inverted
-            onHide={this.handleSidebarHide}
-            vertical
-            visible={visible}
-            width='thin'
-          >
-            <Menu.Item as='a'>
-              <Icon name='home' />
-              Home
-            </Menu.Item>
-            <Menu.Item as='a'>
-              <Icon name='gamepad' />
-              Games
-            </Menu.Item>
-            <Menu.Item as='a'>
-              <Icon name='camera' />
-              Channels
-            </Menu.Item>
-          </Sidebar>
-
-          <Sidebar.Pusher>
-            <Segment basic>
-              <Header as='h3'>Application Content</Header>
-              <Image src='/images/wireframe/paragraph.png' />
-            </Segment>
-          </Sidebar.Pusher>
-        </Sidebar.Pushable>
-      </div>
-    )
+        <Sidebar.Pusher>
+          {this.props.children}
+        </Sidebar.Pusher>
+      </Sidebar.Pushable>
+    );
   }
 }
+
+
+export default SideBar;

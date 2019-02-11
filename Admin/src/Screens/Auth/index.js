@@ -2,7 +2,6 @@ import React, { Component, Fragment } from 'react';
 import Button from '../../Helper/Button'
 // Local CSS
 import './style.css'
-import { Header } from 'semantic-ui-react';
 
 
 class AuthScreen extends Component {
