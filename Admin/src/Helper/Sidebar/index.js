@@ -2,6 +2,7 @@ import React, { Component } from 'react'
 import { Button, Header, Icon, Image, Menu, Segment, Sidebar } from 'semantic-ui-react'
 
 export default class SidebarExampleSidebar extends Component {
+  state = { visible: false }
 
   handleHideClick = () => this.setState({ visible: false })
   handleShowClick = () => this.setState({ visible: true })

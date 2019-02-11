@@ -34,10 +34,10 @@ class MenuAppBar extends React.Component {
 
                 <AppBar position="static" style={{ background: ' linear-gradient(10deg, #1D976C, #93F9B9)' }}>
                     <Toolbar>
-                        <IconButton className={classes.menuButton}>
+                        <IconButton onClick={this.props.handleShowClick} className={classes.menuButton}>
                             <Icon
                                 className="styles.icon"
-                                name={addEmp ? 'users' : 'plus circle'}
+                                name={addEmp ? 'bars' : 'plus circle'}
                                 size='large'
                                 inverted
                             />

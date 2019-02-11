@@ -101,7 +101,7 @@ class HomeComp extends Component {
         <AppBar {...this.props}
           variant={'h5'}
           textColor={'inherit'}
-          
+          handleShowClick={this.props.handleShowClick}
           addEmp="Add Employee"
         >
           Home
