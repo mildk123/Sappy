@@ -22,7 +22,7 @@ class Home extends Component {
       ref={this.Sidebar} 
       handleShowClick={this.state.visible}
       >
-        <div style={{ padding: 10 }}>
+        <div style={{ height: '100vh', padding: 10 }}>
           <HomeComp {...this.props}
             handleShowClick={this.handleShowClick}
           />
