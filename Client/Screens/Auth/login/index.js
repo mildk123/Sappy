@@ -6,6 +6,13 @@ import { StyleSheet, View, AsyncStorage } from "react-native";
 import { Input, Button } from "react-native-elements";
 
 export class SignIn extends Component {
+  constructor() {
+    super()
+    this.state = {
+      email: '',
+      password: ''
+    }
+  }
   static navigationOptions = {
     title: "Login",
     headerStyle: {
@@ -18,22 +25,36 @@ export class SignIn extends Component {
   };
 
   _onPress = async () => {
-    let email = this.state.email;
-    let password = this.state.password;
-    if ((email && password) !== null) {
-      // firebase.auth().signInWithEmailAndPassword(email, password)
-      //   .then(success => {
-      //     AsyncStorage.setItem("userLoggedIn", "LoggedIn");
-      //     this.props.navigation.navigate("App");
-      //   })
-      //   .catch(error => {
-      //     // Handle Errors here.
-      //     var errorCode = error.code;
-      //     var errorMessage = error.message;
-      //     alert(errorCode, errorMessage);
-      //   });
+    const { email, password } = this.state;
+    if (!email || !password) {
+      alert('Please Enter Email/Password')
     } else {
-      alert(`please enter correct information`);
+      this.setState({
+        isLoading: true
+      })
+      if ((email && password) !== null) {
+        fetch('https://sappy125.herokuapp.com/auth/login', {
+          method: "POST",
+          headers: {
+            "Content-type": "application/json"
+          },
+          body: JSON.stringify({ email, password })
+        })
+          .then(res => res.json())
+          .then(res => {
+            let resolve = res.match
+            if (resolve) {
+              AsyncStorage.setItem(res.token, 'userToken')
+              
+              this.props.navigation.navigate('App')
+            } else {
+              alert(res.message)
+            }
+          })
+          .catch(err => alert(err.message))
+      } else {
+        alert(`please enter correct information`);
+      }
     }
   };
 
@@ -59,7 +80,8 @@ export class SignIn extends Component {
             labelStyle={{
               margin: 17,
               fontSize: 22,
-              color: "#47bc72",            }}
+              color: "#47bc72",
+            }}
             onChangeText={password => {
               this.setState({ password: password });
             }}

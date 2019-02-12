@@ -9,8 +9,8 @@ export class SignUp extends Component {
   constructor() {
     super();
     this.state = {
-      firstName: null,
-      lastName: null,
+      fname: null,
+      lname: null,
       email: null,
       password: null
     };
@@ -27,33 +27,27 @@ export class SignUp extends Component {
   };
 
   _onPress = async () => {
-    let firstName = this.state.firstName;
-    let lastName = this.state.lastName;
-    let email = this.state.email;
-    let password = this.state.password;
-
-    if ((firstName && lastName && email && password) !== null) {
-      // firebase
-      //   .auth()
-      //   .createUserWithEmailAndPassword(email, password)
-      //   .then(success => {
-      //     let email = success.user.email;
-      //     let uid = success.user.uid;
-      //     database.child("users").push({
-      //       firstName: firstName,
-      //       lastName: lastName,
-      //       email: email,
-      //       uid: uid
-      //     });
-      //   AsyncStorage.setItem("userLoggedIn", "SignedUp");
-      //   this.props.navigation.navigate("App");
-      // })
-      // .catch(error => {
-      //   // Handle Errors here.
-      //   var errorCode = error.code;
-      //   var errorMessage = error.message;
-      //   alert(errorCode, errorMessage);
-      // });
+    const {fname, lname, email, password } = this.state;
+    
+    if ((fname && lname && email && password) !== null) {
+      fetch('https://sappy125.herokuapp.com/auth/register', {
+        method: "POST",
+        headers: {
+          "Content-type": "application/json"
+        },
+        body: JSON.stringify({ fname, lname, email, password })
+      })
+        .then(res => res.json())
+        .then(res => {
+          let resolve = res.match
+          if (resolve) {
+            AsyncStorage.setItem('userToken', res.token)
+            this.props.navigation.navigate('App')
+          } else {
+            alert(res.message)
+          }
+        })
+        .catch(err => alert(err.message))
     } else {
       alert(`please enter correct information`);
     }
@@ -70,8 +64,8 @@ export class SignUp extends Component {
               color: "#47bc72",
             }}
             label="~ First Name"
-            onChangeText={firstName => {
-              this.setState({ firstName: firstName });
+            onChangeText={fname => {
+              this.setState({ fname: fname });
             }}
             placeholder="Abdullah"
             leftIcon={<Icon size={20} name="user" />}
@@ -83,8 +77,8 @@ export class SignUp extends Component {
               color: "#47bc72",
             }}
             label="~ Last Name"
-            onChangeText={lastName => {
-              this.setState({ lastName: lastName });
+            onChangeText={lname => {
+              this.setState({ lname: lname });
             }}
             placeholder="Khan"
             leftIcon={<Icon size={20} name="user" />}
