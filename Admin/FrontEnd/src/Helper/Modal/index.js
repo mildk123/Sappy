@@ -7,7 +7,7 @@ import swal from 'sweetalert'
 import { storeToken, createUser, } from '../../Redux/Actions/authAction'
 import { connect } from 'react-redux';
 
-export class AuthModal extends Component {
+class AuthModal extends Component {
   constructor() {
     super()
     this.state = { open: false, isLoading: false }
@@ -27,7 +27,7 @@ export class AuthModal extends Component {
   }
 
   show = () => this.setState({ open: true })
-  close = () => this.setState({ open: false })
+  close = () => this.setState({ open: false, email : '' , password : '' })
   onChangeHandler = (name, value) => {
     this.setState({
       [name]: value
@@ -43,7 +43,7 @@ export class AuthModal extends Component {
         isLoading: true
       })
       if (modalType === 'Register') {
-        fetch('/admin/register', {
+        fetch('http://localhost:5000/admin/register', {
           method: 'POST',
           headers: {
             'Accept': 'application/json',
@@ -78,7 +78,7 @@ export class AuthModal extends Component {
           })
 
       } else {
-        fetch('/admin/login', {
+        fetch('http://localhost:5000/admin/login', {
           method: 'POST',
           headers: {
             'Accept': 'application/json',
