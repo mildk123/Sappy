@@ -11,7 +11,7 @@ import Icon from "react-native-vector-icons/MaterialCommunityIcons";
 const { width } = Dimensions.get("window");
 
 SignOut = async () => {
-  await AsyncStorage.removeItem("userLoggedIn");
+  await AsyncStorage.removeItem("userToken");
 
   this.props.navigation.navigate("Auth");
 };
@@ -56,7 +56,7 @@ export default createDrawerNavigator(
                 width: width * 0.25,
                 borderRadius: 12,
                 elevation: 0,
-                backgroundColor: "#eaa352"
+                backgroundColor: "#47bc72"
               }}
               title="Terms & Conditions"
             />
@@ -67,7 +67,7 @@ export default createDrawerNavigator(
                 width: width * 0.25,
                 borderRadius: 12,
                 elevation: 0,
-                backgroundColor: "#eaa352"
+                backgroundColor: "#47bc72"
               }}
               title="FAQ"
             />
@@ -86,7 +86,7 @@ export default createDrawerNavigator(
       </SafeAreaView>
     ),
     contentOptions: {
-      activeTintColor: "white",
+      activeTintColor: "#47bc72",
       activeBackgroundColor: "black"
     }
   }

@@ -22,19 +22,19 @@ class Homescreen extends Component {
   render() {
     return (
       <View style={styles.container}>
-        <Fab
+        {/* <Fab
           active={this.state.active}
           containerStyle={{ zIndex: 1909, margin: 10 }}
           position="bottomRight"
           onPress={() => { this.props.navigation.navigate('Cart') }}
         >
           <Icon style={{ color: 'white', fontSize: 25 }} name="ios-basket" />
-        </Fab>
+        </Fab> */}
 
         <Header
-          headerColor="#C00000"
+          headerColor="#47bc72"
           icon={"menu"}
-          title={"Shop"}
+          title={"Home"}
           hasTabs={false}
           searchBtn={true}
           favBtn={false}
