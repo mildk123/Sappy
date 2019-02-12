@@ -19,7 +19,7 @@ const styles = {
         marginLeft: -12,
         marginRight: 20,
     },
-    signOut : {
+    signOut: {
         position: 'absolute',
         right: 24
     }
@@ -27,7 +27,7 @@ const styles = {
 
 class MenuAppBar extends React.Component {
     render() {
-        const { classes, addEmp } = this.props;
+        const { classes } = this.props;
 
         return (
             <div className={classes.root}>
@@ -37,29 +37,16 @@ class MenuAppBar extends React.Component {
                         <IconButton onClick={this.props.handleShowClick} className={classes.menuButton}>
                             <Icon
                                 className="styles.icon"
-                                name={addEmp ? 'bars' : 'plus circle'}
+                                name={'bars'}
                                 size='large'
                                 inverted
                             />
                         </IconButton>
                         <Typography variant="h6" color="inherit" className={classes.grow} >
                             {this.props.children}
-            </Typography>
+                        </Typography>
 
                         <div className={styles.signOut}>
-
-                        
-                        <Button
-                                onClick={() => {addEmp ?
-                                    this.props.history.push('/Add') :
-                                    this.props.history.goBack()
-                                }}
-                                animated color={addEmp  ? 'purple' : 'youtube' } >
-                                <Button.Content visible>{addEmp ? 'Add Employee' : 'Cancel'}</Button.Content>
-                                <Button.Content hidden>
-                                    <Icon name={addEmp ? 'plus' : 'arrow circle left'} />
-                                </Button.Content>
-                            </Button>
 
                             <Button
                                 onClick={() => {

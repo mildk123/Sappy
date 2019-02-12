@@ -34,7 +34,7 @@ class SideBar extends Component {
               <Icon name='dashboard' />
               Dashboard
             </Menu.Item>
-            <Menu.Item as='a'>
+            <Menu.Item as='a' onClick={() => this.props.history.push('/edit')}>
               <Icon name='edit' />
               Edit User
             </Menu.Item>

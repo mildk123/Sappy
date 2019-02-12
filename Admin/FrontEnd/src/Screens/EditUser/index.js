@@ -1,9 +1,9 @@
 import React, { Component } from "react";
-import HomeComp from '../../Components/Home'
+import EditComp from '../../Components/EditComp'
 import Sidebar from '../../Helper/Sidebar'
 
 
-class Home extends Component {
+class Edit extends Component {
   constructor() {
     super()
     this.state = {
@@ -24,7 +24,7 @@ class Home extends Component {
       handleShowClick={this.state.visible}
       >
         <div style={{ height: '100vh', padding: 10 }}>
-          <HomeComp {...this.props}
+          <EditComp {...this.props}
             handleShowClick={this.handleShowClick}
           />
         </div>
@@ -35,4 +35,4 @@ class Home extends Component {
 }
 
 
-export default Home;
+export default Edit;

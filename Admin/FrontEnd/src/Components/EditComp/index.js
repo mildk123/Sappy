@@ -1,6 +1,6 @@
 import React, { Component, Fragment } from "react";
 import { connect } from 'react-redux';
-import swal from 'sweetalert'
+// import swal from 'sweetalert'
 import AppBar from '../../Helper/Appbar'
 
 import Container from '../../Helper/Container'
@@ -8,7 +8,7 @@ import Input from '../../Helper/Input'
 import Card from '../../Helper/CardCont'
 
 
-class HomeComp extends Component {
+class EditComp extends Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -29,68 +29,7 @@ class HomeComp extends Component {
     }
   }
 
-  dropOnChange = (event, data) => {
-    this.setState({
-      searchCat : data.value
-    })
-  }
-
-  searchTextChange = (data) => {
-    this.setState({
-      searchTerm : data
-    })
-  }
-
-  buttonHandler = () => {
-    this.searchEmp()
-  }
-
-  fetchEmployee = () => {
-    fetch('/employees/get')
-      .then(data => data.json())
-      .then(dat => {
-        let response = dat.employee;
-        if (response) {
-
-          this.setState({
-            employeeList: response,
-            isFetching: false
-          })
-        } else {
-          swal('failed to get employees list')
-        }
-
-      })
-      .catch(err => console.log(err.message))
-  }
-
-  searchEmp = () => {
-    fetch('/employees/search',{
-      method : "POST",
-      headers:{
-        'Content-Type': 'application/json'
-      },
-      body : JSON.stringify({
-        searchCat : this.state.searchCat,
-        searchTerm : this.state.searchTerm
-      })
-    })
-      .then(data => data.json())
-      .then(dat => {
-        console.log(dat)
-        let response = dat.employee;
-        if (response) {
-          this.setState({
-            employeeList: response,
-            isFetching: false
-          })
-        } else {
-          swal('failed to get employees list')
-        }
-
-      })
-      .catch(err => console.log(err.message))
-  }
+ 
 
   render() {
     const { employeeList } = this.state;
@@ -103,7 +42,7 @@ class HomeComp extends Component {
           textColor={'inherit'}
           handleShowClick={this.props.handleShowClick}
         >
-          Home
+          Edit Users
         </AppBar>
 
         {/* Search Card //////////////////////// */}
@@ -158,4 +97,4 @@ const mapStateToProps = (state) => {
 }
 
 
-export default connect(mapStateToProps)(HomeComp);
+export default connect(mapStateToProps)(EditComp);
