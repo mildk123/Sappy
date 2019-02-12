@@ -30,7 +30,7 @@ class SideBar extends Component {
             visible={visible}
           width='thin'
           >
-            <Menu.Item as='a'>
+            <Menu.Item as='a' onClick={() => this.props.history.push('/')}>
               <Icon name='dashboard' />
               Dashboard
             </Menu.Item>
@@ -38,7 +38,7 @@ class SideBar extends Component {
               <Icon name='edit' />
               Edit User
             </Menu.Item>
-            <Menu.Item as='a'>
+            <Menu.Item as='a' onClick={() => this.props.history.push('/services')}>
               <Icon name='servicestack' />
               Add Services
             </Menu.Item>

@@ -4,6 +4,7 @@ import Auth from './Auth/index';
 
 import Home from './Home';
 import EditUser from './EditUser';
+import Services from './Services';
 import Error from './Error';
 
 
@@ -19,6 +20,7 @@ class Routes extends React.Component {
                         <Route exact path="/" component={Auth} />
                         <Route path="/Home" component={Home} />
                         <Route path="/edit" component={EditUser} />
+                        <Route path="/services" component={Services} />
                         <Route component={Error} />
                         
                     </Switch>
