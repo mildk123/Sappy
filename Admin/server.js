@@ -17,17 +17,17 @@ app.set('port', (port || 5000));
 var db = mongoose.connection;
 db.on('error', console.error.bind(console, 'connection error:'));
 db.once('open', () => {
-  console.log("db connected!")
+  console.log("MongoDB connected!")
 });
 
 // // Static file declaration
-app.use(express.static(path.join(__dirname, 'Client/build')));
+app.use(express.static(path.join(__dirname, 'FrontEnd/build')));
 
 app.use('/', require('./Routes/index'))
 
 // Handles any requests that don't match the ones above
 app.get('*', (req, res) => {
-  res.sendFile(path.join(__dirname + '/Client/build/index.html'));
+  res.sendFile(path.join(__dirname + '/FrontEnd/build/index.html'));
 });
 
 
