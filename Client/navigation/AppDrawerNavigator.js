@@ -1,16 +1,9 @@
 import React from "react";
 import {SafeAreaView,ScrollView,Dimensions,View,Image,AsyncStorage} from "react-native";
-import { ActionSheet} from 'native-base'
 
 import { createDrawerNavigator, DrawerItems } from "react-navigation";
 
 import HomeStackNavigator from "../Screens/Homescreen";
-import MyOrders from "../Screens/MyOrders";
-import MyProfile from "../Screens/MyProfile";
-import AddressNavigator from "../Screens/MyAddresses";
-import MyVouchers from "../Screens/MyVouchers";
-import AddProduct from "../Screens/AddProduct";
-import Settings from "../Screens/Settings";
 
 import { Button } from "react-native-elements";
 import Icon from "react-native-vector-icons/MaterialCommunityIcons";
@@ -46,7 +39,7 @@ export default createDrawerNavigator(
           }}
         >
           <Image
-            source={require("../assets/icon.png")}
+            source={require("../Assets/icon.png")}
             alt="Header"
             style={{ height: 150, width: 150, padding: 25 }}
           />

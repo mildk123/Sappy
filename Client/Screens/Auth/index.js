@@ -20,40 +20,13 @@ class Authentication extends Component {
     header: null
   };
   
-  // const database = firebase.database().ref();
-  // _toHomePage = async () => {
-  //   firebase.auth().onAuthStateChanged(user => {
-  //     if (user) {
-  //       let username = user.displayName;
-  //       let email = user.email;
-  //       let photoURL = user.photoURL;
-  //       let uid = user.uid;
-
-  //       database.child("users/" + uid).set(
-  //         {
-  //           username,
-  //           email,
-  //           photoURL,
-  //           uid
-  //         },
-  //         () => {
-  //           this.props.navigation.navigate("App");
-  //         }
-  //       );
-  //     }
-  //   });
-  // };
-
- 
-
-
-  render() {
+   render() {
     return (
       <View style={styles.container}>
         <View style={styles.imgContainer}>
           <Image
             style={styles.picSize}
-            source={require("../../assets/icon.png")}
+            source={require('../../Assets/icon.png')}
           />
         </View>
 

@@ -11,42 +11,15 @@ import Cart from "../Cart";
 class Homescreen extends Component {
   constructor() {
     super();
-    this.state = {
-      entries: [
-        {
-          title: "heelo",
-          thumbnail: require("../../assets/images/bnh1.jpg")
-        },
-        {
-          title: "badshah",
-          thumbnail: require("../../assets/images/bnh2.jpg")
-        },
-        {
-          title: "khan",
-          thumbnail: require("../../assets/images/bnh1.jpg")
-        }
-      ]
-    };
+    this.state = {}
+
   }
 
   static navigationOptions = {
     header: null
   };
 
-  _renderItem({ item, index }, parallaxProps) {
-    return (
-      <Card style={styles.cardMain}>
-        <CardItem cardBody style={styles.cardBody} bordered={false}>
-          <Body>
-            <Image source={item.thumbnail} style={styles.image} />
-          </Body>
-        </CardItem>
-        <CardItem footer style={styles.cardFooter}>
-          <Text style={styles.title}>{item.title}</Text>
-        </CardItem>
-      </Card>
-    );
-  }
+
 
   render() {
     return (
@@ -71,76 +44,7 @@ class Homescreen extends Component {
           {...this.props}
         />
 
-        <ScrollView>
-          <View style={{ padding: 15, marginBottom: 10 }}>
-            <Text style={{ fontSize: 30, color: "#757575" }}>
-              Order again from
-            </Text>
-          </View>
-          <Carousel
-            layout={"default"}
-            data={this.state.entries}
-            renderItem={this._renderItem}
-            sliderWidth={styles.sliderWidth.width}
-            itemWidth={styles.itemWidth.width}
-            hasParallaxImages={true}
-            enableSnap={true}
-            firstItem={0}
-            useScrollView={true}
-            vertical={false}
-          />
-          <View style={{ padding: 15, marginBottom: 10, marginTop: 20 }}>
-            <Text style={{ fontSize: 30, color: "#757575" }}>
-              Recommended for you
-            </Text>
-          </View>
-          <Carousel
-            layout={"default"}
-            data={this.state.entries}
-            renderItem={this._renderItem}
-            sliderWidth={styles.sliderWidth.width}
-            itemWidth={styles.itemWidth.width}
-            hasParallaxImages={true}
-            enableSnap={true}
-            firstItem={0}
-            useScrollView={true}
-            vertical={false}
-          />
-          <View style={{ padding: 15, marginBottom: 10, marginTop: 20 }}>
-            <Text style={{ fontSize: 30, color: "#757575" }}>
-              Top rated brand{" "}
-            </Text>
-          </View>
-          <Carousel
-            layout={"default"}
-            data={this.state.entries}
-            renderItem={this._renderItem}
-            sliderWidth={styles.sliderWidth.width}
-            itemWidth={styles.itemWidth.width}
-            hasParallaxImages={true}
-            enableSnap={true}
-            firstItem={0}
-            useScrollView={true}
-            vertical={false}
-          />
-          <View style={{ padding: 15, marginBottom: 10, marginTop: 20 }}>
-            <Text style={{ fontSize: 30, color: "#757575" }}>
-              Buy from these{" "}
-            </Text>
-          </View>
-          <Carousel
-            layout={"default"}
-            data={this.state.entries}
-            renderItem={this._renderItem}
-            sliderWidth={styles.sliderWidth.width}
-            itemWidth={styles.itemWidth.width}
-            hasParallaxImages={true}
-            enableSnap={true}
-            firstItem={0}
-            useScrollView={true}
-            vertical={false}
-          />
-        </ScrollView>
+      
 
       </View>
     );
@@ -149,7 +53,6 @@ class Homescreen extends Component {
 
 const HomeStackNavigator = createStackNavigator({
   Homescreen,
-  Cart : Cart,
 });
 
 HomeStackNavigator.navigationOptions = {
