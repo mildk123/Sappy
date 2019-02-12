@@ -9,10 +9,10 @@ export class SignUp extends Component {
   constructor() {
     super();
     this.state = {
-      fname: null,
-      lname: null,
-      email: null,
-      password: null
+      fname: '',
+      lname: '',
+      email: '',
+      password: ''
     };
   }
   static navigationOptions = {
@@ -27,9 +27,12 @@ export class SignUp extends Component {
   };
 
   _onPress = async () => {
-    const {fname, lname, email, password } = this.state;
-    
-    if ((fname && lname && email && password) !== null) {
+    const { fname, lname, email, password } = this.state;
+
+    if (!fname || !lname || !email || !password) {
+      alert(`please enter correct information`);
+
+    } else {
       fetch('https://sappy125.herokuapp.com/auth/register', {
         method: "POST",
         headers: {
@@ -48,8 +51,6 @@ export class SignUp extends Component {
           }
         })
         .catch(err => alert(err.message))
-    } else {
-      alert(`please enter correct information`);
     }
   };
 
