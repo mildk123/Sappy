@@ -1,12 +1,10 @@
 import React, { Component } from "react";
 import { createStackNavigator } from "react-navigation";
-import { StyleSheet, View, Image,  Dimensions, ScrollView } from "react-native";
+import { StyleSheet, View, Dimensions } from "react-native";
 
 import Header from "../../Helper/Header";
 
-import Carousel from "react-native-snap-carousel";
-import { Card, CardItem, Text, Body, Icon, Fab } from "native-base";
-import Cart from "../Cart";
+import { Icon, Fab } from "native-base";
 
 class Homescreen extends Component {
   constructor() {
@@ -26,11 +24,11 @@ class Homescreen extends Component {
       <View style={styles.container}>
         <Fab
           active={this.state.active}
-          containerStyle={{zIndex: 1909, margin: 10}}
+          containerStyle={{ zIndex: 1909, margin: 10 }}
           position="bottomRight"
-          onPress={() => { this.props.navigation.navigate('Cart')} }
+          onPress={() => { this.props.navigation.navigate('Cart') }}
         >
-          <Icon style={{color: 'white', fontSize : 25}} name="ios-basket" />
+          <Icon style={{ color: 'white', fontSize: 25 }} name="ios-basket" />
         </Fab>
 
         <Header
@@ -44,7 +42,7 @@ class Homescreen extends Component {
           {...this.props}
         />
 
-      
+
 
       </View>
     );

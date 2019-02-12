@@ -19,12 +19,6 @@ SignOut = async () => {
 export default createDrawerNavigator(
   {
     HomeStackNavigator,
-    MyOrders,
-    MyProfile,
-    AddressNavigator,
-    MyVouchers,
-    Settings,
-    AddProduct,
   },
   {
     drawerWidth: width * 0.6,
