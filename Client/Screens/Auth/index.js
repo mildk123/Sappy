@@ -5,6 +5,7 @@ import { createStackNavigator } from "react-navigation";
 
 import { Button } from "react-native-elements";
 import Icon from "react-native-vector-icons/AntDesign";
+import IconMaterial from "react-native-vector-icons/MaterialCommunityIcons";
 
 import Login from './login'
 import Signup from './Signup'
@@ -32,11 +33,49 @@ class Authentication extends Component {
           <Text>Sappy</Text>
         </View>
 
+        <View style={styles.socialContainer}>
+          <Button
+            title="Google"
+            icon={<Icon name='google' size={23} color="red" />}
+            titleStyle={{
+              color: 'red'
+            }}
+            buttonStyle={{
+              backgroundColor: 'white',
+              borderColor: 'red',
+              borderWidth: 1,
+              width: width * 0.3,
+              padding: 5,
+              borderRadius: 25,
+              elevation: 0
+            }}
+          />
+          <Button
+            title="Facebook"
+            icon={<Icon name='facebook-square' size={23} color="#4267B0" />}
+            titleStyle={{
+              color: '#4267B0'
+            }}
+            buttonStyle={{
+              backgroundColor: 'white',
+              borderColor: '#4267B0',
+              borderWidth: 1,
+              width: width * 0.35,
+              padding: 5,
+              borderRadius: 25,
+              elevation: 0
+            }}
+          />
+
+
+        </View>
+
         <View style={styles.btnContainer}>
           <Button
             onPress={() => this.props.navigation.navigate('Login')}
             title="Login"
-            icon={<Icon name="user" size={23} color="white" />}
+            iconRight
+            icon={<IconMaterial name="login" size={23} color="white" />}
             buttonStyle={{
               backgroundColor: "#E22929",
               width: 220,
@@ -92,11 +131,12 @@ const styles = StyleSheet.create({
     maxHeight: width * 0.5,
     maxWidth: width * 0.5
   },
+  socialContainer: {
+    flexDirection: "row",
+    justifyContent: 'space-evenly',
+  },
   btnContainer: {
-    // height: 150,
-    // padding: 25,
     flexDirection: "row",
     justifyContent: 'space-around',
-    // alignContent: 'flex-start'
   }
 });
