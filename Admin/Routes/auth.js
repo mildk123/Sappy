@@ -1,5 +1,5 @@
 const express = require("express");
-const router  = express.Router();
+const router = express.Router();
 
 const Users = require('../Model/User')
 const bcrypt = require('bcryptjs')
@@ -12,8 +12,13 @@ router.post("/register", (req, res) => {
     const user = req.body;
     const hash = hashPassword(user.password);
 
-    const newUser = new Users({ email: user.email, password: hash });
-    const token = jwt.sign({ user: user[0] }, 'emp_mgnt112');
+    const newUser = new Users({ 
+        email: user.email, 
+        password: hash, 
+        fname: user.fname, 
+        lname: user.lname 
+    });
+    const token = jwt.sign({ user: user[0] }, 'sappy_125');
 
     newUser.save()
         .then(() => res.json({ message: "User registered successfully!", match: true, token: token, }))
@@ -55,4 +60,4 @@ function hashPassword(password) {
     return hash;
 }
 
-module.exports = router  ;
+module.exports = router;
