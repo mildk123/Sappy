@@ -26,7 +26,7 @@ export class SignUp extends Component {
     }
   };
 
-  _onPress = async () => {
+  _onPress = () => {
     const { fname, lname, email, password } = this.state;
 
     if (!fname || !lname || !email || !password) {

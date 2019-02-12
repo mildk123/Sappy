@@ -24,7 +24,7 @@ export class SignIn extends Component {
     }
   };
 
-  _onPress = async () => {
+  _onPress = () => {
     const { email, password } = this.state;
     if (!email || !password) {
       alert('Please Enter Email/Password')

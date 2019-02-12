@@ -9,7 +9,13 @@ import IconMaterial from "react-native-vector-icons/MaterialCommunityIcons";
 
 import Login from './login'
 import Signup from './Signup'
+
+
+import { Facebook } from "expo";
+import firebase from '../../config';
+
 const { width } = Dimensions.get("window");
+
 
 
 class Authentication extends Component {
@@ -20,6 +26,45 @@ class Authentication extends Component {
   }
   static navigationOptions = {
     header: null
+  };
+
+  loginFB = async () => {
+    const { type, token } = await Facebook.logInWithReadPermissionsAsync(
+      "2484863974917731",
+      { permissions: ["public_profile"] }
+    );
+
+    if (type === "success" && token) {
+      const credential = firebase.auth.FacebookAuthProvider.credential(token);
+
+      const resp = await firebase.auth().signInAndRetrieveDataWithCredential(credential);
+      AsyncStorage.setItem("userLoggedIn", resp);
+      this.props.navigation.navigate("App");
+      // this.toHomePage();
+    }
+  };
+
+  toHomePage = async () => {
+    firebase.auth().onAuthStateChanged(user => {
+      if (user) {
+        let username = user.displayName;
+        let email = user.email;
+        let photoURL = user.photoURL;
+        let uid = user.uid;
+
+        // database.child("users/" + uid).set(
+        //   {
+        //     username,
+        //     email,
+        //     photoURL,
+        //     uid
+        //   },
+        //   () => {
+            this.props.navigation.navigate("App");
+          // }
+        // );
+      }
+    });
   };
 
   render() {
@@ -52,6 +97,7 @@ class Authentication extends Component {
           />
           <Button
             title="Facebook"
+            onPress={() => this.loginFB()}
             icon={<Icon name='facebook-square' size={23} color="#4267B0" />}
             titleStyle={{
               color: '#4267B0'

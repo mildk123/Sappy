@@ -7,7 +7,7 @@ import AuthStackNavigator from "../Screens/Auth/index";
 import AppDrawerNavigator from "./AppDrawerNavigator";
 
 export default createSwitchNavigator({
-  // AuthLoading: AuthLoading,
-  // Auth: AuthStackNavigator,
+  AuthLoading: AuthLoading,
+  Auth: AuthStackNavigator,
   App: AppDrawerNavigator,
 });
