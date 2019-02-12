@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { StyleSheet, View, Image } from "react-native";
+import { StyleSheet, View, Image, Dimensions, Text } from "react-native";
 
 import { createStackNavigator } from "react-navigation";
 
@@ -8,19 +8,20 @@ import Icon from "react-native-vector-icons/AntDesign";
 
 import Login from './login'
 import Signup from './Signup'
+const { width } = Dimensions.get("window");
 
 
 class Authentication extends Component {
   constructor() {
     super();
-    
+
     this.state = {};
   }
   static navigationOptions = {
     header: null
   };
-  
-   render() {
+
+  render() {
     return (
       <View style={styles.container}>
         <View style={styles.imgContainer}>
@@ -28,6 +29,7 @@ class Authentication extends Component {
             style={styles.picSize}
             source={require('../../Assets/icon.png')}
           />
+          <Text>Sappy</Text>
         </View>
 
         <View style={styles.btnContainer}>
@@ -45,7 +47,7 @@ class Authentication extends Component {
               // borderRadius: 5
             }}
           />
-           <Button
+          <Button
             onPress={() => this.props.navigation.navigate('Signup')}
             title="Create Account"
             iconRight
@@ -71,7 +73,7 @@ class Authentication extends Component {
 export default (AuthStackNavigator = createStackNavigator({
   Auth: Authentication,
   Login: Login,
-  Signup : Signup
+  Signup: Signup
 }));
 
 const styles = StyleSheet.create({
@@ -87,14 +89,14 @@ const styles = StyleSheet.create({
     alignItems: "center"
   },
   picSize: {
-    maxHeight: 360,
-    maxWidth: 360
+    maxHeight: width * 0.5,
+    maxWidth: width * 0.5
   },
   btnContainer: {
     // height: 150,
     // padding: 25,
     flexDirection: "row",
-    justifyContent: 'space-around' ,
+    justifyContent: 'space-around',
     // alignContent: 'flex-start'
   }
 });

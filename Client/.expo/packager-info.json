@@ -2,8 +2,8 @@
   "devToolsPort": 19002,
   "expoServerPort": 19000,
   "packagerPort": 19001,
-  "packagerPid": 3836,
-  "expoServerNgrokUrl": "https://z7-szm.anonymous.client.exp.direct",
-  "packagerNgrokUrl": "https://packager.z7-szm.anonymous.client.exp.direct",
-  "ngrokPid": 1908
+  "packagerPid": 3888,
+  "expoServerNgrokUrl": null,
+  "packagerNgrokUrl": null,
+  "ngrokPid": null
 }
