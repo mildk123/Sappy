@@ -77,28 +77,21 @@ class Authentication extends Component {
             iconRight
             icon={<IconMaterial name="login" size={23} color="white" />}
             buttonStyle={{
-              backgroundColor: "#E22929",
-              width: 220,
-              padding: 10,
-              // height: 55,
-              // borderColor: "transparent",
-              // borderWidth: 0,
-              // borderRadius: 5
+              backgroundColor: "#47bc72",
+              width: width * 0.5,
+              padding: 7,
             }}
           />
+          {/* background: ' linear-gradient(10deg, #1D976C, #93F9B9) */}
           <Button
             onPress={() => this.props.navigation.navigate('Signup')}
             title="Create Account"
             iconRight
             icon={<Icon name="adduser" size={23} color="white" />}
             buttonStyle={{
-              backgroundColor: "#E79E2F",
-              width: 220,
-              padding: 10,
-              // height: 55,
-              // borderColor: "transparent",
-              // borderWidth: 0,
-              // borderRadius: 5
+              backgroundColor: "#47bc72",
+              width: width * 0.5,
+              padding: 7,
             }}
           />
 
@@ -123,16 +116,17 @@ const styles = StyleSheet.create({
   },
   imgContainer: {
     maxHeight: "100%",
-    padding: 25,
+    padding: 20,
     justifyContent: "center",
     alignItems: "center"
   },
   picSize: {
-    maxHeight: width * 0.5,
-    maxWidth: width * 0.5
+    maxHeight: width * 0.6,
+    maxWidth: width * 0.6
   },
   socialContainer: {
     flexDirection: "row",
+
     justifyContent: 'space-evenly',
   },
   btnContainer: {
