@@ -43,7 +43,7 @@ export class AuthModal extends Component {
         isLoading: true
       })
       if (modalType === 'Register') {
-        fetch('/auth/register', {
+        fetch('/admin/register', {
           method: 'POST',
           headers: {
             'Accept': 'application/json',
@@ -78,40 +78,37 @@ export class AuthModal extends Component {
           })
 
       } else {
-        let dat = {
-          token: 'miladkhan'
+        fetch('/admin/login', {
+          method: 'POST',
+          headers: {
+            'Accept': 'application/json',
+            'Content-Type': 'application/json'
+          },
+          body: JSON.stringify({ email: email, password: password })
         }
-        // fetch('/auth/login', {
-        //   method: 'POST',
-        //   headers: {
-        //     'Accept': 'application/json',
-        //     'Content-Type': 'application/json'
-        //   },
-        //   body: JSON.stringify({ email: email, password: password })
-        // }
-        // )
-        //   .then(data => data.json())
-        //   .then(dat => {
-        //     let response = dat.match
-        //     if (response === false) {
-        //       swal(dat.message)
-        //       this.setState({
-        //         isLoading: false
-        //       })
-        //     } else {
+        )
+          .then(data => data.json())
+          .then(dat => {
+            let response = dat.match
+            if (response === false) {
+              swal(dat.message)
+              this.setState({
+                isLoading: false
+              })
+            } else {
               sessionStorage.setItem('SessionToken', dat.token)
               this.props.onStoreToken({ token: dat.token })
               this.props.history.replace('/Home')
-            // }
-          // })
-          // .catch(err => {
-          //   swal(err.message)
-          //   this.setState({
-          //     isLoading: false
-          //   })
-          //   console.log(err.message)
-          // }
-          // )
+            }
+          })
+          .catch(err => {
+            swal(err.message)
+            this.setState({
+              isLoading: false
+            })
+            console.log(err.message)
+          }
+          )
       }
     }
   }

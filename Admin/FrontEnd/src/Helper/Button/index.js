@@ -30,8 +30,8 @@ class AuthButtons extends Component {
           {...this.props}
         />
         <div>
-          {/* <Button.Group> */}
-            {/* <Button
+          <Button.Group>
+            <Button
               // onClick={() => this.renderModal('Register')}
               onClick={() => this.changeModal('Register')}
               animated color='black' primary >
@@ -39,11 +39,10 @@ class AuthButtons extends Component {
               <Button.Content hidden>
                 <Icon name='user circle' />
               </Button.Content>
-            </Button> */}
-            {/* </Button.Group> */}
+            </Button>
 
             <div style={{ margin: 3 }} />
-            <Button 
+            <Button
               onClick={() => this.changeModal('Login')}
               animated size="large" color="red"  >
               <Button.Content visible>Login</Button.Content>
@@ -51,6 +50,7 @@ class AuthButtons extends Component {
                 <Icon name='sign-in' />
               </Button.Content>
             </Button>
+          </Button.Group>
         </div>
       </Fragment>
     )
