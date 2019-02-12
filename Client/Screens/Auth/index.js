@@ -82,7 +82,7 @@ class Authentication extends Component {
               padding: 7,
             }}
           />
-          {/* background: ' linear-gradient(10deg, #1D976C, #93F9B9) */}
+
           <Button
             onPress={() => this.props.navigation.navigate('Signup')}
             title="Create Account"
@@ -126,7 +126,6 @@ const styles = StyleSheet.create({
   },
   socialContainer: {
     flexDirection: "row",
-
     justifyContent: 'space-evenly',
   },
   btnContainer: {

@@ -18,7 +18,7 @@ export class SignUp extends Component {
   static navigationOptions = {
     title: "Create Account",
     headerStyle: {
-      backgroundColor: "#E79E2F"
+      backgroundColor: "#47bc72"
     },
     headerTintColor: "#fff",
     headerTitleStyle: {
@@ -45,15 +45,15 @@ export class SignUp extends Component {
       //       email: email,
       //       uid: uid
       //     });
-        //   AsyncStorage.setItem("userLoggedIn", "SignedUp");
-        //   this.props.navigation.navigate("App");
-        // })
-        // .catch(error => {
-        //   // Handle Errors here.
-        //   var errorCode = error.code;
-        //   var errorMessage = error.message;
-        //   alert(errorCode, errorMessage);
-        // });
+      //   AsyncStorage.setItem("userLoggedIn", "SignedUp");
+      //   this.props.navigation.navigate("App");
+      // })
+      // .catch(error => {
+      //   // Handle Errors here.
+      //   var errorCode = error.code;
+      //   var errorMessage = error.message;
+      //   alert(errorCode, errorMessage);
+      // });
     } else {
       alert(`please enter correct information`);
     }
@@ -65,13 +65,11 @@ export class SignUp extends Component {
         <View style={styles.inputDiv}>
           <Input
             labelStyle={{
-              margin: 5,
+              margin: 7,
               fontSize: 22,
-              fontWeight: "300",
-              color: "#E79E2F",
-              fontStyle: "italic"
+              color: "#47bc72",
             }}
-            label="First Name"
+            label="~ First Name"
             onChangeText={firstName => {
               this.setState({ firstName: firstName });
             }}
@@ -80,13 +78,11 @@ export class SignUp extends Component {
           />
           <Input
             labelStyle={{
-              margin: 5,
+              margin: 7,
               fontSize: 22,
-              fontWeight: "300",
-              color: "#E79E2F",
-              fontStyle: "italic"
+              color: "#47bc72",
             }}
-            label="Last Name"
+            label="~ Last Name"
             onChangeText={lastName => {
               this.setState({ lastName: lastName });
             }}
@@ -94,13 +90,11 @@ export class SignUp extends Component {
             leftIcon={<Icon size={20} name="user" />}
           />
           <Input
-            label="Email"
+            label="~ Email"
             labelStyle={{
-              margin: 5,
+              margin: 7,
               fontSize: 22,
-              fontWeight: "300",
-              color: "#E79E2F",
-              fontStyle: "italic"
+              color: "#47bc72",
             }}
             placeholder="abec@domain.com"
             onChangeText={email => {
@@ -110,13 +104,11 @@ export class SignUp extends Component {
           />
           <Input
             labelStyle={{
-              margin: 5,
+              margin: 7,
               fontSize: 22,
-              fontWeight: "300",
-              color: "#E79E2F",
-              fontStyle: "italic"
+              color: "#47bc72",
             }}
-            label="Password"
+            label="~ Password"
             placeholder="********"
             onChangeText={password => {
               this.setState({ password: password });
@@ -132,12 +124,13 @@ export class SignUp extends Component {
             onPress={() => this._onPress()}
             icon={<Icon name="check" size={15} color="white" />}
             buttonStyle={{
-              backgroundColor: "#E79E2F",
+              backgroundColor: "#47bc72",
               width: 150,
               height: 55,
               borderColor: "transparent",
               borderWidth: 0,
-              borderRadius: 5
+              borderRadius: 5,
+              elevation: 0
             }}
           />
         </View>

@@ -9,7 +9,7 @@ export class SignIn extends Component {
   static navigationOptions = {
     title: "Login",
     headerStyle: {
-      backgroundColor: "#E22929"
+      backgroundColor: "#47bc72"
     },
     headerTintColor: "#fff",
     headerTitleStyle: {
@@ -42,13 +42,11 @@ export class SignIn extends Component {
       <View style={styles.container}>
         <View style={styles.inputDiv}>
           <Input
-            label="Email"
+            label="~ Email"
             labelStyle={{
-              margin: 5,
+              margin: 7,
               fontSize: 22,
-              fontWeight: "300",
-              color: "#E22929",
-              fontStyle: "italic"
+              color: "#47bc72",
             }}
             onChangeText={email => {
               this.setState({ email: email });
@@ -57,14 +55,11 @@ export class SignIn extends Component {
             leftIcon={<Icon size={20} name="envelope-o" />}
           />
           <Input
-            label="Password"
+            label="~ Password"
             labelStyle={{
-              margin: 5,
+              margin: 17,
               fontSize: 22,
-              fontWeight: "300",
-              color: "#E22929",
-              fontStyle: "italic"
-            }}
+              color: "#47bc72",            }}
             onChangeText={password => {
               this.setState({ password: password });
             }}
@@ -80,12 +75,13 @@ export class SignIn extends Component {
             onPress={() => this._onPress()}
             icon={<Icon name="chevron-right" size={15} color="white" />}
             buttonStyle={{
-              backgroundColor: "#E22929",
+              backgroundColor: "#47bc72",
               width: 150,
               height: 55,
               borderColor: "transparent",
               borderWidth: 0,
-              borderRadius: 5
+              borderRadius: 5,
+              elevation: 0
             }}
           />
         </View>
