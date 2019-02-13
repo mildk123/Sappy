@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { StyleSheet, View, Image, Dimensions, Text } from "react-native";
+import { StyleSheet, View, Image, Dimensions, Text, AsyncStorage } from "react-native";
 
 import { createStackNavigator } from "react-navigation";
 
@@ -29,8 +29,9 @@ class Authentication extends Component {
   };
 
   loginFB = async () => {
+
     const { type, token } = await Facebook.logInWithReadPermissionsAsync(
-      "2484863974917731",
+      "447640099108195",
       { permissions: ["public_profile"] }
     );
 
