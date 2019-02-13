@@ -13,6 +13,7 @@ import Signup from './Signup'
 
 import { Facebook } from "expo";
 import firebase from '../../config';
+const database = firebase.database().ref()
 
 const { width } = Dimensions.get("window");
 
@@ -39,13 +40,12 @@ class Authentication extends Component {
       const credential = firebase.auth.FacebookAuthProvider.credential(token);
 
       const response = await firebase.auth().signInAndRetrieveDataWithCredential(credential);
-      console.log(response.credential.accessToken)
-      // AsyncStorage.setItem("userLoggedIn", response.credential.accessToken);
-      this.toHomePage();
+      AsyncStorage.setItem("userLoggedIn", response.credential.accessToken);
+      this._pushToDB();
     }
   };
 
-  toHomePage = async () => {
+  _pushToDB = async () => {
     firebase.auth().onAuthStateChanged(user => {
       if (user) {
         let username = user.displayName;
@@ -53,17 +53,17 @@ class Authentication extends Component {
         let photoURL = user.photoURL;
         let uid = user.uid;
 
-        // database.child("users/" + uid).set(
-        //   {
-        //     username,
-        //     email,
-        //     photoURL,
-        //     uid
-        //   },
-        //   () => {
-        this.props.navigation.navigate("App");
-        // }
-        // );
+        database.child("Users/").child(uid).set(
+          {
+            username,
+            email,
+            photoURL,
+            uid
+          },
+          () => {
+            this.props.navigation.navigate("App");
+          }
+        );
       }
     });
   };

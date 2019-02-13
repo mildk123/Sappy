@@ -13,11 +13,10 @@ import Icon from "react-native-vector-icons/MaterialCommunityIcons";
 const { width } = Dimensions.get("window");
 
 SignOut = async (props) => {
-  console.log('props', props)
   // await AsyncStorage.removeItem("userLoggedIn");
   await AsyncStorage.removeItem("userLoggedIn");
 
-  this.props.navigation.navigate("AuthLoading");
+  props.navigation.navigate("AuthLoading");
 };
 
 export default createDrawerNavigator(
@@ -80,7 +79,7 @@ export default createDrawerNavigator(
           </View>
 
           <Button
-            onPress={() => {this.SignOut()}}
+            onPress={() => {this.SignOut(props)}}
             buttonStyle={{
               backgroundColor: "red",
               padding: 8,
