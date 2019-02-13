@@ -7,25 +7,27 @@ class UserCard extends React.Component {
     const { name, usertype, desc, Location, Phone, skills, reviews } = this.props
     return (
       <div style={{ margin: 20, }}>
-
-          <Button icon color="youtube" >
-            <Icon name='cancel' />
-          </Button>
-
-          <Button icon color="twitter">
-            <Icon name='edit outline' />
-          </Button>
-
-          <Button icon color="violet">
-            <Icon name='chat' />
-          </Button>
-
         <Card
           image={Elliot}
           header={name}
           meta={usertype}
           description={desc}
           extra={<Fragment>
+
+            <div style={{ position: 'absolute', top: 1, left: 1, padding: 5 }}>
+              <Button icon color="youtube" >
+                <Icon name='cancel' />
+              </Button>
+
+              <Button icon color="twitter">
+                <Icon name='edit outline' />
+              </Button>
+
+              <Button icon color="violet">
+                <Icon name='chat' />
+              </Button>
+            </div>
+
             <p>
               <Icon name='map marker alternate' />
               Location : {Location}
@@ -44,7 +46,6 @@ class UserCard extends React.Component {
               Reviews : {reviews}
             </p>
           </Fragment>}
-
         />
       </div>
     )
