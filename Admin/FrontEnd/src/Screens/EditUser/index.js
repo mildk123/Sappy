@@ -23,7 +23,7 @@ class Edit extends Component {
       ref={this.Sidebar} 
       handleShowClick={this.state.visible}
       >
-        <div style={{ height: '100vh', padding: 10 }}>
+        <div style={{ padding: 10}}>
           <EditComp {...this.props}
             handleShowClick={this.handleShowClick}
           />

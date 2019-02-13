@@ -83,6 +83,17 @@ class EditComp extends Component {
             skills="Alteration | Computer | Photoshop"
             reviews="none"
           />
+
+          <Card
+            // userImage=
+            name="Milad Khan"
+            usertype="Service Provider"
+            desc="Elliot is a sound engineer living in Nashville who enjoys playing guitar and hanging with his cat"
+            Location="2.035 , 26.24"
+            Phone="0315-2289013"
+            skills="Alteration | Computer | Photoshop"
+            reviews="none"
+          />
         </div>
 
       </Fragment>
