@@ -4,41 +4,38 @@ import Elliot from '../../Assets/elliot.jpg'
 
 class UserCard extends React.Component {
   render() {
-    const { name, usertype, desc } = this.props
+    const { name, usertype, desc, Location, Phone, skills, reviews } = this.props
     return (
-      <Card
-        image={Elliot}
-        header={name}
-        meta={usertype}
-        description={desc}
-      extra={<Extra {...this.props} />}
-      />
+      <div style={{padding: 25}}>
+        <Card
+          image={Elliot}
+          header={name}
+          meta={usertype}
+          description={desc}
+          extra={<Fragment>
+            <p>
+              <Icon name='map marker alternate' />
+              Location : {Location}
+            </p>
+
+            <p>
+              <Icon name='call' />
+              Phone : {Phone}
+            </p>
+            <p>
+              <Icon name='file text' />
+              Skills : {skills}
+            </p>
+            <p>
+              <Icon name='chat' />
+              Reviews : {reviews}
+            </p>
+          </Fragment>}
+
+        />
+      </div>
     )
   }
 }
 export default UserCard
 
-function Extra(props) {
-  const { Location, Phone, skills, reviews } = props;
-  return (
-    <Fragment>
-      <p>
-        <Icon name='map marker alternate  ' />
-        Location : {Location}
-      </p>
-
-      <p>
-        <Icon name='call' />
-        Phone : {Phone}
-      </p>
-      <p>
-        <Icon name='file text' />
-        Skills : {skills}
-      </p>
-      <p>
-        <Icon name='chat' />
-        Reviews : {reviews}
-      </p>
-    </Fragment>
-  )
-}
