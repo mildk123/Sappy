@@ -1,5 +1,6 @@
 import React, { Component, Fragment } from "react";
 import { connect } from 'react-redux';
+
 // import swal from 'sweetalert'
 import AppBar from '../../Helper/Appbar'
 
@@ -11,11 +12,6 @@ import Card from '../../Helper/CardCont'
 class EditComp extends Component {
   constructor(props) {
     super(props);
-    this.state = {
-      isFetching: false,
-      employeeList: [],
-      searchCat : 'emp_fname'
-    };
 
     this.checkAuth()
   }
@@ -24,15 +20,12 @@ class EditComp extends Component {
     let token = sessionStorage.getItem('SessionToken')
     if (!token) {
       this.props.history.replace('/')
-    } else {
-      // this.fetchEmployee()
     }
   }
 
- 
+
 
   render() {
-    const { employeeList } = this.state;
     return (
       <Fragment>
 
@@ -56,37 +49,42 @@ class EditComp extends Component {
           </Container>
         </div>
 
-        {/* Employees Card //////////////////////// */}
+        {/* Users Card //////////////////////// */}
         <div style={{ display: 'flex', flexWrap: 'wrap', justifyContent: 'center' }}>
-          {employeeList ? (
-            employeeList.map((item, index) => {
-              return <div key={index}><Card
-                fname={item.emp_fname}
-                dept={item.emp_dept}
-                id={`#${Math.floor(Math.random() * 9999)}`}
-                band={item.emp_band}
-                specs={`
-                ${item.emp_specs[0]}  
-                ${item.emp_specs[1] ? (`/ ${item.emp_specs[1]} `) : ''} 
-                ${item.emp_specs[2] ? (`/ ${item.emp_specs[2]} `) : ''}
-                `}
-                father={item.father_info ? (item.father_info.name) : ('Not mentioned')}
-                address={`House no : ${item.address[0].house_no},${item.address[0].flat_no} `}
-              />
-              </div>
-            })
-          ) : (
-              <Card
-                fname='first Name'
-                dept='Department'
-                id='Id'
-                band='band'
-                specs="specification"
-                father="father's name"
-                address="Address"
-              />
-            )}
+          <Card
+            // userImage=
+            name="Milad Khan"
+            usertype="Service Provider"
+            desc="Elliot is a sound engineer living in Nashville who enjoys playing guitar and hanging with his cat"
+            Location="2.035 , 26.24"
+            Phone="0315-2289013"
+            skills="Alteration | Computer | Photoshop"
+            reviews="none"
+          />
+
+          <Card
+            // userImage=
+            name="Milad Khan"
+            usertype="Service Provider"
+            desc="Elliot is a sound engineer living in Nashville who enjoys playing guitar and hanging with his cat"
+            Location="2.035 , 26.24"
+            Phone="0315-2289013"
+            skills="Alteration | Computer | Photoshop"
+            reviews="none"
+          />
+
+          <Card
+            // userImage=
+            name="Milad Khan"
+            usertype="Service Provider"
+            desc="Elliot is a sound engineer living in Nashville who enjoys playing guitar and hanging with his cat"
+            Location="2.035 , 26.24"
+            Phone="0315-2289013"
+            skills="Alteration | Computer | Photoshop"
+            reviews="none"
+          />
         </div>
+
       </Fragment>
     );
   }
