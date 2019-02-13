@@ -44,7 +44,7 @@ export class SignIn extends Component {
           .then(res => {
             let resolve = res.match
             if (resolve) {
-              AsyncStorage.setItem(res.token, 'userToken')
+              AsyncStorage.setItem(res.token, 'userLoggedIn')
               
               this.props.navigation.navigate('App')
             } else {

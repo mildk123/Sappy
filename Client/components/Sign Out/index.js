@@ -17,7 +17,7 @@ export class SignOut extends Component {
     }
 
     SignOut = async () => {
-        await AsyncStorage.removeItem('userToken')
+        await AsyncStorage.removeItem('userLoggedIn')
 
         this.props.navigation.navigate("Auth");
     }

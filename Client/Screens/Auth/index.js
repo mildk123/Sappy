@@ -38,10 +38,10 @@ class Authentication extends Component {
     if (type === "success" && token) {
       const credential = firebase.auth.FacebookAuthProvider.credential(token);
 
-      await firebase.auth().signInAndRetrieveDataWithCredential(credential);
-      AsyncStorage.setItem("userLoggedIn", 'resp');
-      this.props.navigation.navigate("App");
-      // this.toHomePage();
+      const response = await firebase.auth().signInAndRetrieveDataWithCredential(credential);
+      console.log(response.credential.accessToken)
+      // AsyncStorage.setItem("userLoggedIn", response.credential.accessToken);
+      this.toHomePage();
     }
   };
 
@@ -61,8 +61,8 @@ class Authentication extends Component {
         //     uid
         //   },
         //   () => {
-            this.props.navigation.navigate("App");
-          // }
+        this.props.navigation.navigate("App");
+        // }
         // );
       }
     });

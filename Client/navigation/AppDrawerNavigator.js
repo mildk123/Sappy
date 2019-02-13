@@ -4,21 +4,27 @@ import {SafeAreaView,ScrollView,Dimensions,View,Image,AsyncStorage} from "react-
 import { createDrawerNavigator, DrawerItems } from "react-navigation";
 
 import HomeStackNavigator from "../Screens/Homescreen";
+import Services from "../Screens/Homescreen";
+import Settings from "../Screens/Homescreen";
 
 import { Button } from "react-native-elements";
 import Icon from "react-native-vector-icons/MaterialCommunityIcons";
 
 const { width } = Dimensions.get("window");
 
-SignOut = async () => {
-  await AsyncStorage.removeItem("userToken");
+SignOut = async (props) => {
+  console.log('props', props)
+  // await AsyncStorage.removeItem("userLoggedIn");
+  await AsyncStorage.removeItem("userLoggedIn");
 
-  this.props.navigation.navigate("Auth");
+  this.props.navigation.navigate("AuthLoading");
 };
 
 export default createDrawerNavigator(
   {
     HomeStackNavigator,
+    Services,
+    Settings
   },
   {
     drawerWidth: width * 0.6,
@@ -74,6 +80,7 @@ export default createDrawerNavigator(
           </View>
 
           <Button
+            onPress={() => {this.SignOut()}}
             buttonStyle={{
               backgroundColor: "red",
               padding: 8,
