@@ -23,7 +23,7 @@ function Extra(props) {
   return (
     <Fragment>
       <p>
-        <Icon name='location arrow' />
+        <Icon name='map marker alternate  ' />
         Location : {Location}
       </p>
 
@@ -32,11 +32,11 @@ function Extra(props) {
         Phone : {Phone}
       </p>
       <p>
-        <Icon name='call' />
+        <Icon name='file text' />
         Skills : {skills}
       </p>
       <p>
-        <Icon name='call' />
+        <Icon name='chat' />
         Reviews : {reviews}
       </p>
     </Fragment>
