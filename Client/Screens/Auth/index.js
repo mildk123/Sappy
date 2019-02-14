@@ -51,7 +51,7 @@ class Authentication extends Component {
         let username = user.displayName;
         let email = user.email;
         let photoURL = user.photoURL;
-        // let uid = user.uid;
+        let uid = user.uid;
 
         database.child("Users/").child(uid).set(
           {
