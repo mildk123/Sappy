@@ -1,5 +1,5 @@
-import React from "react";
-import {SafeAreaView,ScrollView,Dimensions,View,Image,AsyncStorage} from "react-native";
+import React, { Component, Fragment } from "react";
+import { SafeAreaView, ScrollView, Dimensions, View, Image, AsyncStorage } from "react-native";
 
 import { createDrawerNavigator, DrawerItems } from "react-navigation";
 
@@ -12,23 +12,31 @@ import Icon from "react-native-vector-icons/MaterialCommunityIcons";
 
 const { width } = Dimensions.get("window");
 
-SignOut = async (props) => {
-  // await AsyncStorage.removeItem("userLoggedIn");
-  await AsyncStorage.removeItem("userLoggedIn");
 
-  props.navigation.navigate("AuthLoading");
-};
 
-export default createDrawerNavigator(
-  {
-    HomeStackNavigator,
-    Services,
-    Settings
-  },
-  {
-    drawerWidth: width * 0.6,
-    contentComponent: props => (
+class DrawerComponent extends Component {
+  constructor(props) {
+    super(props)
+
+    console.log('con props', props)
+  }
+
+  SignOut = async (props) => {
+    console.log(props)
+    // await AsyncStorage.removeItem("userLoggedIn");
+    await AsyncStorage.removeItem("userLoggedIn");
+
+    props.navigation.navigate("AuthLoading");
+  };
+
+  render() {
+
+    console.log('12312')
+    return (
+
       <SafeAreaView style={{ flex: 1 }}>
+
+        {/* Drawer Header //////////////////// */}
         <View
           style={{
             height: 180,
@@ -43,11 +51,16 @@ export default createDrawerNavigator(
             style={{ height: 150, width: 150, padding: 25 }}
           />
         </View>
-        <ScrollView>
-          <DrawerItems {...props} />
-        </ScrollView>
 
+
+        {/* <ScrollView>
+          <DrawerItems {...this.props} />
+        </ScrollView> */}
+
+        {/* Drawer Content */}
         <View>
+
+          {/* Drawer Footer Buttons //////////// */}
           <View
             style={{
               flexDirection: "row",
@@ -79,7 +92,7 @@ export default createDrawerNavigator(
           </View>
 
           <Button
-            onPress={() => {this.SignOut(props)}}
+            onPress={() => { this.SignOut() }}
             buttonStyle={{
               backgroundColor: "red",
               padding: 8,
@@ -88,8 +101,25 @@ export default createDrawerNavigator(
             icon={<Icon name="logout" size={24} style={{ color: "white" }} />}
             title="Logout"
           />
+
         </View>
+
       </SafeAreaView>
+    )
+  }
+
+}
+
+export default createDrawerNavigator(
+  {
+    HomeStackNavigator,
+    Services,
+    Settings
+  },
+  {
+    drawerWidth: width * 0.7,
+    contentComponent: props => (
+      <DrawerComponent {...props} />
     ),
     contentOptions: {
       activeTintColor: "#47bc72",
