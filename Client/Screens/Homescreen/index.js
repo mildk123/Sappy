@@ -44,8 +44,8 @@ class Homescreen extends Component {
           icon={'menu'}
           title={"Home"}
           hasTabs={true}
-          searchBtn={true}
-          favBtn={false}
+          searchBar={true}
+          favBtn={true}
           threeDots={false}
           {...this.props}
         />

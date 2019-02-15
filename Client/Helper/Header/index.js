@@ -5,17 +5,28 @@ import { Header, Left, Body, Right, Button, Title, Icon, Text, Item, Input } fro
 import IconMaterial from "react-native-vector-icons/MaterialCommunityIcons";
 
 import { Button as Buttonel } from "react-native-elements";
+import Modal from '../Modal'
 
 const { width } = Dimensions.get("window");
 
 class HeaderComp extends Component {
   constructor() {
     super();
+    this.state ={}
+    this.showModal = React.createRef()
+  }
+
+  renderModal = () => {
+    this.setState({
+      renderModal : true
+    },() => this.showModal.current.setModalVisible() )
   }
 
   render() {
     return (
       <Fragment>
+        {this.state.renderModal &&<Modal ref={this.showModal}/>}
+
         <Header
           style={{ backgroundColor: this.props.headerColor }}
           iosBarStyle={"light-content"}
@@ -56,10 +67,11 @@ class HeaderComp extends Component {
           </Right>
         </Header>
 
-        <View style={{ padding: 5 }}>
+        {this.props.searchBar && <View style={{ padding: 5 }}>
           <Item >
             <Icon name="ios-search" />
             <Input placeholder="Find work" />
+            <IconMaterial name="filter-outline" style={{marginEnd: 15, fontSize: 24}} onPress={() => {this.renderModal()}} />
             <Buttonel
             title="Search"
 
@@ -69,7 +81,7 @@ class HeaderComp extends Component {
               }}
             />
           </Item>
-        </View>
+        </View>}
 
       </Fragment>
     );
