@@ -49,12 +49,11 @@ class More extends Component {
     };
 
     uploadImage = async () => {
-        debugger
         let phone = this.state.phone;
         if (phone) {
             firebase.auth().onAuthStateChanged(async (user) => {
                 if (user) {
-                    debugger
+                    
                     let uri = this.state.selectedImage;
                     let uid = user.uid
 

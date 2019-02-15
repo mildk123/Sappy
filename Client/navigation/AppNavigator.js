@@ -9,8 +9,8 @@ import AppDrawerNavigator from "./AppDrawerNavigator";
 import More from '../Screens/More'
 
 export default createSwitchNavigator({
-  More: More,
   AuthLoading: AuthLoading,
   Auth: AuthStackNavigator,
   App: AppDrawerNavigator,
+  More: More,
 });

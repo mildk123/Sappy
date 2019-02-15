@@ -4,6 +4,10 @@ import Icon from "react-native-vector-icons/AntDesign";
 import { StyleSheet, View, AsyncStorage } from "react-native";
 import { Input, Button } from "react-native-elements";
 
+
+import firebase from '../../../config';
+const database = firebase.database().ref()
+
 class SignUp extends Component {
   constructor() {
     super();
@@ -32,27 +36,61 @@ class SignUp extends Component {
       alert(`please enter correct information`);
 
     } else {
-      fetch('https://sappy125.herokuapp.com/auth/register', {
-        method: "POST",
-        headers: {
-          "Content-type": "application/json"
-        },
-        body: JSON.stringify({ fname, lname, email, password })
-      })
-        .then(res => res.json())
+      // fetch('https://sappy125.herokuapp.com/auth/register', {
+      //   method: "POST",
+      //   headers: {
+      //     "Content-type": "application/json"
+      //   },
+      //   body: JSON.stringify({ fname, lname, email, password })
+      // })
+      //   .then(res => res.json())
+      //   .then(res => {
+      //     let resolve = res.match
+      //     if (resolve) {
+      //       AsyncStorage.setItem('userLoggedIn', res.token)
+      //       AsyncStorage.setItem('newUser', 'true')
+      //       this.props.navigation.navigate('App')
+      //     } else {
+      //       alert(res.message)
+      //     }
+      //   })
+      //   .catch(err => alert(err.message))
+
+      firebase.auth().createUserWithEmailAndPassword(email, password)
         .then(res => {
-          let resolve = res.match
-          if (resolve) {
-            AsyncStorage.setItem('userLoggedIn', res.token)
-            AsyncStorage.setItem('newUser', 'true')
-            this.props.navigation.navigate('App')
-          } else {
-            alert(res.message)
-          }
+          let firebaseUid = res.user.uid
+          
+          let username = `${fname} ${lname}`
+          let photoURL = 'Placeholder';
+          let providerId = 'Authentication'
+          let fbUid = firebaseUid;
+
+          database.child("Users/").push(
+            {
+              username,
+              email,
+              photoURL,
+              providerId,
+              fbUid
+            }, () => {
+              AsyncStorage.setItem('userLoggedIn', res.user.refreshToken)
+              AsyncStorage.setItem('newUser', res.additionalUserInfo.isNewUser)
+
+              this.props.navigation.navigate("App");
+            }
+          )
+
         })
-        .catch(err => alert(err.message))
+        .catch(function (error) {
+          // Handle Errors here.
+          var errorCode = error.code;
+          var errorMessage = error.message;
+          alert(errorCode, errorMessage)
+          // ...
+        })
+
     }
-  };
+  }
 
   render() {
     return (

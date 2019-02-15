@@ -52,9 +52,9 @@ class Authentication extends Component {
         let email = user.providerData[0].email;
         let photoURL = user.providerData[0].photoURL;
         let providerId = user.providerData[0].providerId;
-        let fbUid = user.providerData[0].uid;
+        let fbUid = firebaseUid;
 
-        database.child("Users/").child(firebaseUid).set(
+        database.child("Users/").push(
           {
             username,
             email,

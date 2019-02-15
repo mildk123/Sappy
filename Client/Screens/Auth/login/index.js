@@ -5,6 +5,9 @@ import Icon from "react-native-vector-icons/FontAwesome";
 import { StyleSheet, View, AsyncStorage } from "react-native";
 import { Input, Button } from "react-native-elements";
 
+
+import firebase from '../../../config';
+
 export class SignIn extends Component {
   constructor() {
     super()
@@ -33,25 +36,41 @@ export class SignIn extends Component {
         isLoading: true
       })
       if ((email && password) !== null) {
-        fetch('https://sappy125.herokuapp.com/auth/login', {
-          method: "POST",
-          headers: {
-            "Content-type": "application/json"
-          },
-          body: JSON.stringify({ email, password })
-        })
-          .then(res => res.json())
+        // fetch('https://sappy125.herokuapp.com/auth/login', {
+        //   method: "POST",
+        //   headers: {
+        //     "Content-type": "application/json"
+        //   },
+        //   body: JSON.stringify({ email, password })
+        // })
+        //   .then(res => res.json())
+        //   .then(res => {
+        //     let resolve = res.match
+        //     if (resolve) {
+        //       AsyncStorage.setItem(res.token, 'userLoggedIn')
+
+        //       this.props.navigation.navigate('App')
+        //     } else {
+        //       alert(res.message)
+        //     }
+        //   })
+        //   .catch(err => alert(err.message))
+
+        firebase.auth().signInWithEmailAndPassword(email, password)
           .then(res => {
-            let resolve = res.match
-            if (resolve) {
-              AsyncStorage.setItem(res.token, 'userLoggedIn')
-              
-              this.props.navigation.navigate('App')
-            } else {
-              alert(res.message)
-            }
+            AsyncStorage.setItem('userLoggedIn', res.user.refreshToken)
+            AsyncStorage.setItem('newUser', res.additionalUserInfo.isNewUser)
+
+            this.props.navigation.navigate('App')
           })
-          .catch(err => alert(err.message))
+          .catch(function (error) {
+            // Handle Errors here.
+            var errorCode = error.code;
+            var errorMessage = error.message;
+            alert(errorCode, errorMessage)
+
+            // ...
+          });
       } else {
         alert(`please enter correct information`);
       }
