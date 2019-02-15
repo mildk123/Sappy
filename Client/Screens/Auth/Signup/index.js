@@ -59,26 +59,25 @@ class SignUp extends Component {
       firebase.auth().createUserWithEmailAndPassword(email, password)
         .then(res => {
           let firebaseUid = res.user.uid
-          
+
           let username = `${fname} ${lname}`
           let photoURL = 'Placeholder';
           let providerId = 'Authentication'
           let fbUid = firebaseUid;
 
-          database.child("Users/").push(
-            {
-              username,
-              email,
-              photoURL,
-              providerId,
-              fbUid
-            }, () => {
-              AsyncStorage.setItem('userLoggedIn', res.user.refreshToken)
-              AsyncStorage.setItem('newUser', res.additionalUserInfo.isNewUser)
-
-              this.props.navigation.navigate("App");
-            }
+          database.child("Users/").push({
+            username,
+            email,
+            photoURL,
+            providerId,
+            fbUid
+          }
           )
+          AsyncStorage.setItem('userLoggedIn', res.user.refreshToken)
+          AsyncStorage.setItem('newUser', 'true')
+
+          this.props.navigation.navigate("App");
+
 
         })
         .catch(function (error) {
