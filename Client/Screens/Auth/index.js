@@ -162,7 +162,7 @@ const styles = StyleSheet.create({
     justifyContent: 'space-between'
   },
   imgContainer: {
-    maxHeight: "100%",
+    maxHeight: "60%",
     padding: 20,
     justifyContent: "center",
     alignItems: "center"

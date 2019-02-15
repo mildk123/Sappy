@@ -53,9 +53,9 @@ class DrawerComponent extends Component {
         </View>
 
 
-        {/* <ScrollView>
+        <ScrollView>
           <DrawerItems {...this.props} />
-        </ScrollView> */}
+        </ScrollView>
 
         {/* Drawer Content */}
         <View>

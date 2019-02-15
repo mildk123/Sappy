@@ -1,5 +1,8 @@
 import React, { Component } from "react";
-import { Header, Left, Body, Right, Button, Icon, Title } from "native-base";
+import { Header, Left, Body, Right, Button, Title, Icon, Text } from "native-base";
+
+import IconMaterial from "react-native-vector-icons/MaterialCommunityIcons";
+
 
 class HeaderComp extends Component {
   constructor() {
@@ -14,6 +17,7 @@ class HeaderComp extends Component {
         hasTabs={this.props.tabs}
       >
         <Left>
+
           <Button
             onPress={
               this.props.goBack === true
@@ -22,8 +26,9 @@ class HeaderComp extends Component {
             }
             transparent
           >
-            <Icon name={this.props.icon} />
-          </Button>
+            <Text><IconMaterial name={this.props.icon} size={23} color="white" /></Text>
+             </Button>
+
         </Left>
 
         <Body>
