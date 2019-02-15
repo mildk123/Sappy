@@ -7,9 +7,7 @@ import {
     Input,
     Icon,
     Button,
-    Thumbnail,
     Text,
-    Row
 } from "native-base";
 
 import Header from "../../Helper/Header";
@@ -23,6 +21,7 @@ class More extends Component {
         super();
         this.state = {
             productName: null,
+            selectedImage: null
         };
     }
 
@@ -119,26 +118,13 @@ class More extends Component {
 
                 <View style={{ height: width, alignItems: 'center', justifyContent: 'space-between' }}>
 
-
-                    {/* <Image
-                        source={placeholder}
-                        alt="placeholder"
-                        style={{ height: 300, width: 300, padding: 15 }}
-                    /> */}
-
                     <TouchableHighlight onPress={this.selectImage}>
-                        <Thumbnail
-                            large
-                            source={
-                                // !selectedImage
-                                    // ? { uri: selectedImage }
-                                    // :
-                                <Image
-                                    source={placeholder}
-                                    alt="placeholder"
-                                    style={{ height: 300, width: 300, padding: 15 }}
-                                />
-                            }
+                        <Image
+                            source={selectedImage
+                                ? { uri: selectedImage }
+                                : placeholder}
+                            alt="placeholder"
+                            style={{ height: width * 0.7, width: width * 0.7 }}
                         />
                     </TouchableHighlight>
 
@@ -148,6 +134,7 @@ class More extends Component {
                             style={{
                                 backgroundColor: '#47bc72',
                                 borderRadius: 10,
+                                padding: 10,
                                 justifyContent: "center"
                             }}
                         >
