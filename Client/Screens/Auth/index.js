@@ -33,7 +33,7 @@ class Authentication extends Component {
 
     const { type, token } = await Facebook.logInWithReadPermissionsAsync(
       "447640099108195",
-      { permissions: ["public_profile"] }
+      { permissions: ["email", "public_profile"] }
     );
 
     if (type === "success" && token) {
@@ -47,18 +47,21 @@ class Authentication extends Component {
 
   _pushToDB = async () => {
     firebase.auth().onAuthStateChanged(user => {
+      let firebaseUid = user.uid
       if (user) {
-        let username = user.displayName;
-        let email = user.email;
-        let photoURL = user.photoURL;
-        let uid = user.uid;
+        let username = user.providerData[0].displayName;
+        let email = user.providerData[0].email;
+        let photoURL = user.providerData[0].photoURL;
+        let providerId = user.providerData[0].providerId;
+        let fbUid = user.providerData[0].uid;
 
-        database.child("Users/").child(uid).set(
+        database.child("Users/").child(firebaseUid).set(
           {
             username,
             email,
             photoURL,
-            uid
+            providerId,
+            fbUid
           },
           () => {
             this.props.navigation.navigate("App");

@@ -18,20 +18,18 @@ class DrawerComponent extends Component {
   constructor(props) {
     super(props)
 
-    console.log('con props', props)
+    this.SignOut = this.SignOut.bind(this)
   }
 
-  SignOut = async (props) => {
-    console.log(props)
+  SignOut = async () => {
     // await AsyncStorage.removeItem("userLoggedIn");
     await AsyncStorage.removeItem("userLoggedIn");
 
-    props.navigation.navigate("AuthLoading");
+    this.props.navigation.navigate("AuthLoading");
   };
 
   render() {
 
-    console.log('12312')
     return (
 
       <SafeAreaView style={{ flex: 1 }}>
