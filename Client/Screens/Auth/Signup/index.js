@@ -4,8 +4,7 @@ import Icon from "react-native-vector-icons/AntDesign";
 import { StyleSheet, View, AsyncStorage } from "react-native";
 import { Input, Button } from "react-native-elements";
 
-
-export class SignUp extends Component {
+class SignUp extends Component {
   constructor() {
     super();
     this.state = {
@@ -45,6 +44,7 @@ export class SignUp extends Component {
           let resolve = res.match
           if (resolve) {
             AsyncStorage.setItem('userLoggedIn', res.token)
+            AsyncStorage.setItem('newUser', 'true')
             this.props.navigation.navigate('App')
           } else {
             alert(res.message)
@@ -133,6 +133,8 @@ export class SignUp extends Component {
     );
   }
 }
+
+
 
 export default SignUp;
 

@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import { createStackNavigator } from "react-navigation";
-import { StyleSheet, View, Dimensions } from "react-native";
+import { StyleSheet, View, Dimensions, AsyncStorage } from "react-native";
 
 import Header from "../../Helper/Header";
 
@@ -9,9 +9,16 @@ import { Icon, Fab } from "native-base";
 class Homescreen extends Component {
   constructor() {
     super();
-    this.state = {}
 
+    this._loadApp();
   }
+
+  _loadApp = async () => {
+    const newUser = await AsyncStorage.getItem("newUser");
+    if (newUser){
+      this.props.navigation.navigate("More");
+    }
+  };
 
   static navigationOptions = {
     header: null

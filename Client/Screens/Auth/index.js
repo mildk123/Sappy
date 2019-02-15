@@ -10,7 +10,6 @@ import IconMaterial from "react-native-vector-icons/MaterialCommunityIcons";
 import Login from './login'
 import Signup from './Signup'
 
-
 import { Facebook } from "expo";
 import firebase from '../../config';
 const database = firebase.database().ref()
@@ -155,7 +154,7 @@ class Authentication extends Component {
 export default (AuthStackNavigator = createStackNavigator({
   Auth: Authentication,
   Login: Login,
-  Signup: Signup
+  Signup: Signup,
 }));
 
 const styles = StyleSheet.create({
