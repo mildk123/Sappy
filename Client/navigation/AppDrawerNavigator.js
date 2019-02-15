@@ -59,44 +59,41 @@ class DrawerComponent extends Component {
 
         {/* Drawer Content */}
         <View>
-
           {/* Drawer Footer Buttons //////////// */}
           <View
             style={{
-              flexDirection: "row",
-              justifyContent: "space-between",
-              padding: 10
+              flexDirection: "column",
             }}
           >
-            <Button
-              buttonStyle={{
-                padding: 4,
-                width: width * 0.25,
-                borderRadius: 12,
-                elevation: 0,
-                backgroundColor: "#47bc72"
-              }}
-              title="Terms & Conditions"
-            />
+          <Button
+            buttonStyle={{
+              padding: 4,
+              // width: 50,
+              // borderRadius: 12,
+              elevation: 0,
+              backgroundColor: "#47bc72"
+            }}
+            title="Terms & Conditions"
+          />
 
-            <Button
-              buttonStyle={{
-                padding: 12,
-                width: width * 0.25,
-                borderRadius: 12,
-                elevation: 0,
-                backgroundColor: "#47bc72"
-              }}
-              title="FAQ"
-            />
+          <Button
+            buttonStyle={{
+              padding: 5,
+              // width: 50,
+              // borderRadius: 12,
+              elevation: 0,
+              backgroundColor: "#47bc72"
+            }}
+            title="FAQ"
+          />
           </View>
 
           <Button
             onPress={() => { this.SignOut() }}
             buttonStyle={{
               backgroundColor: "red",
-              padding: 8,
-              width: width * 0.6
+              padding: 5,
+              width: width * 0.7
             }}
             icon={<Icon name="logout" size={24} style={{ color: "white" }} />}
             title="Logout"
