@@ -6,7 +6,7 @@ import firebase from 'firebase'
     authDomain: "sappy-3e1b0.firebaseapp.com",
     databaseURL: "https://sappy-3e1b0.firebaseio.com",
     projectId: "sappy-3e1b0",
-    storageBucket: "",
+    storageBucket: "sappy-3e1b0.appspot.com",
     messagingSenderId: "570661165157"
   };
   firebase.initializeApp(config);

@@ -11,16 +11,18 @@ import {
 } from "native-base";
 
 import Header from "../../Helper/Header";
-const { width } = Dimensions.get("window");
-
 import { ImagePicker, Permissions } from "expo";
 import placeholder from '../../Assets/place.png'
+
+import firebase from '../../config'
+const database = firebase.database().ref()
+const { width } = Dimensions.get("window");
 
 class More extends Component {
     constructor() {
         super();
         this.state = {
-            productName: null,
+            // phone: null,
             selectedImage: null
         };
     }
@@ -47,43 +49,57 @@ class More extends Component {
     };
 
     uploadImage = async () => {
-        let productName = this.state.productName;
-        let uri = this.state.selectedImage;
+        debugger
+        let phone = this.state.phone;
+        if (phone) {
+            firebase.auth().onAuthStateChanged(async (user) => {
+                if (user) {
+                    debugger
+                    let uri = this.state.selectedImage;
+                    let uid = user.uid
 
-        if (productName) {
-            const blob = await new Promise((resolve, reject) => {
-                const xhr = new XMLHttpRequest();
+                    if (uri) {
+                        const blob = await new Promise((resolve, reject) => {
+                            const xhr = new XMLHttpRequest();
 
-                xhr.onload = function () {
-                    resolve(xhr.response);
-                };
+                            xhr.onload = function () {
+                                resolve(xhr.response);
+                            };
 
-                xhr.onerror = function (e) {
-                    console.log(e);
-                    reject(new TypeError("Network request failed"));
-                };
+                            xhr.onerror = function (e) {
+                                console.log(e);
+                                reject(new TypeError("Network request failed"));
+                            };
 
-                xhr.responseType = "blob";
-                xhr.open("GET", uri, true);
-                xhr.send(null);
+                            xhr.responseType = "blob";
+                            xhr.open("GET", uri, true);
+                            xhr.send(null);
+                        });
+
+                        await firebase.storage().ref().child("display pictures").child(uri).put(blob)
+                            .then((snapshot) => {
+                                return snapshot.ref.getDownloadURL();
+                            })
+                            .then(downloadURL => {
+                                database.child('Users').child(uid).update({
+                                    phone: phone,
+                                    downloadURL: downloadURL
+                                }, () => {
+                                    this.setState({
+                                        phone: null,
+                                        selectedImage: null
+                                    })
+                                })
+                            })
+                            .catch(err => alert(err))
+                    }
+                }else{
+                    alert('not a user')
+                }
+
             });
-
-            await firebase.storage().ref().child("Products").child(productName).put(blob)
-                .then((snapshot) => {
-                    return snapshot.ref.getDownloadURL();
-                })
-                .then(downloadURL => {
-                    database.child('Products').push({
-                        ProductName: productName,
-                        downloadURL: downloadURL
-                    }, () => {
-                        this.setState({
-                            productName: null,
-                            selectedImage: null
-                        })
-                    })
-                })
-                .catch(err => alert(err))
+        }else{
+            alert('Please enter your phone number')
         }
     }
 
@@ -109,9 +125,9 @@ class More extends Component {
                     <Item>
                         <Icon active name='home' type='FontAwesome' style={{ fontSize: 30, margin: 5 }} />
                         <Input
-                            value={this.state.productName}
+                            value={this.state.phone}
                             placeholder="Phone Number"
-                            onChangeText={text => this.setState({ productName: text })}
+                            onChangeText={text => this.setState({ phone: text })}
                         />
                     </Item>
                 </View>
