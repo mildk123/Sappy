@@ -18,7 +18,7 @@ import firebase from '../../config'
 const database = firebase.database().ref()
 const { width } = Dimensions.get("window");
 
-class More extends Component {
+class Profile extends Component {
     constructor() {
         super();
         this.state = {
@@ -50,16 +50,15 @@ class More extends Component {
 
     uploadImage = async () => {
         let phone = this.state.phone;
-        if (phone) {
+        let uri = this.state.selectedImage;
+
+        if (phone && uri) {
             firebase.auth().onAuthStateChanged(async (user) => {
                 if (user) {
-                    console.log('user step')
 
-                    let uri = this.state.selectedImage;
                     let uid = user.uid
 
                     if (uri) {
-                        console.log('blob step')
                         const blob = await new Promise((resolve, reject) => {
                             const xhr = new XMLHttpRequest();
 
@@ -79,8 +78,6 @@ class More extends Component {
 
                         firebase.storage().ref().child("display pictures").put(blob)
                             .then((snapshot) => {
-                                console.log('snapshot step')
-
                                 return snapshot.ref.getDownloadURL();
                             })
                             .then(downloadURL => {
@@ -89,7 +86,7 @@ class More extends Component {
                                     photoURL: downloadURL
                                 },() => {
                                         AsyncStorage.removeItem("newUser");
-                                        this.props.navigation.navigate('App')
+                                        this.props.navigation.navigate('HomeStackNavigator')
                                     })
                                  } )
                             
@@ -169,7 +166,7 @@ class More extends Component {
     }
 }
 
-export default More;
+export default Profile;
 
 const styles = StyleSheet.create({
     container: {

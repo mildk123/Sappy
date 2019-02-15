@@ -17,7 +17,7 @@ class Homescreen extends Component {
     const newUser = await AsyncStorage.getItem("newUser");
     console.log(newUser)
     if (newUser === 'true'){
-      this.props.navigation.navigate("More");
+      this.props.navigation.navigate("Profile");
     }
   };
 

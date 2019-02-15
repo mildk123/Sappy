@@ -6,6 +6,8 @@ import { createDrawerNavigator, DrawerItems } from "react-navigation";
 import HomeStackNavigator from "../Screens/Homescreen";
 import Services from "../Screens/Homescreen";
 import Settings from "../Screens/Homescreen";
+import Profile from "../Screens/Profile";
+
 
 import { Button } from "react-native-elements";
 import Icon from "react-native-vector-icons/MaterialCommunityIcons";
@@ -109,7 +111,8 @@ export default createDrawerNavigator(
   {
     HomeStackNavigator,
     Services,
-    Settings
+    Settings,
+    Profile
   },
   {
     drawerWidth: width * 0.7,
