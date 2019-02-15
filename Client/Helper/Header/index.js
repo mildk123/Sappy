@@ -12,20 +12,20 @@ const { width } = Dimensions.get("window");
 class HeaderComp extends Component {
   constructor() {
     super();
-    this.state ={}
+    this.state = {}
     this.showModal = React.createRef()
   }
 
   renderModal = () => {
     this.setState({
-      renderModal : true
-    },() => this.showModal.current.setModalVisible() )
+      renderModal: true
+    }, () => this.showModal.current.setModalVisible())
   }
 
   render() {
     return (
       <Fragment>
-        {this.state.renderModal &&<Modal ref={this.showModal}/>}
+        {this.state.renderModal && <Modal ref={this.showModal} />}
 
         <Header
           style={{ backgroundColor: this.props.headerColor }}
@@ -34,7 +34,7 @@ class HeaderComp extends Component {
         >
           <Left>
 
-            <Button
+            {!this.props.close ?  <Button
               onPress={
                 this.props.goBack === true
                   ? () => this.props.navigation.goBack()
@@ -44,6 +44,15 @@ class HeaderComp extends Component {
             >
               <Text><IconMaterial name={this.props.icon} size={23} color="white" /></Text>
             </Button>
+          : (
+            <Button
+              onPress={ () => this.props.close()}
+              transparent
+            >
+              <Text><IconMaterial name={this.props.icon} size={23} color="white" /></Text>
+            </Button>
+          )  
+          }
 
           </Left>
 
@@ -71,9 +80,9 @@ class HeaderComp extends Component {
           <Item >
             <Icon name="ios-search" />
             <Input placeholder="Find work" />
-            <IconMaterial name="filter-outline" style={{marginEnd: 15, fontSize: 24}} onPress={() => {this.renderModal()}} />
+            <IconMaterial name="filter-outline" style={{ marginEnd: 15, fontSize: 24 }} onPress={() => { this.renderModal() }} />
             <Buttonel
-            title="Search"
+              title="Search"
 
               buttonStyle={{
                 borderRadius: 12,

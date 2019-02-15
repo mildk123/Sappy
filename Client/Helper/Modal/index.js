@@ -1,48 +1,67 @@
-import React, {Component} from 'react';
-import {Modal, Text, TouchableHighlight, View, Alert} from 'react-native';
+import React, { Component } from 'react';
+import { Modal, Text, TouchableHighlight, View, Alert } from 'react-native';
+
+import Header from "../Header";
 
 class ModalExample extends Component {
-  state = {
-    modalVisible: false,
-  };
+    state = {
+        modalVisible: false,
+    };
 
-  setModalVisible(visible) {
-    this.setState({modalVisible: visible});
-  }
+    setModalVisible(visible) {
+        this.setState({ modalVisible: visible });
+    }
 
-  render() {
-    return (
-      <View>
-        <Modal
-          animationType="slide"
-          transparent={false}
-          visible={this.state.modalVisible}
-          onRequestClose={() => {
-            alert('Modal has been closed.');
-          }}>
-          <View style={{marginTop: 22}}>
+    close = () => {
+        this.setState({
+            modalVisible: false
+        })
+    }
+
+    render() {
+        return (
             <View>
-              <Text>Hello World!</Text>
+                <Modal
+                    animationType='slide'
+                    transparent={false}
+                    visible={this.state.modalVisible}
+                    onRequestClose={() => {
+                        this.setModalVisible(!this.state.modalVisible);
+                    }}>
 
-              <TouchableHighlight
-                onPress={() => {
-                  this.setModalVisible(!this.state.modalVisible);
-                }}>
-                <Text>Hide Modal</Text>
-              </TouchableHighlight>
+                    <View
+                    >
+                        <Header
+                            headerColor="#47bc72"
+                            icon={'close-box'}
+                            title={"Filter"}
+                            hasTabs={false}
+                            searchBar={false}
+                            favBtn={false}
+                            threeDots={false}
+                            close={this.close}
+                        />
+
+
+                        <View>
+                            <Text>Hello World!</Text>
+
+                            <TouchableHighlight
+                                onPress={() => {
+                                    this.setModalVisible(!this.state.modalVisible);
+                                }}>
+                                <Text>Hide Modal</Text>
+                            </TouchableHighlight>
+                        </View>
+
+
+                    </View>
+
+                </Modal>
+
             </View>
-          </View>
-        </Modal>
-
-        {/* <TouchableHighlight
-          onPress={() => {
-            this.setModalVisible(true);
-          }}>
-          <Text>Show Modal</Text>
-        </TouchableHighlight> */}
-      </View>
-    );
-  }
+        );
+    }
 }
 
 export default ModalExample;
