@@ -23,7 +23,6 @@ class More extends Component {
         super();
         this.state = {
             productName: null,
-            selectedImage: null
         };
     }
 
@@ -106,64 +105,57 @@ class More extends Component {
                     {...this.props}
                 />
 
-                <View>
 
-                    <View style={styles.inputCont} >
-                        <Item>
-                            <Icon active name='home' style={{ fontSize: 30, margin: 5 }} />
-                            <Input
-                                value={this.state.productName}
-                                placeholder="Phone Number"
-                                onChangeText={text => this.setState({ productName: text })}
-                            />
-                        </Item>
-                    </View>
+                <View style={styles.inputCont} >
+                    <Item>
+                        <Icon active name='home' type='FontAwesome' style={{ fontSize: 30, margin: 5 }} />
+                        <Input
+                            value={this.state.productName}
+                            placeholder="Phone Number"
+                            onChangeText={text => this.setState({ productName: text })}
+                        />
+                    </Item>
+                </View>
 
-                    <View style={{ height: width * 0.5, backgroundColor: 'pink',  }}>
-                        <View>
-                            <Icon active name='md-contact' style={{ fontSize: 30, margin: 5 }} />
-                            <Text style={{ margin: 10, fontSize: 18, fontStyle: 'normal' }}>
-                                Profile Picture
-                            </Text>
-                        </View>
+                <View style={{ height: width, alignItems: 'center', justifyContent: 'space-between' }}>
 
-                        <View
-                            style={{ flexDirection: "row", justifyContent: "space-evenly" }}
-                        >
-                            <TouchableHighlight onPress={this.selectImage}>
-                                <Thumbnail
-                                    large
-                                    source={
-                                        // selectedImage
-                                        // ? { uri: selectedImage }
-                                        // :
-                                        <Image
-                                            source={placeholder}
-                                            alt="placeholder"
-                                            style={{ height: 150, width: 150, padding: 25 }}
-                                        />
 
-                                    }
+                    {/* <Image
+                        source={placeholder}
+                        alt="placeholder"
+                        style={{ height: 300, width: 300, padding: 15 }}
+                    /> */}
+
+                    <TouchableHighlight onPress={this.selectImage}>
+                        <Thumbnail
+                            large
+                            source={
+                                // !selectedImage
+                                    // ? { uri: selectedImage }
+                                    // :
+                                <Image
+                                    source={placeholder}
+                                    alt="placeholder"
+                                    style={{ height: 300, width: 300, padding: 15 }}
                                 />
-                            </TouchableHighlight>
-                        </View>
+                            }
+                        />
+                    </TouchableHighlight>
 
-                        <View >
-                            <Button
-                                large
-                                onPress={this.uploadImage}
-                                style={{
-                                    backgroundColor: '#47bc72',
-                                    alignSelf: "center",
-                                    // borderRadius: 24,
-                                    // width: 124,
-                                    justifyContent: "center"
-                                }}
-                            >
-                                <Text>Next</Text>
-                            </Button>
-                        </View>
+                    <View style={{ alignContent: 'center' }}>
+                        <Button
+                            onPress={this.uploadImage}
+                            style={{
+                                backgroundColor: '#47bc72',
+                                borderRadius: 10,
+                                justifyContent: "center"
+                            }}
+                        >
+                            <Text>Next</Text>
+                        </Button>
                     </View>
+
+
 
                 </View>
 
