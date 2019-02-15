@@ -27,7 +27,7 @@ class HeaderComp extends Component {
             transparent
           >
             <Text><IconMaterial name={this.props.icon} size={23} color="white" /></Text>
-             </Button>
+          </Button>
 
         </Left>
 
