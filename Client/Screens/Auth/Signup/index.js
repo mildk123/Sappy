@@ -60,17 +60,17 @@ class SignUp extends Component {
         .then(res => {
           let firebaseUid = res.user.uid
 
-          let username = `${fname} ${lname}`
-          let photoURL = 'Placeholder';
-          let providerId = 'Authentication'
-          let fbUid = firebaseUid;
+          // let username = `${fname} ${lname}`
+          // let photoURL = 'Placeholder';
+          // let providerId = 'Authentication'
+          // let fbUid = firebaseUid;
 
-          database.child("Users/").push({
-            username,
+          database.child("Users/").child(firebaseUid).set({
             email,
-            photoURL,
-            providerId,
-            fbUid
+            username :  `${fname} ${lname}`,
+            photoURL :  'Placeholder',
+            providerId :  'Authentication',
+            fbUi :  firebaseUid,
           }
           )
           AsyncStorage.setItem('userLoggedIn', res.user.refreshToken)

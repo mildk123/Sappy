@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { StyleSheet, View, TouchableHighlight, Image, Dimensions } from "react-native";
+import { StyleSheet, View, TouchableHighlight, Image, Dimensions, AsyncStorage } from "react-native";
 
 import {
     Container,
@@ -53,11 +53,13 @@ class More extends Component {
         if (phone) {
             firebase.auth().onAuthStateChanged(async (user) => {
                 if (user) {
-                    
+                    console.log('user step')
+
                     let uri = this.state.selectedImage;
                     let uid = user.uid
 
                     if (uri) {
+                        console.log('blob step')
                         const blob = await new Promise((resolve, reject) => {
                             const xhr = new XMLHttpRequest();
 
@@ -75,29 +77,30 @@ class More extends Component {
                             xhr.send(null);
                         });
 
-                        await firebase.storage().ref().child("display pictures").child(uri).put(blob)
+                        firebase.storage().ref().child("display pictures").put(blob)
                             .then((snapshot) => {
+                                console.log('snapshot step')
+
                                 return snapshot.ref.getDownloadURL();
                             })
                             .then(downloadURL => {
                                 database.child('Users').child(uid).update({
                                     phone: phone,
-                                    downloadURL: downloadURL
-                                }, () => {
-                                    this.setState({
-                                        phone: null,
-                                        selectedImage: null
+                                    photoURL: downloadURL
+                                },() => {
+                                        AsyncStorage.removeItem("newUser");
+                                        this.props.navigation.navigate('App')
                                     })
-                                })
-                            })
+                                 } )
+                            
                             .catch(err => alert(err))
                     }
-                }else{
+                } else {
                     alert('not a user')
                 }
 
             });
-        }else{
+        } else {
             alert('Please enter your phone number')
         }
     }

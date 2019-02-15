@@ -54,7 +54,7 @@ class Authentication extends Component {
         let providerId = user.providerData[0].providerId;
         let fbUid = firebaseUid;
 
-        database.child("Users/").push(
+        database.child("Users/").child(firebaseUid).set(
           {
             username,
             email,

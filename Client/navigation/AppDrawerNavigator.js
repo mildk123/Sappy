@@ -24,7 +24,7 @@ class DrawerComponent extends Component {
   SignOut = async () => {
     // await AsyncStorage.removeItem("userLoggedIn");
     await AsyncStorage.removeItem("userLoggedIn");
-
+    AsyncStorage.removeItem("newUser");
     this.props.navigation.navigate("AuthLoading");
   };
 
@@ -63,27 +63,27 @@ class DrawerComponent extends Component {
               flexDirection: "column",
             }}
           >
-          <Button
-            buttonStyle={{
-              padding: 4,
-              // width: 50,
-              // borderRadius: 12,
-              elevation: 0,
-              backgroundColor: "#47bc72"
-            }}
-            title="Terms & Conditions"
-          />
+            <Button
+              buttonStyle={{
+                padding: 4,
+                // width: 50,
+                // borderRadius: 12,
+                elevation: 0,
+                backgroundColor: "#47bc72"
+              }}
+              title="Terms & Conditions"
+            />
 
-          <Button
-            buttonStyle={{
-              padding: 5,
-              // width: 50,
-              // borderRadius: 12,
-              elevation: 0,
-              backgroundColor: "#47bc72"
-            }}
-            title="FAQ"
-          />
+            <Button
+              buttonStyle={{
+                padding: 5,
+                // width: 50,
+                // borderRadius: 12,
+                elevation: 0,
+                backgroundColor: "#47bc72"
+              }}
+              title="FAQ"
+            />
           </View>
 
           <Button
