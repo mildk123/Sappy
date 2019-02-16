@@ -29,7 +29,7 @@ export default class App extends React.Component {
   };
 
   componentDidMount() {
-    StatusBar.setHidden((hidden = true));
+    StatusBar.setHidden((hidden = false));
   }
 
   render() {
