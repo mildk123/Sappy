@@ -40,12 +40,12 @@ class Checkbox extends Component {
                         title='5KM'
                         checked={this.state.fiveKm}
                         onPress={() => this.changeState('fiveKm')}
-                        containerStyle={{ borderWidth: 1, borderRadius: 5, borderColor: 'green' }}
-                        uncheckedColor={'green'}
+                        containerStyle={{ borderWidth: 1, borderRadius: 5, borderColor: '#1D976C' }}
+                        uncheckedColor={'#1D976C'}
                         iconType='MaterialIcons'
                         checkedIcon='check-box'
                         uncheckedIcon='check-box-outline-blank'
-                        checkedColor='green'
+                        checkedColor='#1D976C'
                         center
 
                         size={22}
@@ -54,13 +54,13 @@ class Checkbox extends Component {
                         title='10KM'
                         checked={this.state.tenKm}
                         onPress={() => this.changeState('tenKm')}
-                        containerStyle={{ borderWidth: 1, borderRadius: 5, borderColor: 'green' }}
-                        uncheckedColor={'green'}
+                        containerStyle={{ borderWidth: 1, borderRadius: 5, borderColor: '#1D976C' }}
+                        uncheckedColor={'#1D976C'}
                         iconType='MaterialIcons'
 
                         checkedIcon='check-box'
                         uncheckedIcon='check-box-outline-blank'
-                        checkedColor='green'
+                        checkedColor='#1D976C'
                         center
 
                         size={22}
@@ -69,12 +69,12 @@ class Checkbox extends Component {
                         title='15KM'
                         checked={this.state.fiveteenKm}
                         onPress={() => this.changeState('fiveteenKm')}
-                        containerStyle={{ borderWidth: 1, borderRadius: 5, borderColor: 'green' }}
-                        uncheckedColor={'green'}
+                        containerStyle={{ borderWidth: 1, borderRadius: 5, borderColor: '#1D976C' }}
+                        uncheckedColor={'#1D976C'}
                         iconType='MaterialIcons'
                         checkedIcon='check-box'
                         uncheckedIcon='check-box-outline-blank'
-                        checkedColor='green'
+                        checkedColor='#1D976C'
                         center
 
                         size={22}
@@ -85,12 +85,12 @@ class Checkbox extends Component {
                         title='20KM'
                         checked={this.state.twentyKm}
                         onPress={() => this.changeState('twentyKm')}
-                        containerStyle={{ borderWidth: 1, borderRadius: 5, borderColor: 'green' }}
-                        uncheckedColor={'green'}
+                        containerStyle={{ borderWidth: 1, borderRadius: 5, borderColor: '#1D976C' }}
+                        uncheckedColor={'#1D976C'}
                         iconType='MaterialIcons'
                         checkedIcon='check-box'
                         uncheckedIcon='check-box-outline-blank'
-                        checkedColor='green'
+                        checkedColor='#1D976C'
                         center
 
                         size={22}
@@ -99,12 +99,12 @@ class Checkbox extends Component {
                         title='> 20KM'
                         checked={this.state.moreKm}
                         onPress={() => this.changeState('moreKm')}
-                        containerStyle={{ borderWidth: 1, borderRadius: 5, borderColor: 'green' }}
-                        uncheckedColor={'green'}
+                        containerStyle={{ borderWidth: 1, borderRadius: 5, borderColor: '#1D976C' }}
+                        uncheckedColor={'#1D976C'}
                         iconType='MaterialIcons'
                         checkedIcon='check-box'
                         uncheckedIcon='check-box-outline-blank'
-                        checkedColor='green'
+                        checkedColor='#1D976C'
                         center
 
                         size={22}

@@ -2,7 +2,8 @@ import React, { Component } from 'react';
 import {
     Modal,
     Text,
-    View
+    View,
+    Dimensions
 } from 'react-native';
 
 import Header from "../Header";
@@ -11,6 +12,7 @@ import Checkbox from '../../components/Checkbox';
 
 import { Button } from 'react-native-elements';
 import Icon from 'react-native-vector-icons/FontAwesome';
+const { width } = Dimensions.get("window");
 
 class ModalExample extends Component {
     state = {
@@ -39,7 +41,7 @@ class ModalExample extends Component {
                     this.setModalVisible(!this.state.modalVisible);
                 }}>
 
-                <View style={{ flex: 1, backgroundColor: 'pink', flexDirection: 'column' }}>
+                <View style={{ flex: 1, flexDirection: 'column' }}>
 
                     <Header
                         headerColor="#47bc72"
@@ -70,25 +72,31 @@ class ModalExample extends Component {
 
 
                     <View style={{ alignSelf: 'flex-end', position: 'absolute', bottom: 25 }}>
-                        <View style={{flexDirection: 'row'}}>
+                        <View style={{ flexDirection: 'row', margin: 10 }}>
                             <Button
                                 title="Cancel"
                                 buttonStyle={{
-                                    backgroundColor: 'red',
+                                    backgroundColor: '#8F88D4',
+                                    padding: width * 0.01,
+                                    borderRadius: 10,
+                                    width: width * 0.2,
                                     elevation: 0
                                 }}
                                 containerStyle={{
-                                    padding: 4,
+                                    padding: 5,
                                 }}
                             />
                             <Button
                                 title="Done"
                                 buttonStyle={{
-                                    backgroundColor: 'blue',
+                                    backgroundColor: '#1D976C',
+                                    padding: width * 0.01,
+                                    borderRadius: 10,
+                                    width: width * 0.2,
                                     elevation: 0
                                 }}
                                 containerStyle={{
-                                    padding: 5,
+                                    padding: 5
                                 }}
                             />
                         </View>
