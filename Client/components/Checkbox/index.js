@@ -34,13 +34,13 @@ class Checkbox extends Component {
 
     render() {
         return (
-            <View style={{padding: 25}}>
-                <Item>
+            <View style={{ marginTop: 15 }}>
+                <Item style={{ justifyContent: 'center', borderColor: 'transparent' }}>
                     <CheckBox
                         title='5KM'
                         checked={this.state.fiveKm}
                         onPress={() => this.changeState('fiveKm')}
-                        containerStyle={{ borderWidth: 1, borderRadius: 10, borderColor: 'green' }}
+                        containerStyle={{ borderWidth: 1, borderRadius: 5, borderColor: 'green' }}
                         uncheckedColor={'green'}
                         iconType='MaterialIcons'
                         checkedIcon='check-box'
@@ -54,7 +54,7 @@ class Checkbox extends Component {
                         title='10KM'
                         checked={this.state.tenKm}
                         onPress={() => this.changeState('tenKm')}
-                        containerStyle={{ borderWidth: 1, borderRadius: 10, borderColor: 'green' }}
+                        containerStyle={{ borderWidth: 1, borderRadius: 5, borderColor: 'green' }}
                         uncheckedColor={'green'}
                         iconType='MaterialIcons'
 
@@ -69,7 +69,7 @@ class Checkbox extends Component {
                         title='15KM'
                         checked={this.state.fiveteenKm}
                         onPress={() => this.changeState('fiveteenKm')}
-                        containerStyle={{ borderWidth: 1, borderRadius: 10, borderColor: 'green' }}
+                        containerStyle={{ borderWidth: 1, borderRadius: 5, borderColor: 'green' }}
                         uncheckedColor={'green'}
                         iconType='MaterialIcons'
                         checkedIcon='check-box'
@@ -80,12 +80,12 @@ class Checkbox extends Component {
                         size={22}
                     />
                 </Item>
-                <Item>
+                <Item style={{ justifyContent: 'center',  borderColor: 'transparent' }}>
                     <CheckBox
                         title='20KM'
                         checked={this.state.twentyKm}
                         onPress={() => this.changeState('twentyKm')}
-                        containerStyle={{ borderWidth: 1, borderRadius: 10, borderColor: 'green' }}
+                        containerStyle={{ borderWidth: 1, borderRadius: 5, borderColor: 'green' }}
                         uncheckedColor={'green'}
                         iconType='MaterialIcons'
                         checkedIcon='check-box'
@@ -99,7 +99,7 @@ class Checkbox extends Component {
                         title='> 20KM'
                         checked={this.state.moreKm}
                         onPress={() => this.changeState('moreKm')}
-                        containerStyle={{ borderWidth: 1, borderRadius: 10, borderColor: 'green' }}
+                        containerStyle={{ borderWidth: 1, borderRadius: 5, borderColor: 'green' }}
                         uncheckedColor={'green'}
                         iconType='MaterialIcons'
                         checkedIcon='check-box'
