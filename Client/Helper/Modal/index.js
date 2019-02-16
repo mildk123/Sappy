@@ -75,6 +75,7 @@ class ModalExample extends Component {
                         <View style={{ flexDirection: 'row', margin: 10 }}>
                             <Button
                                 title="Cancel"
+                                onPress={() => this.close()}
                                 buttonStyle={{
                                     backgroundColor: '#8F88D4',
                                     padding: width * 0.01,
