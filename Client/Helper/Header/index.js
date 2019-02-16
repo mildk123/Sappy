@@ -27,7 +27,7 @@ class HeaderComp extends Component {
       <Fragment>
         {this.state.renderModal && <Modal ref={this.showModal} />}
 
-        <Header
+        <Header 
           style={{ backgroundColor: this.props.headerColor }}
           iosBarStyle={"light-content"}
           hasTabs={this.props.tabs}

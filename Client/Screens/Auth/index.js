@@ -161,7 +161,8 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     backgroundColor: "#ffffff",
-    justifyContent: 'space-between'
+    justifyContent: 'space-between',
+    marginTop: 24
   },
   imgContainer: {
     maxHeight: "60%",

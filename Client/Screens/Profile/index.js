@@ -84,12 +84,12 @@ class Profile extends Component {
                                 database.child('Users').child(uid).update({
                                     phone: phone,
                                     photoURL: downloadURL
-                                },() => {
-                                        AsyncStorage.removeItem("newUser");
-                                        this.props.navigation.navigate('HomeStackNavigator')
-                                    })
-                                 } )
-                            
+                                }, () => {
+                                    AsyncStorage.removeItem("newUser");
+                                    this.props.navigation.navigate('HomeStackNavigator')
+                                })
+                            })
+
                             .catch(err => alert(err))
                     }
                 } else {
@@ -105,7 +105,7 @@ class Profile extends Component {
     render() {
         const { selectedImage } = this.state;
         return (
-            <Container style={{ flex: 1 }}>
+            <Container style={{ flex: 1, marginTop: 24 }}>
 
                 <Header
                     headerColor="#47bc72"
@@ -171,7 +171,7 @@ export default Profile;
 const styles = StyleSheet.create({
     container: {
         flex: 1,
-        backgroundColor: "#ffffff"
+        backgroundColor: "#ffffff",
     },
     inputCont: {
         padding: 25,

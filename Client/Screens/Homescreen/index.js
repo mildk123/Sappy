@@ -72,7 +72,8 @@ export default HomeStackNavigator;
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: "#ffffff"
+    backgroundColor: "#ffffff",
+    marginTop: 24
   },
 
   sliderWidth: {
