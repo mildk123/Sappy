@@ -1,7 +1,13 @@
 import React, { Component } from 'react';
-import { Modal, Text, TouchableHighlight, View, Alert } from 'react-native';
+import {
+    Modal,
+    Text,
+    View
+} from 'react-native';
 
 import Header from "../Header";
+import Dropdown from '../../components/Dropdown'
+import Checkbox from '../../components/Checkbox';
 
 class ModalExample extends Component {
     state = {
@@ -24,6 +30,8 @@ class ModalExample extends Component {
                 <Modal
                     animationType='slide'
                     transparent={false}
+                    hardwareAccelerated
+                    presentationStyle='pageSheet'
                     visible={this.state.modalVisible}
                     onRequestClose={() => {
                         this.setModalVisible(!this.state.modalVisible);
@@ -43,15 +51,18 @@ class ModalExample extends Component {
                         />
 
 
-                        <View>
-                            <Text>Hello World!</Text>
+                        <View style={{ padding: 20 }}>
 
-                            <TouchableHighlight
-                                onPress={() => {
-                                    this.setModalVisible(!this.state.modalVisible);
-                                }}>
-                                <Text>Hide Modal</Text>
-                            </TouchableHighlight>
+                            <View style={{padding: 10}}>
+                                <Text>Service Type</Text>
+                                <Dropdown />
+                            </View>
+
+                            <View style={{padding: 10}}>
+                                <Text>Distance</Text>
+                                <Checkbox />
+                            </View>
+
                         </View>
 
 
@@ -64,4 +75,10 @@ class ModalExample extends Component {
     }
 }
 
+{/* <TouchableHighlight
+    onPress={() => {
+        this.setModalVisible(!this.state.modalVisible);
+    }}>
+    <Text>Hide Modal</Text>
+</TouchableHighlight> */}
 export default ModalExample;
