@@ -105,7 +105,7 @@ class Profile extends Component {
     render() {
         const { selectedImage } = this.state;
         return (
-            <Container style={{ flex: 1, marginTop: 24 }}>
+            <Container style={{ flex: 1}}>
 
                 <Header
                     headerColor="#47bc72"

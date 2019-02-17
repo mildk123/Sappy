@@ -27,14 +27,14 @@ class HeaderComp extends Component {
       <Fragment>
         {this.state.renderModal && <Modal ref={this.showModal} />}
 
-        <Header 
-          style={{ backgroundColor: this.props.headerColor }}
+        <Header
+          style={{ backgroundColor: this.props.headerColor, height: 70, paddingTop: 20 }}
           iosBarStyle={"light-content"}
           hasTabs={this.props.tabs}
         >
           <Left>
 
-            {!this.props.close ?  <Button
+            {!this.props.close ? <Button
               onPress={
                 this.props.goBack === true
                   ? () => this.props.navigation.goBack()
@@ -44,15 +44,15 @@ class HeaderComp extends Component {
             >
               <Text><IconMaterial name={this.props.icon} size={23} color="white" /></Text>
             </Button>
-          : (
-            <Button
-              onPress={ () => this.props.close()}
-              transparent
-            >
-              <Text><IconMaterial name={this.props.icon} size={23} color="white" /></Text>
-            </Button>
-          )  
-          }
+              : (
+                <Button
+                  onPress={() => this.props.close()}
+                  transparent
+                >
+                  <Text><IconMaterial name={this.props.icon} size={23} color="white" /></Text>
+                </Button>
+              )
+            }
 
           </Left>
 

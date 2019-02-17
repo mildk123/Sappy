@@ -7,7 +7,7 @@ import HomeStackNavigator from "../Screens/Homescreen";
 import Inbox from "../Screens/Inbox";
 import Notifications from "../Screens/Notifications";
 import ManageSales from "../Screens/ManageSales";
-import Earnings from "../Screens/Earnings";
+import Services from "../Screens/Services";
 import MyGigs from "../Screens/MyGigs";
 import BuyerRequests from "../Screens/BuyerRequests";
 import Settings from "../Screens/Settings";
@@ -120,7 +120,7 @@ export default createDrawerNavigator(
     Inbox,
     Notifications,
     ManageSales,
-    Earnings,
+    Services,
     MyGigs,
     BuyerRequests,
     Settings,

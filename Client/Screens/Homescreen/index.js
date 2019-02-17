@@ -15,7 +15,7 @@ class Homescreen extends Component {
 
   _loadApp = async () => {
     const newUser = await AsyncStorage.getItem("newUser");
-    if (newUser === 'true'){
+    if (newUser === 'true') {
       this.props.navigation.navigate("Profile");
     }
   };
@@ -38,16 +38,18 @@ class Homescreen extends Component {
           <Icon style={{ color: 'white', fontSize: 25 }} name="ios-basket" />
         </Fab> */}
 
-        <Header
-          headerColor="#47bc72"
-          icon={'menu'}
-          title={"Home"}
-          hasTabs={true}
-          searchBar={true}
-          favBtn={true}
-          threeDots={false}
-          {...this.props}
-        />
+        <View>
+          <Header
+            headerColor="#47bc72"
+            icon={'menu'}
+            title={"Home"}
+            hasTabs={true}
+            searchBar={true}
+            favBtn={true}
+            threeDots={false}
+            {...this.props}
+          />
+        </View>
 
 
 
@@ -73,7 +75,6 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     backgroundColor: "#ffffff",
-    marginTop: 24
   },
 
   sliderWidth: {
