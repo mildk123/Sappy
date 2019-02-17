@@ -19,6 +19,7 @@ const AsEmployerNav = createStackNavigator({
 });
 
 AsEmployerNav.navigationOptions = {
+  header : null,
   drawerLabel: "View As Buyer",
   drawerIcon: ({ tintColor }) => (
     <Icon name='person' fontSize={24} style={{ color: tintColor }} />
