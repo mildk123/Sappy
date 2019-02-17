@@ -13,7 +13,7 @@ import BuyerRequests from "../Screens/BuyerRequests";
 import Settings from "../Screens/Settings";
 import Profile from "../Screens/Profile";
 import Support from "../Screens/Support";
-import ViewAsEmployee from "../Screens/ViewAsEmployee";
+import ViewAsEmployer from "../Screens/ViewAsEmployer";
 
 
 import { Button } from "react-native-elements";
@@ -126,7 +126,7 @@ export default createDrawerNavigator(
     Settings,
     Profile,
     Support,
-    ViewAsEmployee
+    ViewAsEmployer
   },
   {
     drawerWidth: width * 0.7,

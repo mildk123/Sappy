@@ -1,14 +1,14 @@
 import React, { Component } from 'react'
 import { Text, View } from 'react-native'
 
-class Earnings extends Component {
+export class AsEmployer extends Component {
   render() {
     return (
       <View>
-        <Text> Earnings </Text>
+        <Text> AsEmployer </Text>
       </View>
     )
   }
 }
 
-export default Earnings;
+export default AsEmployer
