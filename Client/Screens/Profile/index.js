@@ -38,7 +38,7 @@ class Profile extends Component {
     selectImage = async () => {
         let result = await ImagePicker.launchImageLibraryAsync({
             allowsEditing: true,
-            aspect: [4, 3]
+            aspect: [1, 1]
         });
 
         if (!result.cancelled) {

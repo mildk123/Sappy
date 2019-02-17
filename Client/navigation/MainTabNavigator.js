@@ -8,10 +8,10 @@ import MaterialCommunityIcons from "react-native-vector-icons/MaterialCommunityI
 import MaterialIcons from "react-native-vector-icons/MaterialIcons";
 import Octicons from "react-native-vector-icons/Octicons";
 
-import Homescreen from "../Screens/Homescreen";
-import Messages from "../Screens/Homescreen";
-import Cart from "../Screens/Homescreen";
-import Settings from "../Screens/Homescreen";
+import Homescreen from "../Screens/Buyer/Home";
+import Messages from "../Screens/Buyer/Messages";
+import Cart from "../Screens/Buyer/Notifications";
+import Settings from "../Screens/Buyer/Settings";
 
 const HomeStack = createStackNavigator({
   Home: {
