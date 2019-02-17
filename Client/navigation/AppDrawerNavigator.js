@@ -4,9 +4,16 @@ import { SafeAreaView, ScrollView, Dimensions, View, Image, AsyncStorage } from 
 import { createDrawerNavigator, DrawerItems } from "react-navigation";
 
 import HomeStackNavigator from "../Screens/Homescreen";
-import Services from "../Screens/Homescreen";
-import Settings from "../Screens/Homescreen";
+import Inbox from "../Screens/Inbox";
+import Notifications from "../Screens/Notifications";
+import ManageSales from "../Screens/ManageSales";
+import Earnings from "../Screens/Earnings";
+import MyGigs from "../Screens/MyGigs";
+import BuyerRequests from "../Screens/BuyerRequests";
+import Settings from "../Screens/Settings";
 import Profile from "../Screens/Profile";
+import Support from "../Screens/Support";
+import ViewAsEmployee from "../Screens/ViewAsEmployee";
 
 
 import { Button } from "react-native-elements";
@@ -110,9 +117,16 @@ class DrawerComponent extends Component {
 export default createDrawerNavigator(
   {
     HomeStackNavigator,
-    Services,
+    Inbox,
+    Notifications,
+    ManageSales,
+    Earnings,
+    MyGigs,
+    BuyerRequests,
     Settings,
-    Profile
+    Profile,
+    Support,
+    ViewAsEmployee
   },
   {
     drawerWidth: width * 0.7,
