@@ -70,7 +70,7 @@ class Notifications extends Component {
 Notifications.navigationOptions = {
   drawerLabel: "Notifications",
   drawerIcon: ({ tintColor }) => (
-    <Icon name="gg" style={{ color: tintColor, fontSize: 25 }} />
+    <Icon name="bell-o" style={{ color: tintColor, fontSize: 25 }} />
   )
 };
 

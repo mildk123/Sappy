@@ -5,10 +5,11 @@ import {
     Container,
     Item,
     Input,
-    Icon,
     Button,
     Text,
 } from "native-base";
+
+import Icon from "react-native-vector-icons/MaterialCommunityIcons";
 
 import Header from "../../Helper/Header";
 import { ImagePicker, Permissions } from "expo";
@@ -166,7 +167,16 @@ class Profile extends Component {
     }
 }
 
-export default Profile;
+
+Profile.navigationOptions = {
+    drawerLabel: "Profile",
+    drawerIcon: ({ tintColor }) => (
+      <Icon name="account-edit" style={{ color: tintColor, fontSize: 25 }} />
+    )
+  };
+  
+  export default Profile;
+
 
 const styles = StyleSheet.create({
     container: {

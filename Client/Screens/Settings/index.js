@@ -70,7 +70,7 @@ class Settings extends Component {
 Settings.navigationOptions = {
   drawerLabel: "Settings",
   drawerIcon: ({ tintColor }) => (
-    <Icon name="settings" style={{ color: tintColor, fontSize: 25 }} />
+    <Icon name="gear" style={{ color: tintColor, fontSize: 25 }} />
   )
 };
 
