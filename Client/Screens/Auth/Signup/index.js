@@ -74,6 +74,7 @@ class SignUp extends Component {
           }
           )
           AsyncStorage.setItem('userLoggedIn', res.user.refreshToken)
+          AsyncStorage.setItem(firebaseUid, 'userUID' )
           AsyncStorage.setItem('newUser', 'true')
 
           this.props.navigation.navigate("App");

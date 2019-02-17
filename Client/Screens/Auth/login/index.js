@@ -59,6 +59,8 @@ export class SignIn extends Component {
         firebase.auth().signInWithEmailAndPassword(email, password)
           .then(res => {
             AsyncStorage.setItem('userLoggedIn', res.user.refreshToken)
+            let uid = res.user.uid
+            AsyncStorage.setItem('userUID', uid)
             AsyncStorage.setItem('newUser', 'false')
 
             this.props.navigation.navigate('App')

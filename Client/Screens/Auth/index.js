@@ -40,6 +40,7 @@ class Authentication extends Component {
 
       const response = await firebase.auth().signInAndRetrieveDataWithCredential(credential);
       AsyncStorage.setItem("userLoggedIn", response.credential.accessToken);
+      AsyncStorage.setItem('userUID', response.user.uid)
       this._pushToDB();
     }
   };

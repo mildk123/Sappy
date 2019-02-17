@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Text, View, StyleSheet } from 'react-native';
+import { Text, View, StyleSheet, AsyncStorage } from 'react-native';
 
 import { createStackNavigator } from "react-navigation";
 
@@ -10,13 +10,18 @@ import Icon from "react-native-vector-icons/FontAwesome";
 import Header from '../../Helper/Header';
 import AddServices from './addServices'
 
+import firebase from '../../config'
+const database = firebase.database().ref()
+
 class Services extends Component {
   constructor() {
     super()
     this.state = {
-      isLoading: false,
-      data: null
+      isLoading: true,
+      Services: []
     }
+
+    this.getServices()
   }
 
   static navigationOptions = {
@@ -27,20 +32,42 @@ class Services extends Component {
     this.props.navigation.navigate('AddServices')
   }
 
+  getServices = () => {
+    firebase.auth().onAuthStateChanged((user) => {
+      if (user) {
+        console.log('userStep /////////////////')
+        let firebaseUID = user.uid
+        console.log(firebaseUID)
+
+        database.child('Services').child(firebaseUID).on('child_added', (payload) => {
+          if (payload.key === true) {
+
+            this.setState({
+              isLoading: false,
+              Services: [...this.state.services, payload.key]
+            })
+          } else {
+            this.setState({
+              isLoading: false
+            })
+          }
+
+        })
+      } else {
+        this.props.navigation.navigate('Auth')
+      }
+    });
+  }
+
   render() {
-    const { isLoading, data } = this.state;
+    const { isLoading, Services } = this.state;
     if (isLoading) {
       return (
         <View style={styles.container}>
           <Header
             headerColor="#47bc72"
             icon={'menu'}
-            title={"My Services"}
-            hasTabs={false}
-            searchBar={true}
-            favBtn={false}
-            threeDots={false}
-            searchBar={false}
+            title={"Services"}
             {...this.props}
           />
           <View style={styles.contentDiv}>
@@ -56,43 +83,50 @@ class Services extends Component {
           headerColor="#47bc72"
           icon={'menu'}
           title={"My Services"}
-          hasTabs={false}
-          searchBar={true}
-          favBtn={false}
-          threeDots={false}
-          searchBar={false}
           {...this.props}
         />
-        {data ? (
+
+        {Services ? (
           <View style={styles.contentDiv}>
-            {data.map((item, Index) => {
-              return <Text>{item}</Text>
+            {Services.map((item, Index) => {
+              return <Button
+                title={item}
+                onPress={() => this._remove()}
+                buttonStyle={{
+                  backgroundColor: "#47bc72",
+                  width: 150,
+                  height: 55,
+                  borderColor: "transparent",
+                  borderWidth: 0,
+                  borderRadius: 5,
+                  elevation: 0
+                }}
+              />
             })}
           </View>
         )
-          : (
-            <View style={styles.contentDiv}>
-              <Text>My Services ... Nothing Here</Text>
+          : (<View style={styles.contentDiv}>
+            <Text>My Services ... Nothing Here</Text>
 
-              <View style={styles.btnDiv}>
-                <Button
-                  title="Add"
-                  iconRight
-                  onPress={() => this._onPress()}
-                  icon={<Icon name="plus" size={15} color="white" />}
-                  buttonStyle={{
-                    backgroundColor: "#47bc72",
-                    width: 150,
-                    height: 55,
-                    borderColor: "transparent",
-                    borderWidth: 0,
-                    borderRadius: 5,
-                    elevation: 0
-                  }}
-                />
-              </View>
-
+            <View style={styles.btnDiv}>
+              <Button
+                title="Add"
+                iconRight
+                onPress={() => this._onPress()}
+                icon={<Icon name="plus" size={15} color="white" />}
+                buttonStyle={{
+                  backgroundColor: "#47bc72",
+                  width: 150,
+                  height: 55,
+                  borderColor: "transparent",
+                  borderWidth: 0,
+                  borderRadius: 5,
+                  elevation: 0
+                }}
+              />
             </View>
+
+          </View>
           )
         }
 

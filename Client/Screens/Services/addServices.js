@@ -1,9 +1,8 @@
 import React, { Component } from 'react';
 import { Text, View, StyleSheet, Dimensions } from 'react-native';
 
-import { Spinner } from 'native-base';
-import { CheckBox } from 'react-native-elements'
-import { Item } from 'native-base';
+import { CheckBox, Button } from 'react-native-elements'
+import { Item, Icon, Spinner } from 'native-base';
 
 import Header from '../../Helper/Header';
 
@@ -16,7 +15,7 @@ class AddServices extends Component {
     constructor() {
         super()
         this.state = {
-            isLoading: false,
+            isLoading: true,
             Categories: [],
             Carpenter: false,
             Delivery: false,
@@ -34,8 +33,8 @@ class AddServices extends Component {
     getCategories = () => {
         database.child('Categories').on('child_added', (payload) => {
             this.setState({
-                Categories: [...this.state.Categories, payload.key],
-                isLoading: false
+                isLoading: false,
+                Categories: [...this.state.Categories, payload.key]
             })
         })
     }
@@ -44,6 +43,29 @@ class AddServices extends Component {
         this.setState({
             [name]: true
         })
+    }
+
+    AddServicesToDB = () => {
+        const { Carpenter, Delivery, Electrician, Glazier, Masonry, Mechanic, Painter, WaterSupplier, Welder, } = this.state;
+        if ( !Carpenter && !Delivery && !Electrician && !Glazier && !Masonry && !Mechanic && !Painter && !WaterSupplier && !Welder ) {
+            return alert('Please Select at least one service.')
+        }
+
+        let firebaseUID = firebase.auth().currentUser.uid
+        database.child('Services').child(firebaseUID).set({
+            Carpenter: Carpenter,
+            Delivery: Delivery,
+            Electrician: Electrician,
+            Glazier: Glazier,
+            Masonry: Masonry,
+            Mechanic: Mechanic,
+            Painter: Painter,
+            WaterSupplier: WaterSupplier,
+            Welder: Welder,
+        })
+            .then(() => this.props.navigation.goBack())
+            .catch(() => alert('Error Occurred!'))
+
     }
 
     static navigationOptions = {
@@ -79,7 +101,7 @@ class AddServices extends Component {
                     {...this.props}
                 />
                 <View style={styles.contentDiv}>
-                    <Item style={{ height: height * 0.5, flex: 0, flexWrap: 'wrap', justifyContent: 'space-between' }}>
+                    <Item style={{ height: height * 0.5, flex: 0, flexWrap: 'wrap', justifyContent: 'space-between', borderColor: 'transparent' }}>
                         {Categories &&
                             Categories.map((item, index) => {
                                 return <CheckBox
@@ -89,7 +111,6 @@ class AddServices extends Component {
                                     onPress={() => this.setState({
                                         [item]: !this.state[item]
                                     })}
-                                    iconRight
                                     containerStyle={this.state[item] === true ? { borderWidth: 1, borderRadius: 25, borderColor: '#1D976C', width: 120 } : { borderWidth: 0, borderRadius: 25, borderColor: '#1D976C', width: 120 }}
                                     uncheckedColor={'#1D976C'}
                                     iconType='MaterialIcons'
@@ -103,6 +124,24 @@ class AddServices extends Component {
                             })
                         }
                     </Item>
+                </View>
+
+
+                <View style={styles.btnDiv}>
+                    <Button
+                        title="Done"
+                        onPress={() => this.AddServicesToDB()}
+                        icon={<Icon name="done" type="MaterialIcons" style={{ color: 'white' }} />}
+                        buttonStyle={{
+                            backgroundColor: "#47bc72",
+                            width: 150,
+                            height: 55,
+                            borderColor: "transparent",
+                            borderWidth: 0,
+                            borderRadius: 5,
+                            elevation: 0
+                        }}
+                    />
                 </View>
             </View>
         )
