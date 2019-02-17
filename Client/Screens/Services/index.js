@@ -180,7 +180,7 @@ const ServicesStackNavigator = createStackNavigator({
 ServicesStackNavigator.navigationOptions = {
   drawerLabel: "Services",
   drawerIcon: ({ tintColor }) => (
-    <Icon name="wrench" fontSize={24} style={{ color: tintColor }} />
+    <Icon name="wrench" style={{ color: tintColor, fontSize: 24  }} />
   )
 };
 
