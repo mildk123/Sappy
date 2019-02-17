@@ -73,6 +73,7 @@ class HeaderComp extends Component {
                 <Icon name="more" />
               </Button>
             )}
+
           </Right>
         </Header>
 

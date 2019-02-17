@@ -3,7 +3,7 @@ import { createStackNavigator } from "react-navigation";
 import { StyleSheet, View, Dimensions, AsyncStorage } from "react-native";
 
 import Header from "../../Helper/Header";
-
+import Profile from '../Services'
 import { Icon, Fab } from "native-base";
 
 class Homescreen extends Component {
@@ -60,10 +60,11 @@ class Homescreen extends Component {
 
 const HomeStackNavigator = createStackNavigator({
   Homescreen,
+  Profile
 });
 
 HomeStackNavigator.navigationOptions = {
-  drawerLabel: "Store",
+  drawerLabel: "Home",
   drawerIcon: ({ tintColor }) => (
     <Icon name="home" fontSize={24} style={{ color: tintColor }} />
   )

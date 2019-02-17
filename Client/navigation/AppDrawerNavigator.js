@@ -7,7 +7,7 @@ import HomeStackNavigator from "../Screens/Homescreen";
 import Inbox from "../Screens/Inbox";
 import Notifications from "../Screens/Notifications";
 import ManageSales from "../Screens/ManageSales";
-import Services from "../Screens/Services";
+import ServicesStackNavigator from "../Screens/Services";
 import MyGigs from "../Screens/MyGigs";
 import BuyerRequests from "../Screens/BuyerRequests";
 import Settings from "../Screens/Settings";
@@ -120,7 +120,7 @@ export default createDrawerNavigator(
     Inbox,
     Notifications,
     ManageSales,
-    Services,
+    ServicesStackNavigator,
     MyGigs,
     BuyerRequests,
     Settings,
@@ -130,6 +130,7 @@ export default createDrawerNavigator(
   },
   {
     drawerWidth: width * 0.7,
+
     contentComponent: props => (
       <DrawerComponent {...props} />
     ),
