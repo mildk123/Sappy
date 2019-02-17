@@ -103,7 +103,7 @@ class Services extends Component {
 
 const ServicesStackNavigator = createStackNavigator({
   Services,
-  AddServices
+  AddServices,
 });
 
 ServicesStackNavigator.navigationOptions = {
