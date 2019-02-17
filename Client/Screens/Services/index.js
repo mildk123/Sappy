@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Text, View, StyleSheet, AsyncStorage } from 'react-native';
+import { Text, View, StyleSheet, AsyncStorage, Dimensions } from 'react-native';
 
 import { createStackNavigator } from "react-navigation";
 
@@ -12,6 +12,7 @@ import AddServices from './addServices'
 
 import firebase from '../../config'
 const database = firebase.database().ref()
+const { height } = Dimensions.get("window");
 
 class Services extends Component {
   constructor() {
@@ -35,16 +36,13 @@ class Services extends Component {
   getServices = () => {
     firebase.auth().onAuthStateChanged((user) => {
       if (user) {
-        console.log('userStep /////////////////')
         let firebaseUID = user.uid
-        console.log(firebaseUID)
 
         database.child('Services').child(firebaseUID).on('child_added', (payload) => {
-          if (payload.key === true) {
-
+          if (payload.val() !== false) {
             this.setState({
               isLoading: false,
-              Services: [...this.state.services, payload.key]
+              Services: [...this.state.Services, payload.key]
             })
           } else {
             this.setState({
@@ -86,12 +84,37 @@ class Services extends Component {
           {...this.props}
         />
 
-        {Services ? (
+        {Services.length !== 0 ? (
           <View style={styles.contentDiv}>
-            {Services.map((item, Index) => {
-              return <Button
-                title={item}
-                onPress={() => this._remove()}
+            <View style={{
+              height: height * 0.5, flex: 0, flexWrap: 'wrap', justifyContent: 'space-between', borderColor: 'transparent'
+            }} >
+              {
+                Services.map((item, Index) => {
+                  return <Button
+                    key={Index}
+                    title={item}
+                    buttonStyle={{
+                      backgroundColor: "#47bc72",
+                      width: 70,
+                      height: 30,
+                      margin: 50,
+                      borderColor: "#47bc72",
+                      borderWidth: 0,
+                      borderRadius: 5,
+                      elevation: 0
+                    }}
+                  />
+                })
+              }
+            </View>
+
+            <View style={{ justifyContent: 'flex-end' }}>
+              <Button
+                title="Add More..."
+                iconRight
+                onPress={() => this._onPress()}
+                icon={<Icon name="plus" size={15} color="white" />}
                 buttonStyle={{
                   backgroundColor: "#47bc72",
                   width: 150,
@@ -102,8 +125,11 @@ class Services extends Component {
                   elevation: 0
                 }}
               />
-            })}
+            </View>
+
           </View>
+
+
         )
           : (<View style={styles.contentDiv}>
             <Text>My Services ... Nothing Here</Text>
@@ -156,7 +182,7 @@ const styles = StyleSheet.create({
     backgroundColor: "#ffffff",
   },
   contentDiv: {
-    marginTop: 18,
+    padding: 20,
     flexDirection: "column",
     alignItems: "center"
   },
