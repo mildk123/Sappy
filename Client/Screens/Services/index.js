@@ -1,9 +1,9 @@
-import React, { Component } from 'react';
+import React, { Component, Fragment } from 'react';
 import { Text, View, StyleSheet, AsyncStorage, Dimensions } from 'react-native';
 
 import { createStackNavigator } from "react-navigation";
 
-import { Spinner } from 'native-base';
+import { Spinner, Item } from 'native-base';
 import { Button } from 'react-native-elements'
 import Icon from "react-native-vector-icons/FontAwesome";
 
@@ -12,7 +12,7 @@ import AddServices from './addServices'
 
 import firebase from '../../config'
 const database = firebase.database().ref()
-const { height } = Dimensions.get("window");
+const { height, width } = Dimensions.get("window");
 
 class Services extends Component {
   constructor() {
@@ -80,55 +80,66 @@ class Services extends Component {
         <Header
           headerColor="#47bc72"
           icon={'menu'}
+          goBack={true}
           title={"My Services"}
           {...this.props}
         />
 
         {Services.length !== 0 ? (
-          <View style={styles.contentDiv}>
-            <View style={{
-              height: height * 0.5, flex: 0, flexWrap: 'wrap', justifyContent: 'space-between', borderColor: 'transparent'
-            }} >
-              {
-                Services.map((item, Index) => {
-                  return <Button
-                    key={Index}
-                    title={item}
-                    buttonStyle={{
-                      backgroundColor: "#47bc72",
-                      width: 70,
-                      height: 30,
-                      margin: 50,
-                      borderColor: "#47bc72",
-                      borderWidth: 0,
-                      borderRadius: 5,
-                      elevation: 0
-                    }}
-                  />
-                })
-              }
+          <Fragment>
+            <Text style={{ padding: 10, fontSize: 30, alignSelf: 'center', color: '#a8a8a8' }}>Services</Text>
+            <View style={styles.contentDiv}>
+
+              <Item style={{
+                height: height * 0.6,
+                flex: 0, flexWrap: 'wrap',
+                justifyContent: 'space-evenly',
+                borderColor: 'transparent'
+              }}>
+                {
+                  Services.map((item, Index) => {
+                    return <Button
+                      key={Index}
+                      title={item}
+                      containerStyle={{
+                        padding: 10
+                      }}
+                      titleStyle={{ color: '#00aeff' }}
+                      buttonStyle={{
+                        backgroundColor: "#ffffff",
+                        borderColor: "#00aeff",
+                        borderWidth: 2,
+                        padding: width * 0.02,
+                        width: 120,
+                        borderRadius: 15,
+                        elevation: 0
+                      }}
+                    />
+                  })
+                }
+              </Item>
+
+
+              <View style={styles.btnDiv}>
+                <Button
+                  title="Add More..."
+                  iconRight
+                  onPress={() => this._onPress()}
+                  icon={<Icon name="plus" size={15} color="white" />}
+                  buttonStyle={{
+                    backgroundColor: "#47bc72",
+                    width: 150,
+                    height: 55,
+                    borderColor: "transparent",
+                    borderWidth: 0,
+                    borderRadius: 5,
+                    elevation: 0
+                  }}
+                />
+              </View>
+
             </View>
-
-            <View style={{ justifyContent: 'flex-end' }}>
-              <Button
-                title="Add More..."
-                iconRight
-                onPress={() => this._onPress()}
-                icon={<Icon name="plus" size={15} color="white" />}
-                buttonStyle={{
-                  backgroundColor: "#47bc72",
-                  width: 150,
-                  height: 55,
-                  borderColor: "transparent",
-                  borderWidth: 0,
-                  borderRadius: 5,
-                  elevation: 0
-                }}
-              />
-            </View>
-
-          </View>
-
+          </Fragment>
 
         )
           : (<View style={styles.contentDiv}>
@@ -179,12 +190,11 @@ export default ServicesStackNavigator;
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: "#ffffff",
+    backgroundColor: "white",
   },
   contentDiv: {
-    padding: 20,
+    padding: 15,
     flexDirection: "column",
-    alignItems: "center"
   },
   btnDiv: {
     alignItems: "flex-end",

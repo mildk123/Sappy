@@ -30,6 +30,10 @@ class AddServices extends Component {
         this.getCategories()
     }
 
+    componentWillMount = () => {
+
+    }
+
     getCategories = () => {
         database.child('Categories').on('child_added', (payload) => {
             this.setState({
@@ -47,7 +51,7 @@ class AddServices extends Component {
 
     AddServicesToDB = () => {
         const { Carpenter, Delivery, Electrician, Glazier, Masonry, Mechanic, Painter, WaterSupplier, Welder, } = this.state;
-        if ( !Carpenter && !Delivery && !Electrician && !Glazier && !Masonry && !Mechanic && !Painter && !WaterSupplier && !Welder ) {
+        if (!Carpenter && !Delivery && !Electrician && !Glazier && !Masonry && !Mechanic && !Painter && !WaterSupplier && !Welder) {
             return alert('Please Select at least one service.')
         }
 
@@ -72,6 +76,9 @@ class AddServices extends Component {
         header: null
     };
 
+    close = () => {
+        this.props.navigation.goBack()
+    }
 
     render() {
         const { isLoading, Categories } = this.state;
@@ -80,9 +87,13 @@ class AddServices extends Component {
                 <View style={styles.container}>
                     <Header
                         headerColor="#47bc72"
-                        icon={'arrow-left'}
+                        icon={'close-box'}
                         title={"Add Services"}
-                        {...this.props}
+                        hasTabs={false}
+                        searchBar={false}
+                        favBtn={false}
+                        threeDots={false}
+                        close={this.close}
                     />
                     <View style={styles.contentDiv}>
                         <Spinner color='green' />
@@ -95,13 +106,21 @@ class AddServices extends Component {
             <View style={styles.container}>
                 <Header
                     headerColor="#47bc72"
-                    icon={'arrow-left'}
+                    icon={'close-box'}
                     title={"Add Services"}
-                    goBack={true}
-                    {...this.props}
+                    hasTabs={false}
+                    searchBar={false}
+                    favBtn={false}
+                    threeDots={false}
+                    close={this.close}
                 />
                 <View style={styles.contentDiv}>
-                    <Item style={{ height: height * 0.5, flex: 0, flexWrap: 'wrap', justifyContent: 'space-between', borderColor: 'transparent' }}>
+                    <Item style={{
+                        height: height * 0.5,
+                        flex: 0, flexWrap: 'wrap',
+                        justifyContent: 'space-between',
+                        borderColor: 'transparent'
+                    }}>
                         {Categories &&
                             Categories.map((item, index) => {
                                 return <CheckBox
