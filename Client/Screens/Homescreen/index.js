@@ -1,10 +1,10 @@
 import React, { Component } from "react";
 import { createStackNavigator } from "react-navigation";
+
 import { StyleSheet, View, Dimensions, AsyncStorage } from "react-native";
 
 import Header from "../../Helper/Header";
-import Profile from '../Services'
-import { Icon, Fab } from "native-base";
+import { Icon } from "native-base";
 
 class Homescreen extends Component {
   constructor() {
@@ -18,13 +18,11 @@ class Homescreen extends Component {
     if (newUser === 'true') {
       this.props.navigation.navigate("Profile");
     }
-  };
+  }
 
   static navigationOptions = {
     header: null
   };
-
-
 
   render() {
     return (
@@ -57,10 +55,6 @@ class Homescreen extends Component {
     );
   }
 }
-
-// const HomeStackNavigator = createStackNavigator({
-//   Homescreen,
-// });
 
 Homescreen.navigationOptions = {
   drawerLabel: "Home",

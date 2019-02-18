@@ -5,12 +5,12 @@ import StartScreen from "../Screens/StartScreen";
 import AuthLoading from "../Screens/AuthLoading";
 
 import AuthStackNavigator from "../Screens/Auth/index";
-import AppDrawerNavigator from "./AppDrawerNavigator";
+import MainTabNavigator from "./MainTabNavigator";
 
 
 export default createSwitchNavigator({
   StartScreen: StartScreen,
   AuthLoading: AuthLoading,
   Auth: AuthStackNavigator,
-  App: AppDrawerNavigator,
+  App: MainTabNavigator,
 });

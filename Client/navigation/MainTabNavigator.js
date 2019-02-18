@@ -8,10 +8,11 @@ import MaterialCommunityIcons from "react-native-vector-icons/MaterialCommunityI
 import MaterialIcons from "react-native-vector-icons/MaterialIcons";
 import Octicons from "react-native-vector-icons/Octicons";
 
-import Homescreen from "../Screens/Buyer/Home";
-import Messages from "../Screens/Buyer/Messages";
-import Cart from "../Screens/Buyer/Notifications";
-import Settings from "../Screens/Buyer/Settings";
+import Homescreen from "../Screens/Homescreen";
+import Inbox from "../Screens/Inbox";
+import Post from "../Screens/Homescreen";
+import MyTask from "../Screens/Homescreen";
+import Settings from "../Screens/Settings";
 
 const HomeStack = createStackNavigator({
   Home: {
@@ -29,11 +30,13 @@ HomeStack.navigationOptions = {
     )
 };
 
-const MessagesStack = createStackNavigator({
+
+
+const InboxStack = createStackNavigator({
   Messages: Messages
 });
 
-MessagesStack.navigationOptions = {
+InboxStack.navigationOptions = {
   tabBarLabel: "Messages",
   tabBarIcon: ({ tintColor, focused }) =>
     focused ? (
@@ -43,11 +46,29 @@ MessagesStack.navigationOptions = {
     )
 };
 
-const CartStack = createStackNavigator({
+
+
+const PostStack = createStackNavigator({
+  Post: Post
+});
+
+PostStack.navigationOptions = {
+  tabBarLabel: "Post",
+  tabBarIcon: ({ tintColor, focused }) =>
+    focused ? (
+      <MaterialCommunityIcons color={tintColor} size={34} name="plus-box" />
+    ) : (
+      <MaterialCommunityIcons color="#b29f94" size={30} name="plus-box-outline" />
+    )
+};
+
+
+
+const MyTaskStack = createStackNavigator({
   Cart: Cart
 });
 
-CartStack.navigationOptions = {
+MyTask.navigationOptions = {
   tabBarLabel: "Cart",
   tabBarIcon: ({ tintColor, focused }) =>
     focused ? (
@@ -56,6 +77,8 @@ CartStack.navigationOptions = {
       <MaterialCommunityIcons color="#b29f94" size={30} name="cart-outline" />
     )
 };
+
+
 
 const SettingsStack = createStackNavigator({
   Settings: Settings
@@ -74,8 +97,9 @@ SettingsStack.navigationOptions = {
 export default createBottomTabNavigator(
   {
     HomeStack,
-    MessagesStack,
-    CartStack,
+    MyTaskStack,
+    PostStack,
+    InboxStack,
     SettingsStack
   },
   {

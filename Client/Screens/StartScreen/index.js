@@ -82,14 +82,14 @@ export class StartScreen extends Component {
 
                     <Button
                         title="Get Started"
-                        onPress={() => alert('working')}
+                        onPress={() => this.props.navigation.navigate('AuthLoading')}
                         titleStyle={{
-                            color: '#4267B0'
+                            color: '#00A84A'
                         }}
                         containerStyle={{ padding: 25, }}
                         buttonStyle={{
                             backgroundColor: 'white',
-                            borderColor: '#4267B0',
+                            borderColor: '#00A84A',
                             borderWidth: 1,
                             width: width * 0.35,
                             padding: 5,
@@ -124,7 +124,8 @@ const styles = StyleSheet.create({
     },
     cardBody: {
         width: width * 0.9,
-        height: Dimensions.get("window").height * 0.7    },
+        height: Dimensions.get("window").height * 0.7
+    },
     image: {
         width: width * 1,
         height: Dimensions.get("window").height * 0.7

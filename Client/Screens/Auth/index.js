@@ -160,12 +160,31 @@ class Authentication extends Component {
   render() {
     return (
       <View style={styles.container}>
+
+        <View style={{alignSelf: 'flex-end'}}>
+          <Button
+            title="Skip"
+            onPress={() => this.props.navigation.navigate('App')}
+            iconRight
+            icon={<IconMaterial name='arrow-right'  size={15} color="gray" />}
+            titleStyle={{
+              color: 'gray'
+            }}
+            buttonStyle={{
+              backgroundColor: 'white',
+              borderWidth: 0,
+              width: width * 0.3,
+              padding: 0,
+              elevation: 0
+            }}
+          />
+        </View>
+
         <View style={styles.imgContainer}>
           <Image
             style={styles.picSize}
             source={require('../../Assets/icon.png')}
           />
-          <Text>Sappy</Text>
         </View>
 
         <View style={styles.socialContainer}>
@@ -255,13 +274,12 @@ const styles = StyleSheet.create({
   },
   imgContainer: {
     maxHeight: "60%",
-    padding: 20,
     justifyContent: "center",
     alignItems: "center"
   },
   picSize: {
-    maxHeight: width * 0.6,
-    maxWidth: width * 0.6
+    maxHeight: width * 0.5,
+    maxWidth: width * 0.5
   },
   socialContainer: {
     flexDirection: "row",
