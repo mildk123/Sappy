@@ -33,7 +33,8 @@ class Profile extends Component {
         header: null,
     }
 
-    componentWillMount = () => {
+    componentDidMount = async () => {
+        await Permissions.askAsync(Permissions.CAMERA_ROLL);
         firebase.auth().onAuthStateChanged(user => {
             if (user) {
                 let MyUid = user.uid
@@ -48,10 +49,6 @@ class Profile extends Component {
                 this.props.navigation.navigate('Auth')
             }
         })
-    }
-
-    async componentDidMount() {
-        await Permissions.askAsync(Permissions.CAMERA_ROLL);
     }
 
     selectImage = async () => {
@@ -148,7 +145,7 @@ class Profile extends Component {
                             onChangeText={text => this.setState({ phone: text })}
                         />
                     </Item>
-                
+
                 </View>
                 <View style={{ height: width, alignItems: 'center', justifyContent: 'space-between' }}>
 

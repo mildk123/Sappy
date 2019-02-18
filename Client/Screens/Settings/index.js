@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { Text, View, StyleSheet, Dimensions } from 'react-native';
 
 import { Spinner } from 'native-base';
-import Icon from "react-native-vector-icons/FontAwesome";
+import { Content, List, ListItem, Icon, Left, Body, Right, Switch, Button } from 'native-base';
 
 import Header from '../../Helper/Header';
 
@@ -15,7 +15,7 @@ class Settings extends Component {
   constructor() {
     super()
     this.state = {
-      isLoading: true,
+      isLoading: false,
     }
   }
 
@@ -58,9 +58,38 @@ class Settings extends Component {
           favBtn={false}
           threeDots={false}
         />
-        <View style={styles.contentDiv}>
-          <Text>Settings</Text>
-        </View>
+
+        <Content style={{marginTop: 10}}>
+          <ListItem icon style={{marginVertical: 5 }} >
+            <Left>
+              <Button style={{ backgroundColor: "#FF9501" }}>
+                <Icon active name='map-marker' type='FontAwesome' style={{ fontSize: 20 }} />
+              </Button>
+            </Left>
+            <Body>
+              <Text>Change My Location</Text>
+            </Body>
+            <Button style={{ backgroundColor: "#FF9501" }}>
+              <Icon active name='arrow-right-bold-circle-outline' type='MaterialCommunityIcons' style={{ fontSize: 24 }} />
+            </Button>
+          </ListItem>
+
+          <ListItem icon >
+            <Left>
+              <Button style={{ backgroundColor: "#FF9501" }}>
+                <Icon active name='map-marker' type='FontAwesome' style={{ fontSize: 20 }} />
+              </Button>
+            </Left>
+            <Body>
+              <Text>Change My Location</Text>
+            </Body>
+            <Button style={{ backgroundColor: "#FF9501" }}>
+              <Icon active name='arrow-right-bold-circle-outline' type='MaterialCommunityIcons' style={{ fontSize: 24 }} />
+            </Button>
+          </ListItem>
+
+        </Content>
+
 
       </View>
     )
@@ -70,7 +99,7 @@ class Settings extends Component {
 Settings.navigationOptions = {
   drawerLabel: "Settings",
   drawerIcon: ({ tintColor }) => (
-    <Icon name="gear" style={{ color: tintColor, fontSize: 25 }} />
+    <Icon name="gear" type='FontAwesome' style={{ color: tintColor, fontSize: 25 }} />
   )
 };
 
