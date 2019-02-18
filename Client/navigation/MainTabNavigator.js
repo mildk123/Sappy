@@ -11,7 +11,7 @@ import Octicons from "react-native-vector-icons/Octicons";
 import Homescreen from "../Screens/Homescreen";
 import Inbox from "../Screens/Inbox";
 import Post from "../Screens/Homescreen";
-import MyTask from "../Screens/Homescreen";
+import MyTasks from "../Screens/MyTasks";
 import Settings from "../Screens/Settings";
 
 const HomeStack = createStackNavigator({
@@ -26,14 +26,14 @@ HomeStack.navigationOptions = {
     focused ? (
       <Octicons color={tintColor} size={34} name="home" />
     ) : (
-      <Octicons color="#b29f94" size={30} name="home" />
-    )
+        <Octicons color="#b29f94" size={30} name="home" />
+      )
 };
 
 
 
 const InboxStack = createStackNavigator({
-  Messages: Messages
+  Inbox: Inbox
 });
 
 InboxStack.navigationOptions = {
@@ -42,8 +42,8 @@ InboxStack.navigationOptions = {
     focused ? (
       <MaterialIcons color={tintColor} size={34} name="chat" />
     ) : (
-      <MaterialIcons color="#b29f94" size={30} name="chat-bubble-outline" />
-    )
+        <MaterialIcons color="#b29f94" size={30} name="chat-bubble-outline" />
+      )
 };
 
 
@@ -58,24 +58,24 @@ PostStack.navigationOptions = {
     focused ? (
       <MaterialCommunityIcons color={tintColor} size={34} name="plus-box" />
     ) : (
-      <MaterialCommunityIcons color="#b29f94" size={30} name="plus-box-outline" />
-    )
+        <MaterialCommunityIcons color="#b29f94" size={30} name="plus-box-outline" />
+      )
 };
 
 
 
-const MyTaskStack = createStackNavigator({
-  Cart: Cart
+const MyTasksStack = createStackNavigator({
+  MyTasks: MyTasks
 });
 
-MyTask.navigationOptions = {
-  tabBarLabel: "Cart",
+MyTasksStack.navigationOptions = {
+  tabBarLabel: "My Task",
   tabBarIcon: ({ tintColor, focused }) =>
     focused ? (
       <MaterialCommunityIcons color={tintColor} size={34} name="cart" />
     ) : (
-      <MaterialCommunityIcons color="#b29f94" size={30} name="cart-outline" />
-    )
+        <MaterialCommunityIcons color="#b29f94" size={30} name="cart-outline" />
+      )
 };
 
 
@@ -90,14 +90,14 @@ SettingsStack.navigationOptions = {
     focused ? (
       <MaterialIcons color={tintColor} size={34} name="person" />
     ) : (
-      <MaterialIcons color="#b29f94" size={30} name="person-outline" />
-    )
+        <MaterialIcons color="#b29f94" size={30} name="person-outline" />
+      )
 };
 
 export default createBottomTabNavigator(
   {
     HomeStack,
-    MyTaskStack,
+    MyTasksStack,
     PostStack,
     InboxStack,
     SettingsStack
