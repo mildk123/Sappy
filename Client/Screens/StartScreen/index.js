@@ -1,7 +1,44 @@
 import React, { Component } from 'react'
-import { Text, View } from 'react-native'
+import { View, Dimensions, Image, StyleSheet } from 'react-native'
 
+import { Button } from 'react-native-elements'
+import { Card, CardItem, Text, Body } from "native-base";
+
+
+const { width } = Dimensions.get("window");
+// import pic1 from '../../Assets/Start/1st.svg'
+
+import Carousel from 'react-native-snap-carousel'
 export class StartScreen extends Component {
+    constructor() {
+        super();
+        this.state = {
+            entries: [
+                {
+                    thumbnail: require('../../Assets/Start/1st.png')
+                },
+                {
+                    thumbnail: require("../../Assets/Start/2nd.png")
+                },
+                {
+                    thumbnail: require("../../Assets/Start/3rd.png")
+                }
+            ]
+        };
+    }
+
+    _renderItem({ item, index }, parallaxProps) {
+        return (
+            <View style={styles.cardMain}>
+                <CardItem cardBody style={styles.cardBody} bordered={false}>
+                    <Body>
+                        <Image source={item.thumbnail} style={styles.image} />
+                    </Body>
+                </CardItem>
+            </View>
+        );
+    }
+
     render() {
         return (
             <View style={{
@@ -10,21 +47,32 @@ export class StartScreen extends Component {
                 justifyContent: 'space-between',
             }}>
                 <View style={{
-                    backgroundColor: 'red', padding: 50, flexDirection: "row",
+                    paddingTop: 50, flexDirection: "row",
                     justifyContent: 'space-around',
                 }}>
 
-                    <Text> StartScreen </Text>
+                    <Text style={{ fontSize: 25, fontStyle: 'italic' }}> Welcome to Sappy </Text>
                 </View>
 
                 <View style={{
-                    maxHeight: "60%",
-                    padding: 20,
+                    maxHeight: "70%",
                     justifyContent: "center",
                     alignItems: "center"
                 }} >
 
-                    <Text> StartScreen </Text>
+                    <Carousel
+                        layout={'default'}
+                        data={this.state.entries}
+                        renderItem={this._renderItem}
+                        sliderWidth={styles.sliderWidth.width}
+                        itemWidth={styles.itemWidth.width}
+                        hasParallaxImages={true}
+                        enableSnap={true}
+                        firstItem={0}
+                        useScrollView={true}
+                        vertical={false}
+                    />
+
                 </View>
 
                 <View style={{
@@ -32,7 +80,23 @@ export class StartScreen extends Component {
                     justifyContent: 'space-around',
                 }}>
 
-                    <Text> StartScreen </Text>
+                    <Button
+                        title="Get Started"
+                        onPress={() => alert('working')}
+                        titleStyle={{
+                            color: '#4267B0'
+                        }}
+                        containerStyle={{ padding: 25, }}
+                        buttonStyle={{
+                            backgroundColor: 'white',
+                            borderColor: '#4267B0',
+                            borderWidth: 1,
+                            width: width * 0.35,
+                            padding: 5,
+                            borderRadius: 25,
+                            elevation: 0
+                        }}
+                    />
                 </View>
             </View>
         )
@@ -40,3 +104,29 @@ export class StartScreen extends Component {
 }
 
 export default StartScreen
+
+const styles = StyleSheet.create({
+    container: {
+        flex: 1,
+        backgroundColor: "#ffffff"
+    },
+
+    sliderWidth: {
+        width: Dimensions.get("window").width
+    },
+    itemWidth: {
+        width: Dimensions.get("window").width
+    },
+
+    cardMain: {
+        elevation: 0,
+        borderWidth: 0
+    },
+    cardBody: {
+        width: width * 0.9,
+        height: Dimensions.get("window").height * 0.7    },
+    image: {
+        width: width * 1,
+        height: Dimensions.get("window").height * 0.7
+    }
+});
