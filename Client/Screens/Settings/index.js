@@ -1,10 +1,11 @@
 import React, { Component } from 'react';
 import { Text, View, StyleSheet, Dimensions } from 'react-native';
 
-import { Spinner } from 'native-base';
-import { Content, List, ListItem, Icon, Left, Body, Right, Switch, Button } from 'native-base';
+import { Content, ListItem, Icon, Left, Body, Button, Spinner } from 'native-base';
+import { createStackNavigator } from 'react-navigation'
 
 import Header from '../../Helper/Header';
+import Location from './Location'
 
 import firebase from '../../config'
 const database = firebase.database().ref()
@@ -19,15 +20,13 @@ class Settings extends Component {
     }
   }
 
-
-
   static navigationOptions = {
     header: null
   };
 
 
   render() {
-    const { isLoading, Categories } = this.state;
+    const { isLoading } = this.state;
     if (isLoading) {
       return (
         <View style={styles.container}>
@@ -59,22 +58,8 @@ class Settings extends Component {
           threeDots={false}
         />
 
-        <Content style={{marginTop: 10}}>
-          <ListItem icon style={{marginVertical: 5 }} >
-            <Left>
-              <Button style={{ backgroundColor: "#FF9501" }}>
-                <Icon active name='map-marker' type='FontAwesome' style={{ fontSize: 20 }} />
-              </Button>
-            </Left>
-            <Body>
-              <Text>Change My Location</Text>
-            </Body>
-            <Button style={{ backgroundColor: "#FF9501" }}>
-              <Icon active name='arrow-right-bold-circle-outline' type='MaterialCommunityIcons' style={{ fontSize: 24 }} />
-            </Button>
-          </ListItem>
-
-          <ListItem icon >
+        <Content style={{ marginTop: 10 }}>
+          <ListItem icon style={{ marginVertical: 5 }} onPress={() => { this.props.navigation.navigate('Location') }} >
             <Left>
               <Button style={{ backgroundColor: "#FF9501" }}>
                 <Icon active name='map-marker' type='FontAwesome' style={{ fontSize: 20 }} />
@@ -96,14 +81,20 @@ class Settings extends Component {
   }
 }
 
-Settings.navigationOptions = {
+
+const SettingsStackNavigator = createStackNavigator({
+  Settings,
+  Location
+});
+
+SettingsStackNavigator.navigationOptions = {
   drawerLabel: "Settings",
   drawerIcon: ({ tintColor }) => (
     <Icon name="gear" type='FontAwesome' style={{ color: tintColor, fontSize: 25 }} />
   )
 };
 
-export default Settings;
+export default SettingsStackNavigator;
 
 
 const styles = StyleSheet.create({
