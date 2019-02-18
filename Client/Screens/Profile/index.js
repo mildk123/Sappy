@@ -33,12 +33,25 @@ class Profile extends Component {
         header: null,
     }
 
+    componentWillMount = () => {
+        firebase.auth().onAuthStateChanged(user => {
+            if (user) {
+                let MyUid = user.uid
+                database.child('Users').child(MyUid).once('value', (payload) => {
+                    this.setState({
+                        selectedImage: payload.val().photoURL
+                    }, () => {
+                        console.log(this.state)
+                    })
+                })
+            } else {
+                this.props.navigation.navigate('Auth')
+            }
+        })
+    }
+
     async componentDidMount() {
         await Permissions.askAsync(Permissions.CAMERA_ROLL);
-        database.child('Users').child(MyUid).once('value', (payload) => {
-            console.log(payload)
-            console.log(payload.val())
-        })
     }
 
     selectImage = async () => {
@@ -111,7 +124,7 @@ class Profile extends Component {
     render() {
         const { selectedImage } = this.state;
         return (
-            <Container style={{ flex: 1}}>
+            <Container style={{ flex: 1 }}>
 
                 <Header
                     headerColor="#47bc72"
@@ -126,7 +139,7 @@ class Profile extends Component {
                 />
 
 
-                <View style={styles.inputCont} >
+                <View style={styles.inputCont}>
                     <Item>
                         <Icon active name='home' type='FontAwesome' style={{ fontSize: 30, margin: 5 }} />
                         <Input
@@ -135,15 +148,13 @@ class Profile extends Component {
                             onChangeText={text => this.setState({ phone: text })}
                         />
                     </Item>
+                
                 </View>
-
                 <View style={{ height: width, alignItems: 'center', justifyContent: 'space-between' }}>
 
                     <TouchableHighlight onPress={this.selectImage}>
                         <Image
-                            source={selectedImage
-                                ? { uri: selectedImage }
-                                : placeholder}
+                            source={selectedImage ? { uri: selectedImage } : placeholder}
                             alt="placeholder"
                             style={{ height: width * 0.7, width: width * 0.7 }}
                         />
@@ -176,11 +187,11 @@ class Profile extends Component {
 Profile.navigationOptions = {
     drawerLabel: "Profile",
     drawerIcon: ({ tintColor }) => (
-      <Icon name="account-edit" style={{ color: tintColor, fontSize: 25 }} />
+        <Icon name="account-edit" style={{ color: tintColor, fontSize: 25 }} />
     )
-  };
-  
-  export default Profile;
+};
+
+export default Profile;
 
 
 const styles = StyleSheet.create({
