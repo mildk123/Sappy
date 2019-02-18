@@ -8,7 +8,7 @@ import Inbox from "../Screens/Inbox";
 import Notifications from "../Screens/Notifications";
 import ManageSales from "../Screens/ManageSales";
 import ServicesStackNavigator from "../Screens/Services";
-import MyGigs from "../Screens/MyGigs";
+// import MyGigs from "../Screens/MyGigs";
 import BuyerRequests from "../Screens/BuyerRequests";
 import Settings from "../Screens/Settings";
 import Profile from "../Screens/Profile";
