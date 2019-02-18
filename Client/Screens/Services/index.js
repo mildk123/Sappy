@@ -21,13 +21,24 @@ class Services extends Component {
       isLoading: true,
       Services: []
     }
+  }
 
-    this.getServices()
+
+  static getDerivedStateFromProps(props, state){
+    if ( prevProps.country !== this.props.country.length ) {
+    doSomething(); //example calling redux action
+  }
+
+  }
+
+  doSom =() =>{
+    alert(123123)
   }
 
   static navigationOptions = {
     header: null
   };
+
 
   _onPress = () => {
     this.props.navigation.navigate('AddServices')
@@ -39,6 +50,7 @@ class Services extends Component {
         let firebaseUID = user.uid
 
         database.child('Services').child(firebaseUID).on('child_added', (payload) => {
+          debugger
           if (payload.val() !== false) {
             this.setState({
               isLoading: false,

@@ -10,9 +10,11 @@ import IconMaterial from "react-native-vector-icons/MaterialCommunityIcons";
 import Login from './login'
 import Signup from './Signup'
 
-import { Facebook } from "expo";
-import firebase from '../../config';
-const database = firebase.database().ref()
+import { Facebook, Google } from "expo";
+import firebase from 'firebase'
+
+// import firebase from '../../config';
+// const database = firebase.database().ref()
 
 const { width } = Dimensions.get("window");
 
@@ -27,6 +29,16 @@ class Authentication extends Component {
   static navigationOptions = {
     header: null
   };
+
+  componentWillMount = () => {
+    firebase.auth().onAuthStateChanged(function (user) {
+      if (user) {
+        alert('User Signedin')
+      } else {
+        alert('User not signemd in')
+      }
+    });
+  }
 
   loginFB = async () => {
 
@@ -44,6 +56,74 @@ class Authentication extends Component {
       this._pushToDB();
     }
   };
+
+  loginGoogle = async () => {
+    console.log('LoginGoogle')
+    const result = await Google.logInAsync({
+      behavior: 'web',
+      scopes: ['profile', 'email'],
+      androidCandroidClientIdlientId : '570661165157-lg81b1o5fs4tpu5hgfg1aq8va1qpgf44.apps.googleusercontent.com'
+    });
+
+    if (result.type === 'success') {
+      this.onSignIn(result)
+      return result.accessToken;
+    } else {
+      return { cancelled: true };
+    }
+
+  }
+
+  onSignIn = (googleUser) => {
+    console.log('onSign')
+    // console.log('Google Auth Response', googleUser);
+
+    // var unsubscribe = firebase.auth().onAuthStateChanged((firebaseUser) => {
+    //   unsubscribe();
+    //   // Check if we are already signed-in Firebase with the correct user.
+    //   if (!this.isUserEqual(googleUser, firebaseUser)) {
+
+    //     const credential = firebase.auth.GoogleAuthProvider.credential(googleUser.idToken, googleUser.accessToken)
+
+    //     firebase.auth().signInWithCredential(credential)
+    //       .then(resp => {
+    //         console.log(resp)
+    //         console.log('User signed in')
+    //         this.props.navigation.navigate('App')
+    //       })
+    //       .catch(err => console.log(111, err))
+
+
+
+
+    //   } else {
+    //     console.log('User already signed-in Firebase.');
+    //   }
+    // });
+  }
+
+  isUserEqual = (googleUser, firebaseUser) => {
+    if (firebaseUser) {
+      var providerData = firebaseUser.providerData;
+      for (var i = 0; i < providerData.length; i++) {
+        if (providerData[i].providerId === firebase.auth.GoogleAuthProvider.PROVIDER_ID &&
+          providerData[i].uid === googleUser.getBasicProfile().getId()) {
+          // We don't need to reauth the Firebase connection.
+          return true;
+        }
+      }
+    }
+    return false;
+  }
+
+
+  // async getUserInfo(accessToken) {
+  //   let userInfoResponse = await fetch('https://www.googleapis.com/userinfo/v2/me', {
+  //     headers: { Authorization: `Bearer ${accessToken}` },
+  //   });
+
+  //   return await userInfoResponse.json();
+  // }
 
   _pushToDB = async () => {
     firebase.auth().onAuthStateChanged(user => {
@@ -85,6 +165,7 @@ class Authentication extends Component {
         <View style={styles.socialContainer}>
           <Button
             title="Google"
+            onPress={() => this.loginGoogle()}
             icon={<Icon name='google' size={23} color="red" />}
             titleStyle={{
               color: 'red'
