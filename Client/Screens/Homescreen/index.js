@@ -58,19 +58,18 @@ class Homescreen extends Component {
   }
 }
 
-const HomeStackNavigator = createStackNavigator({
-  Homescreen,
-  Profile
-});
+// const HomeStackNavigator = createStackNavigator({
+//   Homescreen,
+// });
 
-HomeStackNavigator.navigationOptions = {
+Homescreen.navigationOptions = {
   drawerLabel: "Home",
   drawerIcon: ({ tintColor }) => (
     <Icon name="home" fontSize={24} style={{ color: tintColor }} />
   )
 };
 
-export default HomeStackNavigator;
+export default Homescreen;
 
 const styles = StyleSheet.create({
   container: {

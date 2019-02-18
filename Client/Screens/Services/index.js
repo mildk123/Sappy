@@ -24,16 +24,13 @@ class Services extends Component {
   }
 
 
-  static getDerivedStateFromProps(props, state){
-    if ( prevProps.country !== this.props.country.length ) {
-    doSomething(); //example calling redux action
-  }
+  // static getDerivedStateFromProps(props, state) {
+  //   return doSomething(); //example calling redux action
+  // }
 
-  }
-
-  doSom =() =>{
-    alert(123123)
-  }
+  // doSomething = () => {
+  //   alert(123123)
+  // }
 
   static navigationOptions = {
     header: null
@@ -192,7 +189,7 @@ const ServicesStackNavigator = createStackNavigator({
 ServicesStackNavigator.navigationOptions = {
   drawerLabel: "Services",
   drawerIcon: ({ tintColor }) => (
-    <Icon name="wrench" style={{ color: tintColor, fontSize: 24  }} />
+    <Icon name="wrench" style={{ color: tintColor, fontSize: 24 }} />
   )
 };
 

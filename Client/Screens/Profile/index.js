@@ -17,6 +17,7 @@ import placeholder from '../../Assets/place.png'
 
 import firebase from '../../config'
 const database = firebase.database().ref()
+
 const { width } = Dimensions.get("window");
 
 class Profile extends Component {
@@ -34,6 +35,10 @@ class Profile extends Component {
 
     async componentDidMount() {
         await Permissions.askAsync(Permissions.CAMERA_ROLL);
+        database.child('Users').child(MyUid).once('value', (payload) => {
+            console.log(payload)
+            console.log(payload.val())
+        })
     }
 
     selectImage = async () => {

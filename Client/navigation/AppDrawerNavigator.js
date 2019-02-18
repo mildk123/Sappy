@@ -33,6 +33,7 @@ class DrawerComponent extends Component {
   SignOut = async () => {
     // await AsyncStorage.removeItem("userLoggedIn");
     await AsyncStorage.removeItem("userLoggedIn");
+    AsyncStorage.setItem('userUID')
     AsyncStorage.removeItem("newUser");
     this.props.navigation.navigate("AuthLoading");
   };
