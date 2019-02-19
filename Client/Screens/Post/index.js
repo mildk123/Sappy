@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
-import { Text, View, StyleSheet, Dimensions, Image, ScrollView } from 'react-native';
+import { Text, View, StyleSheet, Dimensions, Image, ScrollView, TouchableOpacity,  } from 'react-native';
 
-import { Spinner } from 'native-base';
+import { Spinnerm, Item } from 'native-base';
 import Icon from "react-native-vector-icons/FontAwesome";
 
 import Header from '../../Helper/Header';
@@ -16,6 +16,51 @@ class PostTask extends Component {
     super()
     this.state = {
       isLoading: false,
+      Services: [
+        {
+          thumbnail: require('../../Assets/Post/cleaner.png'),
+          name: 'Cleaner'
+        },
+        {
+          thumbnail: require('../../Assets/Post/gardener.png'),
+          name: 'Gardener'
+        },
+        {
+          thumbnail: require('../../Assets/Post/electrician.png'),
+          name: 'Electrician'
+        }, {
+          thumbnail: require('../../Assets/Post/tailor.png'),
+          name: 'Tailor'
+        }, {
+          thumbnail: require('../../Assets/Post/deliveryMan.png'),
+          name: 'Delivery Man'
+        }, {
+          thumbnail: require('../../Assets/Post/hairstylist.png'),
+          name: 'Hair Stylist'
+        }, {
+          thumbnail: require('../../Assets/Post/carWasher.png'),
+          name: 'Car Washer'
+        }, {
+          thumbnail: require('../../Assets/Post/handyman.png'),
+          name: 'Handyman'
+        }, {
+          thumbnail: require('../../Assets/Post/ITservices.png'),
+          name: 'IT Services'
+        }, {
+          thumbnail: require('../../Assets/Post/painter.png'),
+          name: 'Painter'
+        }, {
+          thumbnail: require('../../Assets/Post/photographer.png'),
+          name: 'Photographer'
+        }, {
+          thumbnail: require('../../Assets/Post/moving.png'),
+          name: 'Moving'
+        },
+        {
+          thumbnail: require('../../Assets/Post/supplier.png'),
+          name: 'Supplier'
+        },
+      ]
     }
   }
 
@@ -27,7 +72,7 @@ class PostTask extends Component {
 
 
   render() {
-    const { isLoading, Categories } = this.state;
+    const { isLoading, Services } = this.state;
     if (isLoading) {
       return (
         <View style={styles.container}>
@@ -59,31 +104,25 @@ class PostTask extends Component {
           threeDots={false}
         />
         <View style={styles.contentDiv}>
-          <View>
+          <View style={{ alignSelf: 'center' }}>
             <Text>Post Task</Text>
           </View>
 
-          <ScrollView style={styles.ImagesDiv}>
-            <Image style={styles.Images} source={require('../../Assets/Post/cleaner.png')}
-              alt="Icon"
-            />
-            <Image style={styles.Images} source={require('../../Assets/Post/electrician.png')}
-              alt="Icon"
-            />
-            <Image style={styles.Images} source={require('../../Assets/Post/gardener.png')}
-              alt="Icon"
-            />
-            <Image style={styles.Images} source={require('../../Assets/Post/tailor.png')}
-              alt="Icon"
-            />
-            <Image style={styles.Images} source={require('../../Assets/Post/deliveryMan.png')}
-              alt="Icon"
-            />
-            <Image style={styles.Images} source={require('../../Assets/Post/hairstylist.png')}
-              alt="Icon"
-            />
-
-          </ScrollView>
+          <Item style={{
+            height: height * 0.6,
+            flex: 0, flexWrap: 'wrap',
+            justifyContent: 'space-evenly',
+            borderColor: 'transparent'
+          }}>
+            {
+              Services.map((item, Index) => {
+                return <TouchableOpacity key={Index}>
+                    <Image style={styles.Images} source={item.thumbnail} alt={item.name} />
+                    <Text style={{fontSize: 20, alignSelf: 'center'}}>{item.name}</Text>
+                </TouchableOpacity>
+              })
+            }
+          </Item>
 
         </View>
 
@@ -108,17 +147,13 @@ const styles = StyleSheet.create({
     backgroundColor: "#ffffff",
   },
   contentDiv: {
-    padding: 20,
+    padding: 15,
     flexDirection: "column",
-    alignItems: "center"
   },
-  ImagesDiv: {
-    height: 500,
-    flexWrap: 'wrap',
-    padding: 5
-  },
+
   Images: {
-    padding: 25,
+    marginHorizontal: 25,
+    marginTop: 25,
     width: width * 0.2,
     height: height * 0.1,
   }
