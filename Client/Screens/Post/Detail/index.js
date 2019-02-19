@@ -5,7 +5,11 @@ import { Spinner } from 'native-base';
 
 import Header from '../../../Helper/Header';
 
-import Icon from 'react-native-vector-icons/FontAwesome';
+
+import { Button } from "react-native-elements";
+import MaterialCommunityIcons from "react-native-vector-icons/MaterialCommunityIcons";
+
+import FontAwesome from 'react-native-vector-icons/FontAwesome';
 import { Input } from 'react-native-elements';
 
 
@@ -75,7 +79,7 @@ class Details extends Component {
                                 width: width * 0.9
                             }}
                             leftIcon={
-                                <Icon
+                                <FontAwesome
                                     name='file-text-o'
                                     size={24}
                                     color='black'
@@ -84,7 +88,7 @@ class Details extends Component {
                         />
                     </View>
 
-                    <View style={{ margin: 15, backgroundColor: 'pink' }}>
+                    <View style={{ margin: 15 }}>
                         <Input
                             label="Description"
                             labelStyle={{ fontSize: 18, padding: 10 }}
@@ -98,6 +102,34 @@ class Details extends Component {
                         />
                     </View>
 
+                    <View style={{margin: 15}}>
+                        <Text>What type of task is it?</Text>
+                        <View style={{flexDirection: 'row',padding: 25, justifyContent: 'center', alignItems: 'center'}}>
+                            <Button
+                                // onPress={() => this.props.navigation.navigate('Physical')}
+                                title="Physical"
+                                iconRight
+                                icon={<MaterialCommunityIcons name="map-marker-radius" size={23} color="white" />}
+                                containerStyle={{padding: 5}}
+                                buttonStyle={{
+                                    backgroundColor: "#47bc72",
+                                    width: width * 0.3,
+                                    padding: 7,
+                                }}
+                            />
+                             <Button
+                                // onPress={() => this.props.navigation.navigate('Login')}
+                                title="Online"
+                                icon={<MaterialCommunityIcons name="web" size={23} color="white" />}
+                                containerStyle={{padding: 5}}
+                                buttonStyle={{
+                                    backgroundColor: "#47bc72",
+                                    width: width * 0.3,
+                                    padding: 7,
+                                }}
+                            />
+                        </View>
+                    </View>
 
                 </View>
 
