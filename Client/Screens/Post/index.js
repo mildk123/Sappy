@@ -110,7 +110,7 @@ class PostTask extends Component {
 
 
           <ScrollView>
-            <View style={{height: height,flexWrap: 'wrap', alignSelf: 'center',}}>
+            <View style={{height: height,flexWrap: 'wrap', justifyContent: 'flex-start', alignSelf: 'center'}}>
               {Services.map((item, Index) => {
                 return <TouchableOpacity key={Index}>
                   <Image style={styles.Images} source={item.thumbnail} alt={item.name} />
