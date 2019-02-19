@@ -6,8 +6,7 @@ import { Spinner } from 'native-base';
 import Header from '../../../Helper/Header';
 
 
-import { Button } from "react-native-elements";
-import MaterialCommunityIcons from "react-native-vector-icons/MaterialCommunityIcons";
+import { CheckBox } from "react-native-elements";
 
 import FontAwesome from 'react-native-vector-icons/FontAwesome';
 import { Input } from 'react-native-elements';
@@ -21,6 +20,8 @@ class Details extends Component {
         super()
         this.state = {
             isLoading: false,
+            physical: false,
+            online: false
         }
     }
 
@@ -32,6 +33,14 @@ class Details extends Component {
     componentDidMount = () => {
         // let serviceType = this.props.navigation.state.params.serviceType
         // console.log(serviceType)
+    }
+
+    _checkBox = (name) => {
+        this.setState({
+            physical: false,
+            online: false,
+            [name]: true
+        })
     }
 
     render() {
@@ -102,31 +111,46 @@ class Details extends Component {
                         />
                     </View>
 
-                    <View style={{margin: 15}}>
-                        <Text>What type of task is it?</Text>
-                        <View style={{flexDirection: 'row',padding: 25, justifyContent: 'center', alignItems: 'center'}}>
-                            <Button
-                                // onPress={() => this.props.navigation.navigate('Physical')}
-                                title="Physical"
-                                iconRight
-                                icon={<MaterialCommunityIcons name="map-marker-radius" size={23} color="white" />}
-                                containerStyle={{padding: 5}}
-                                buttonStyle={{
-                                    backgroundColor: "#47bc72",
-                                    width: width * 0.3,
-                                    padding: 7,
-                                }}
+                    <View style={{ margin: 15 }}>
+                        <Text style={{ fontSize: 18, marginLeft: 10 }}>What type of task is it?</Text>
+                        <View style={{ flexDirection: 'row', padding: 25, justifyContent: 'center', alignItems: 'center' }}>
+                            <CheckBox
+                                title={'Physical'}
+                                textStyle={this.state.physical === true ? { color: 'white' } : { color: '#1D976C' }}                                checked={this.state.physical}
+                                onPress={() => this._checkBox('physical')}
+                                containerStyle={this.state.physical === true ? { borderRadius: 25, backgroundColor: '#1D976C', width: 120 } : { borderWidth: 0, borderRadius: 25, borderColor: '#1D976C', width: 120 }}
+                                uncheckedColor={'#1D976C'}
+                                iconType='MaterialIcons'
+                                checkedIcon='check-box'
+                                uncheckedIcon='check-box-outline-blank'
+                                checkedColor='#ffffff'
+                                center
+
+                                size={22}
                             />
-                             <Button
-                                // onPress={() => this.props.navigation.navigate('Login')}
-                                title="Online"
-                                icon={<MaterialCommunityIcons name="web" size={23} color="white" />}
-                                containerStyle={{padding: 5}}
-                                buttonStyle={{
-                                    backgroundColor: "#47bc72",
-                                    width: width * 0.3,
-                                    padding: 7,
-                                }}
+                            <CheckBox
+                                title={'Online'}
+                                textStyle={this.state.online === true ? { color: 'white' } : { color: '#1D976C' }}
+                                checked={this.state.online}
+                                onPress={() => this._checkBox('online')}
+                                containerStyle={this.state.online === true ? {
+                                    borderRadius: 25,
+                                    backgroundColor: '#1D976C',
+                                    width: 120
+                                } :
+                                    {
+                                        borderWidth: 0,
+                                        borderRadius: 25,
+                                        borderColor: '#1D976C', width: 120
+                                    }}
+                                uncheckedColor={'#1D976C'}
+                                iconType='MaterialIcons'
+                                checkedIcon='check-box'
+                                uncheckedIcon='check-box-outline-blank'
+                                checkedColor='#ffffff'
+                                center
+
+                                size={22}
                             />
                         </View>
                     </View>
