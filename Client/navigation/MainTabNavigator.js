@@ -11,7 +11,7 @@ import AntDesign from "react-native-vector-icons/AntDesign";
 
 import Homescreen from "../Screens/Homescreen";
 import Inbox from "../Screens/Inbox";
-import Post from "../Screens/Homescreen";
+import Post from "../Screens/Post";
 import MyTasks from "../Screens/MyTasks";
 import Settings from "../Screens/Settings";
 
