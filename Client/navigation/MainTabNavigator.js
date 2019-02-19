@@ -11,9 +11,15 @@ import AntDesign from "react-native-vector-icons/AntDesign";
 
 import Homescreen from "../Screens/Homescreen";
 import Inbox from "../Screens/Inbox";
-import Post from "../Screens/Post";
+
+import PostTask from "../Screens/Post";
+import Detail from '../Screens/Post/Detail'
+import Date from '../Screens/Post//Date'
+import Budget from '../Screens/Post/Budget'
+
 import MyTasks from "../Screens/MyTasks";
 import Settings from "../Screens/Settings";
+
 
 
 const HomeStack = createStackNavigator({
@@ -50,7 +56,10 @@ InboxStack.navigationOptions = {
 
 
 const PostStack = createStackNavigator({
-  Post: Post
+  PostTask,
+  Detail,
+  Date,
+  Budget
 }, { headerMode: 'none' });
 
 PostStack.navigationOptions = {
