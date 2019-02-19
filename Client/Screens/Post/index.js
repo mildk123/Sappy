@@ -70,6 +70,9 @@ class PostTask extends Component {
     header: null
   };
 
+  _ServiceType = (serviceType) => {
+    console.log(serviceType)
+  }
 
   render() {
     const { isLoading, Services } = this.state;
@@ -110,9 +113,9 @@ class PostTask extends Component {
 
 
           <ScrollView>
-            <View style={{height: height,flexWrap: 'wrap', justifyContent: 'flex-start', alignSelf: 'center'}}>
+            <View style={{ height: height, flexWrap: 'wrap', justifyContent: 'flex-start', alignSelf: 'center' }}>
               {Services.map((item, Index) => {
-                return <TouchableOpacity key={Index}>
+                return <TouchableOpacity key={Index} onPress={() => this._ServiceType(item.name)}>
                   <Image style={styles.Images} source={item.thumbnail} alt={item.name} />
                   <Text style={{ fontSize: 20, alignSelf: 'center' }}>{item.name}</Text>
                 </TouchableOpacity>
