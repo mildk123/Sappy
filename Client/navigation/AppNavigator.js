@@ -9,8 +9,8 @@ import MainTabNavigator from "./MainTabNavigator";
 
 
 export default createSwitchNavigator({
+  App: MainTabNavigator,
   StartScreen: StartScreen,
   AuthLoading: AuthLoading,
   Auth: AuthStackNavigator,
-  App: MainTabNavigator,
 });

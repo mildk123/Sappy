@@ -7,6 +7,7 @@ import {
 import MaterialCommunityIcons from "react-native-vector-icons/MaterialCommunityIcons";
 import MaterialIcons from "react-native-vector-icons/MaterialIcons";
 import Octicons from "react-native-vector-icons/Octicons";
+import AntDesign from "react-native-vector-icons/AntDesign";
 
 import Homescreen from "../Screens/Homescreen";
 import Inbox from "../Screens/Inbox";
@@ -14,27 +15,27 @@ import Post from "../Screens/Homescreen";
 import MyTasks from "../Screens/MyTasks";
 import Settings from "../Screens/Settings";
 
+
 const HomeStack = createStackNavigator({
   Home: {
-    screen: Homescreen
-  }
-});
+    screen: Homescreen,
+  },
+}, { headerMode: 'none' });
 
 HomeStack.navigationOptions = {
   tabBarLabel: "Home",
   tabBarIcon: ({ tintColor, focused }) =>
     focused ? (
-      <Octicons color={tintColor} size={34} name="home" />
+      <AntDesign color={tintColor} size={34} name="home" />
     ) : (
-        <Octicons color="#b29f94" size={30} name="home" />
+        <AntDesign color="#000000" size={30} name="home" />
       )
 };
 
 
-
 const InboxStack = createStackNavigator({
   Inbox: Inbox
-});
+}, { headerMode: 'none' });
 
 InboxStack.navigationOptions = {
   tabBarLabel: "Messages",
@@ -42,7 +43,7 @@ InboxStack.navigationOptions = {
     focused ? (
       <MaterialIcons color={tintColor} size={34} name="chat" />
     ) : (
-        <MaterialIcons color="#b29f94" size={30} name="chat-bubble-outline" />
+        <MaterialIcons color="#000000" size={30} name="chat-bubble-outline" />
       )
 };
 
@@ -50,7 +51,7 @@ InboxStack.navigationOptions = {
 
 const PostStack = createStackNavigator({
   Post: Post
-});
+}, { headerMode: 'none' });
 
 PostStack.navigationOptions = {
   tabBarLabel: "Post",
@@ -58,7 +59,7 @@ PostStack.navigationOptions = {
     focused ? (
       <MaterialCommunityIcons color={tintColor} size={34} name="plus-box" />
     ) : (
-        <MaterialCommunityIcons color="#b29f94" size={30} name="plus-box-outline" />
+        <MaterialCommunityIcons color="#000000" size={30} name="plus-box-outline" />
       )
 };
 
@@ -66,15 +67,15 @@ PostStack.navigationOptions = {
 
 const MyTasksStack = createStackNavigator({
   MyTasks: MyTasks
-});
+}, { headerMode: 'none' });
 
 MyTasksStack.navigationOptions = {
   tabBarLabel: "My Task",
   tabBarIcon: ({ tintColor, focused }) =>
     focused ? (
-      <MaterialCommunityIcons color={tintColor} size={34} name="cart" />
+      <Octicons color={tintColor} size={34} name="tasklist" />
     ) : (
-        <MaterialCommunityIcons color="#b29f94" size={30} name="cart-outline" />
+        <Octicons color="#000000" size={30} name="tasklist" />
       )
 };
 
@@ -82,15 +83,15 @@ MyTasksStack.navigationOptions = {
 
 const SettingsStack = createStackNavigator({
   Settings: Settings
-});
+}, { headerMode: 'none' });
 
 SettingsStack.navigationOptions = {
-  tabBarLabel: "SettingsStack",
-  tabBarIcon: ({ tintColor, focused }) =>
+  tabBarLabel: "Settings",
+  tabBarIcon: ({ tintColor, focused, inactiveTintColor }) =>
     focused ? (
       <MaterialIcons color={tintColor} size={34} name="person" />
     ) : (
-        <MaterialIcons color="#b29f94" size={30} name="person-outline" />
+        <MaterialIcons color="#000000" size={30} name="person-outline" />
       )
 };
 
@@ -104,11 +105,12 @@ export default createBottomTabNavigator(
   },
   {
     tabBarOptions: {
-      showLabel: false,
-      activeTintColor: "#ffffff",
-      inactiveTintColor: "#DA22FF",
+      showLabel: true,
+      activeTintColor: "#47bc72",
+      inactiveTintColor: "#000000",
       style: {
-        backgroundColor: "#8E54E9" // TabBar background
+        backgroundColor: "#ffffff", // TabBar background
+        padding: 2
       }
     }
   }
