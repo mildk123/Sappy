@@ -56,8 +56,8 @@ InboxStack.navigationOptions = {
 
 
 const PostStack = createStackNavigator({
-  PostTask,
   Detail,
+  PostTask,
   Date,
   Budget
 }, { headerMode: 'none' });
@@ -106,9 +106,9 @@ SettingsStack.navigationOptions = {
 
 export default createBottomTabNavigator(
   {
+    PostStack,
     HomeStack,
     MyTasksStack,
-    PostStack,
     InboxStack,
     SettingsStack
   },

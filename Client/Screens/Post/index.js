@@ -102,10 +102,6 @@ class PostTask extends Component {
         />
 
         <View style={styles.contentDiv}>
-          <View style={{ alignSelf: 'center' }}>
-            <Text>Post Task</Text>
-          </View>
-
 
           <ScrollView>
             <View style={{ height: height, flexWrap: 'wrap', justifyContent: 'flex-start', alignSelf: 'center' }}>
