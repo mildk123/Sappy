@@ -1,7 +1,9 @@
 import React, { Component } from 'react';
-import { Text, View, StyleSheet, Dimensions, Image, ScrollView, TouchableOpacity,  } from 'react-native';
+import { Text, View, StyleSheet, Dimensions, Image, ScrollView, TouchableOpacity, } from 'react-native';
 
 import { Spinnerm, Item } from 'native-base';
+import { Container, Content, Footer } from 'native-base';
+
 import Icon from "react-native-vector-icons/FontAwesome";
 
 import Header from '../../Helper/Header';
@@ -64,8 +66,6 @@ class PostTask extends Component {
     }
   }
 
-
-
   static navigationOptions = {
     header: null
   };
@@ -108,21 +108,18 @@ class PostTask extends Component {
             <Text>Post Task</Text>
           </View>
 
-          <Item style={{
-            height: height * 0.6,
-            flex: 0, flexWrap: 'wrap',
-            justifyContent: 'space-evenly',
-            borderColor: 'transparent'
-          }}>
-            {
-              Services.map((item, Index) => {
+
+          <ScrollView>
+            <View style={{height: height,flexWrap: 'wrap', alignSelf: 'center',}}>
+              {Services.map((item, Index) => {
                 return <TouchableOpacity key={Index}>
-                    <Image style={styles.Images} source={item.thumbnail} alt={item.name} />
-                    <Text style={{fontSize: 20, alignSelf: 'center'}}>{item.name}</Text>
+                  <Image style={styles.Images} source={item.thumbnail} alt={item.name} />
+                  <Text style={{ fontSize: 20, alignSelf: 'center' }}>{item.name}</Text>
                 </TouchableOpacity>
               })
-            }
-          </Item>
+              }
+            </View>
+          </ScrollView>
 
         </View>
 
