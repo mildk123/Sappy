@@ -6,6 +6,9 @@ import { Spinner } from 'native-base';
 import Header from '../../../Helper/Header';
 
 
+import { Button } from "react-native-elements";
+import IconMaterial from "react-native-vector-icons/MaterialCommunityIcons";
+
 import { CheckBox } from "react-native-elements";
 
 import FontAwesome from 'react-native-vector-icons/FontAwesome';
@@ -21,7 +24,9 @@ class Details extends Component {
         this.state = {
             isLoading: false,
             physical: false,
-            online: false
+            online: false,
+            serviceType: ''
+            
         }
     }
 
@@ -31,8 +36,14 @@ class Details extends Component {
     };
 
     componentDidMount = () => {
-        // let serviceType = this.props.navigation.state.params.serviceType
-        // console.log(serviceType)
+        let serviceType = this.props.navigation.state.params.serviceType
+        if(serviceType){
+            this.setState({
+                serviceType: serviceType
+            })
+        }else{
+            this.props.navigation.goBack()
+        }
     }
 
     _checkBox = (name) => {
@@ -79,7 +90,7 @@ class Details extends Component {
                 />
                 <View style={styles.contentDiv}>
 
-                    <View style={{ margin: 15 }}>
+                    <View style={{ margin: 10 }}>
                         <Input
                             labelStyle={{ fontSize: 18, padding: 5 }}
                             label={'Task title'}
@@ -97,7 +108,7 @@ class Details extends Component {
                         />
                     </View>
 
-                    <View style={{ margin: 15 }}>
+                    <View style={{ margin: 10 }}>
                         <Input
                             label="Description"
                             labelStyle={{ fontSize: 18, padding: 10 }}
@@ -111,12 +122,14 @@ class Details extends Component {
                         />
                     </View>
 
-                    <View style={{ margin: 15 }}>
+
+                    {/* CheckBox/////////////////////// */}
+                    <View style={{ margin: 10 }}>
                         <Text style={{ fontSize: 18, marginLeft: 10 }}>What type of task is it?</Text>
                         <View style={{ flexDirection: 'row', padding: 25, justifyContent: 'center', alignItems: 'center' }}>
                             <CheckBox
                                 title={'Physical'}
-                                textStyle={this.state.physical === true ? { color: 'white' } : { color: '#1D976C' }}                                checked={this.state.physical}
+                                textStyle={this.state.physical === true ? { color: 'white' } : { color: '#1D976C' }} checked={this.state.physical}
                                 onPress={() => this._checkBox('physical')}
                                 containerStyle={this.state.physical === true ? { borderRadius: 25, backgroundColor: '#1D976C', width: 120 } : { borderWidth: 0, borderRadius: 25, borderColor: '#1D976C', width: 120 }}
                                 uncheckedColor={'#1D976C'}
@@ -155,6 +168,24 @@ class Details extends Component {
                         </View>
                     </View>
 
+                    <View style={{alignSelf: 'flex-end'}}>
+                        <Button
+                            title="Next"
+                            onPress={() => this.props.navigation.navigate('Date')}
+                            iconRight
+                            icon={<IconMaterial name='arrow-right' size={15} color="gray" />}
+                            titleStyle={{
+                                color: 'gray'
+                            }}
+                            buttonStyle={{
+                                backgroundColor: 'white',
+                                borderWidth: 0,
+                                width: width * 0.3,
+                                padding: 0,
+                                elevation: 0
+                            }}
+                        />
+                    </View>
                 </View>
 
             </View>
@@ -171,9 +202,7 @@ const styles = StyleSheet.create({
         backgroundColor: "#ffffff",
     },
     contentDiv: {
-        flex: 0,
-        flexWrap: 'wrap',
+        padding: 5,
         flexDirection: "column",
-        justifyContent: 'center',
     },
 });

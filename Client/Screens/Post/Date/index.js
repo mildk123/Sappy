@@ -13,12 +13,17 @@ class Date extends Component {
         this.state = {
             isLoading: false,
         }
+
+        console.log(this.props)
+    }
+
+    componentDidMount() {
+        console.log(this.props);
     }
 
     static navigationOptions = {
         header: null
     };
-
 
 
     render() {
@@ -34,6 +39,8 @@ class Date extends Component {
                         searchBar={false}
                         favBtn={false}
                         threeDots={false}
+                        goBack={true}
+                        {...this.props}
                     />
                     <View style={styles.contentDiv}>
                         <Spinner color='green' />
@@ -52,6 +59,8 @@ class Date extends Component {
                     searchBar={false}
                     favBtn={false}
                     threeDots={false}
+                    goBack={true}
+                    {...this.props}
                 />
                 <View style={styles.contentDiv}>
                     <View style={{ alignSelf: 'center' }}>
