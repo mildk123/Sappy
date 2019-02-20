@@ -30,29 +30,25 @@ class HeaderComp extends Component {
         <Header
           style={{ backgroundColor: this.props.headerColor, height: 70, paddingTop: 20 }}
           iosBarStyle={"light-content"}
-          hasTabs={this.props.tabs}
         >
           <Left>
 
-            {!this.props.close ? <Button
-              onPress={
-                this.props.goBack === true
-                  ? () => this.props.navigation.goBack()
-                  : () => this.props.navigation.toggleDrawer()
-              }
+            {this.props.goBack && <Button
+              onPress={() => this.props.navigation.goBack()}
               transparent
             >
               <Text><IconMaterial name={this.props.icon} size={23} color="white" /></Text>
             </Button>
-              : (
-                <Button
-                  onPress={() => this.props.close()}
-                  transparent
-                >
-                  <Text><IconMaterial name={this.props.icon} size={23} color="white" /></Text>
-                </Button>
-              )
             }
+
+            {this.props.close && <Button
+              onPress={() => this.props.close()}
+              transparent
+            >
+              <Text><IconMaterial name={this.props.icon} size={23} color="white" /></Text>
+            </Button>
+            }
+
 
           </Left>
 

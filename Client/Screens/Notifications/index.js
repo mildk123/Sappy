@@ -33,7 +33,6 @@ class Notifications extends Component {
         <View style={styles.container}>
           <Header
             headerColor="#47bc72"
-            icon={'menu'}
             title={"Notifications"}
             hasTabs={false}
             searchBar={false}
@@ -51,7 +50,7 @@ class Notifications extends Component {
       <View style={styles.container}>
         <Header
           headerColor="#47bc72"
-          icon={'menu'}
+          
           title={"Notifications"}
           hasTabs={false}
           searchBar={false}

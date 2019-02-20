@@ -73,7 +73,6 @@ class Services extends Component {
         <View style={styles.container}>
           <Header
             headerColor="#47bc72"
-            icon={'menu'}
             title={"Services"}
             {...this.props}
           />
@@ -88,7 +87,7 @@ class Services extends Component {
       <View style={styles.container}>
         <Header
           headerColor="#47bc72"
-          icon={'menu'}
+          
           goBack={true}
           title={"My Services"}
           {...this.props}

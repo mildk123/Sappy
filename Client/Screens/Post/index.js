@@ -78,7 +78,6 @@ class PostTask extends Component {
         <View style={styles.container}>
           <Header
             headerColor="#47bc72"
-            icon={'menu'}
             title={"Post Task"}
             hasTabs={false}
             searchBar={false}
@@ -96,7 +95,7 @@ class PostTask extends Component {
       <View style={styles.container}>
         <Header
           headerColor="#47bc72"
-          icon={'menu'}
+          
           title={"Post Task"}
           {...this.props}
         />

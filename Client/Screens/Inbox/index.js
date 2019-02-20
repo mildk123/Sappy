@@ -35,7 +35,6 @@ class Inbox extends Component {
         <View style={styles.container}>
           <Header
             headerColor="#47bc72"
-            icon={'menu'}
             title={"My Tasks"}
             hasTabs={false}
             searchBar={false}
@@ -53,7 +52,7 @@ class Inbox extends Component {
       <View style={styles.container}>
         <Header
           headerColor="#47bc72"
-          icon={'menu'}
+          
           title={"Inbox"}
           hasTabs={false}
           searchBar={false}

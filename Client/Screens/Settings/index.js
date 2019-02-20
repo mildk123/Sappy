@@ -32,7 +32,6 @@ class Settings extends Component {
         <View style={styles.container}>
           <Header
             headerColor="#47bc72"
-            icon={'menu'}
             title={"Settings"}
             hasTabs={false}
             searchBar={false}
@@ -50,7 +49,7 @@ class Settings extends Component {
       <View style={styles.container}>
         <Header
           headerColor="#47bc72"
-          icon={'menu'}
+          
           title={"Settings"}
           hasTabs={false}
           searchBar={false}
