@@ -14,8 +14,6 @@ import { CheckBox } from "react-native-elements";
 import FontAwesome from 'react-native-vector-icons/FontAwesome';
 import { Input } from 'react-native-elements';
 
-
-
 const { height, width } = Dimensions.get("window");
 
 class Details extends Component {
@@ -171,7 +169,7 @@ class Details extends Component {
                     <View style={{alignSelf: 'flex-end'}}>
                         <Button
                             title="Next"
-                            onPress={() => this.props.navigation.navigate('Date')}
+                            onPress={() => this.props.navigation.navigate('Date', {...this.state})}
                             iconRight
                             icon={<IconMaterial name='arrow-right' size={15} color="gray" />}
                             titleStyle={{

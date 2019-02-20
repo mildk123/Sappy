@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
-import { Text, View, StyleSheet, Dimensions, Image, ScrollView, TouchableOpacity, } from 'react-native';
+import { Text, View, StyleSheet, Dimensions, DatePickerAndroid } from 'react-native';
+import { Input, Icon, Button } from "native-base";
 
 import { Spinner } from 'native-base';
 
@@ -12,10 +13,33 @@ class Date extends Component {
         super()
         this.state = {
             isLoading: false,
+            selectedDate: {
+                day: "Since :",
+                month: "",
+                year: ""
+            }
         }
-
-        console.log(this.props)
     }
+
+    openDate = async () => {
+        try {
+            const { action, year, month, day } = await DatePickerAndroid.open({
+                date: new Date(2014, 6, 25)
+            });
+            if (action !== DatePickerAndroid.dismissedAction) {
+                await this.props.getDate(year, month, day);
+                this.setState({
+                    selectedDate: {
+                        year,
+                        month,
+                        day
+                    }
+                });
+            }
+        } catch ({ code, message }) {
+            alert("Cannot open date picker", message);
+        }
+    };
 
     componentDidMount() {
         console.log(this.props);
@@ -64,7 +88,36 @@ class Date extends Component {
                 />
                 <View style={styles.contentDiv}>
                     <View style={{ alignSelf: 'center' }}>
-                        <Text>Post Date</Text>
+                        {this.state.selectedDate.day === "Since :" ? (
+                            <View>
+                                <Text>Click here123123</Text>
+                                <Icon active name={"md-calendar"} style={{ fontSize: 32 }} />
+                            </View>
+                        ) : (
+                                <View>
+                                    <Text>Click here</Text>
+                                    <Icon
+                                        onPress={() =>
+                                            this.setState({
+                                                selectedDate: { year: "Since :", month: "", day: "" }
+                                            })
+                                        }
+                                        active
+                                        name={"ios-remove-circle-outline"}
+                                        style={{ fontSize: 32, color: "red" }}
+                                    />
+                                </View>
+                            )}
+
+                        <Input
+                            value={`${this.state.selectedDate.day}-${
+                                this.state.selectedDate.month
+                                }-${this.state.selectedDate.year}`}
+                        />
+
+                        <Button style={{padding: 10}} onPress={() => this.openDate()}>
+                            <Text>Select Date</Text>
+                        </Button>
                     </View>
 
 
@@ -85,6 +138,6 @@ const styles = StyleSheet.create({
     },
     contentDiv: {
         padding: 15,
-        flexDirection: "column",
+        flexDirection: "row",
     },
 });
