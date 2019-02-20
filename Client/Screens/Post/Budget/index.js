@@ -7,7 +7,9 @@ import { Input } from 'react-native-elements'
 import Header from '../../../Helper/Header';
 import FontAwesome from 'react-native-vector-icons/FontAwesome';
 
-import { Content, DatePicker } from 'native-base';
+import { DatePicker } from 'native-base';
+
+import { Button, Icon } from 'react-native-elements';
 
 
 const { height, width } = Dimensions.get("window");
@@ -63,83 +65,94 @@ class Budget extends Component {
                     threeDots={false}
                 />
                 <View style={styles.contentDiv}>
-                    <View style={{ alignSelf: 'center' }}>
 
-                        {/* Budget Input ?//////// */}
-                        <View>
-                            <Input
-                                label={'What is your budget?'}
-                                labelStyle={{ fontSize: 18, padding: 5 }}
-                                placeholder="15,000"
-                                keyboardType="numeric"
-                                inputContainerStyle={{
-                                    width: width * 0.9
-                                }}
-                                leftIcon={
-                                    <FontAwesome
-                                        name='money'
-                                        size={24}
-                                        color='black'
-                                    />
-                                }
-                            />
+
+                    {/* Budget Input ?//////// */}
+                    <View>
+                        <Input
+                            label={'What is your budget?'}
+                            labelStyle={{ fontSize: 18, padding: 5 }}
+                            placeholder="15,000"
+                            keyboardType="numeric"
+                            inputContainerStyle={{
+                                width: width * 0.9
+                            }}
+                            leftIcon={
+                                <FontAwesome
+                                    name='money'
+                                    size={24}
+                                    color='black'
+                                />
+                            }
+                        />
+                    </View>
+
+                    {/* Date Input ?//////// */}
+
+                    <View style={{ padding: 5, marginTop: 20 }}>
+
+
+                        <DatePicker
+                            defaultDate={new Date()}
+                            minimumDate={new Date()}
+                            maximumDate={new Date(2019, 11, 31)}
+                            locale={"en"}
+                            timeZoneOffsetInMinutes={undefined}
+                            modalTransparent={true}
+                            animationType={'fade'}
+                            androidMode={'calendar'}
+                            placeHolderText="Select start date"
+                            textStyle={{ color: "#47bc72" }}
+                            placeHolderTextStyle={{ color: "black", fontSize: 18 }}
+                            onDateChange={this.setStartDate}
+                            disabled={false}
+                        />
+
+                        <View style={{ padding: 10 }}>
+                            <Text style={{ fontSize: 18, color: 'white', backgroundColor: '#47bc72', padding: 10 }}>
+                                Date: {this.state.startDate.toString().substr(4, 12)}
+                            </Text>
                         </View>
 
-                        {/* Date Input ?//////// */}
+                        <DatePicker
+                            defaultDate={new Date()}
+                            minimumDate={new Date()}
+                            maximumDate={new Date(2019, 11, 31)}
+                            locale={"en"}
+                            timeZoneOffsetInMinutes={undefined}
+                            modalTransparent={true}
+                            animationType={'fade'}
+                            androidMode={'calendar'}
+                            placeHolderText="Select end date"
+                            textStyle={{ color: "#47bc72" }}
+                            placeHolderTextStyle={{ color: "black", fontSize: 18 }}
+                            onDateChange={this.setStartDate}
+                            disabled={false}
+                        />
 
-                        <View style={{ padding: 5 }}>
-
-
-                                <DatePicker
-                                    defaultDate={new Date()}
-                                    minimumDate={new Date()}
-                                    maximumDate={new Date(2019, 11, 31)}
-                                    locale={"en"}
-                                    timeZoneOffsetInMinutes={undefined}
-                                    modalTransparent={true}
-                                    animationType={'fade'}
-                                    androidMode={'calendar'}
-                                    placeHolderText="Select start date"
-                                    textStyle={{ color: "#47bc72" }}
-                                    placeHolderTextStyle={{ color: "black", fontSize: 18 }}
-                                    onDateChange={this.setStartDate}
-                                    disabled={false}
-                                />
-
-                                <View style={{ padding: 10 }}>
-                                    <Text style={{ fontSize: 18, color: 'white', backgroundColor: '#47bc72', padding: 10 }}>
-                                        Date: {this.state.startDate.toString().substr(4, 12)}
-                                    </Text>
-                                </View>
-
-                                <DatePicker
-                                    defaultDate={new Date()}
-                                    minimumDate={new Date()}
-                                    maximumDate={new Date(2019, 11, 31)}
-                                    locale={"en"}
-                                    timeZoneOffsetInMinutes={undefined}
-                                    modalTransparent={true}
-                                    animationType={'fade'}
-                                    androidMode={'calendar'}
-                                    placeHolderText="Select end date"
-                                    textStyle={{ color: "#47bc72" }}
-                                    placeHolderTextStyle={{ color: "black", fontSize: 18 }}
-                                    onDateChange={this.setStartDate}
-                                    disabled={false}
-                                />
-
-                                <View style={{ padding: 10 }}>
-                                    <Text style={{ fontSize: 18, color: 'white', backgroundColor: '#47bc72', padding: 10 }}>
-                                        Date: {this.state.startDate.toString().substr(4, 12)}
-                                    </Text>
-                                </View>
-
-
+                        <View style={{ padding: 10 }}>
+                            <Text style={{ fontSize: 18, color: 'white', backgroundColor: '#47bc72', padding: 10 }}>
+                                Date: {this.state.startDate.toString().substr(4, 12)}
+                            </Text>
                         </View>
+
+
+                    </View>
+
+                    <View style={{marginTop: 50}}>
+
+                        <Button
+                            onPress={() => this.props.navigation.navigate('HomeStack')}
+                            title={"Next"}
+                            containerStyle={{ padding: 15 }}
+                            buttonStyle={{ padding: 10, backgroundColor: '#47bc72', borderRadius: 15, elevation: 0 }}
+                        />
                     </View>
 
 
                 </View>
+
+
 
             </View>
         )

@@ -5,7 +5,6 @@ import { Spinner } from 'native-base';
 
 import Header from '../../../Helper/Header';
 
-
 import { Button } from "react-native-elements";
 import IconMaterial from "react-native-vector-icons/MaterialCommunityIcons";
 import FontAwesome from 'react-native-vector-icons/FontAwesome';
@@ -169,7 +168,7 @@ class Details extends Component {
                     <View style={{alignSelf: 'flex-end'}}>
                         <Button
                             title="Next"
-                            onPress={() => this.props.navigation.navigate('Date', {...this.state})}
+                            onPress={() => this.props.navigation.navigate('Location', {...this.state})}
                             iconRight
                             icon={<IconMaterial name='arrow-right' size={15} color="gray" />}
                             titleStyle={{

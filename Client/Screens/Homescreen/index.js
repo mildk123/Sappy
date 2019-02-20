@@ -39,7 +39,7 @@ class Homescreen extends Component {
         <View>
           <Header
             headerColor="#47bc72"
-            icon={'menu'}
+            // icon={'menu'}
             title={"Home"}
             hasTabs={true}
             searchBar={true}
