@@ -14,7 +14,7 @@ import Inbox from "../Screens/Inbox";
 
 import PostTask from "../Screens/Post";
 import Detail from '../Screens/Post/Detail'
-import Date from '../Screens/Post//Date'
+import Location from '../Screens/Post/Location'
 import Budget from '../Screens/Post/Budget'
 
 import MyTasks from "../Screens/MyTasks";
@@ -56,9 +56,9 @@ InboxStack.navigationOptions = {
 
 
 const PostStack = createStackNavigator({
+  Location,
   PostTask,
   Detail,
-  Date,
   Budget
 }, { headerMode: 'none' });
 

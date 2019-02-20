@@ -5,7 +5,7 @@ import { Header, Left, Body, Right, Button, Title, Icon, Text, Item, Input } fro
 import IconMaterial from "react-native-vector-icons/MaterialCommunityIcons";
 
 import { Button as Buttonel } from "react-native-elements";
-import Modal from '../Modal'
+// import Modal from '../Modal'
 
 const { width } = Dimensions.get("window");
 
@@ -13,19 +13,19 @@ class HeaderComp extends Component {
   constructor() {
     super();
     this.state = {}
-    this.showModal = React.createRef()
+    // this.showModal = React.createRef()
   }
 
-  renderModal = () => {
-    this.setState({
-      renderModal: true
-    }, () => this.showModal.current.setModalVisible())
-  }
+  // renderModal = () => {
+  //   this.setState({
+  //     renderModal: true
+  //   }, () => this.showModal.current.setModalVisible())
+  // }
 
   render() {
     return (
       <Fragment>
-        {this.state.renderModal && <Modal ref={this.showModal} />}
+        {/* {this.state.renderModal && <Modal ref={this.showModal} />} */}
 
         <Header
           style={{ backgroundColor: this.props.headerColor, height: 70, paddingTop: 20 }}

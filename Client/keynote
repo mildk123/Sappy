@@ -5,3 +5,4 @@
 ~ Fix DP storage name setting
 ~ fix description width in details
 ~ add form validation
+~ use app state
