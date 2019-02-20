@@ -1,11 +1,14 @@
 import React, { Component } from 'react';
-import { Text, View, StyleSheet, Dimensions, Image, ScrollView, TouchableOpacity, } from 'react-native';
+import { Text, View, StyleSheet, Dimensions } from 'react-native';
 
 import { Spinner } from 'native-base';
 import { Input } from 'react-native-elements'
 
 import Header from '../../../Helper/Header';
 import FontAwesome from 'react-native-vector-icons/FontAwesome';
+
+import { Content, DatePicker } from 'native-base';
+
 
 const { height, width } = Dimensions.get("window");
 
@@ -14,6 +17,7 @@ class Budget extends Component {
         super()
         this.state = {
             isLoading: false,
+            startDate: new Date()
         }
     }
 
@@ -21,6 +25,9 @@ class Budget extends Component {
         header: null
     };
 
+    setStartDate = (newDate) => {
+        this.setState({ startDate: newDate });
+    }
 
 
     render() {
@@ -57,6 +64,8 @@ class Budget extends Component {
                 />
                 <View style={styles.contentDiv}>
                     <View style={{ alignSelf: 'center' }}>
+
+                        {/* Budget Input ?//////// */}
                         <View>
                             <Input
                                 label={'What is your budget?'}
@@ -74,6 +83,57 @@ class Budget extends Component {
                                     />
                                 }
                             />
+                        </View>
+
+                        {/* Date Input ?//////// */}
+
+                        <View style={{ padding: 5 }}>
+
+
+                                <DatePicker
+                                    defaultDate={new Date()}
+                                    minimumDate={new Date()}
+                                    maximumDate={new Date(2019, 11, 31)}
+                                    locale={"en"}
+                                    timeZoneOffsetInMinutes={undefined}
+                                    modalTransparent={true}
+                                    animationType={'fade'}
+                                    androidMode={'calendar'}
+                                    placeHolderText="Select start date"
+                                    textStyle={{ color: "#47bc72" }}
+                                    placeHolderTextStyle={{ color: "black", fontSize: 18 }}
+                                    onDateChange={this.setStartDate}
+                                    disabled={false}
+                                />
+
+                                <View style={{ padding: 10 }}>
+                                    <Text style={{ fontSize: 18, color: 'white', backgroundColor: '#47bc72', padding: 10 }}>
+                                        Date: {this.state.startDate.toString().substr(4, 12)}
+                                    </Text>
+                                </View>
+
+                                <DatePicker
+                                    defaultDate={new Date()}
+                                    minimumDate={new Date()}
+                                    maximumDate={new Date(2019, 11, 31)}
+                                    locale={"en"}
+                                    timeZoneOffsetInMinutes={undefined}
+                                    modalTransparent={true}
+                                    animationType={'fade'}
+                                    androidMode={'calendar'}
+                                    placeHolderText="Select end date"
+                                    textStyle={{ color: "#47bc72" }}
+                                    placeHolderTextStyle={{ color: "black", fontSize: 18 }}
+                                    onDateChange={this.setStartDate}
+                                    disabled={false}
+                                />
+
+                                <View style={{ padding: 10 }}>
+                                    <Text style={{ fontSize: 18, color: 'white', backgroundColor: '#47bc72', padding: 10 }}>
+                                        Date: {this.state.startDate.toString().substr(4, 12)}
+                                    </Text>
+                                </View>
+
 
                         </View>
                     </View>
