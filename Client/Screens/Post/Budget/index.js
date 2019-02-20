@@ -2,8 +2,10 @@ import React, { Component } from 'react';
 import { Text, View, StyleSheet, Dimensions, Image, ScrollView, TouchableOpacity, } from 'react-native';
 
 import { Spinner } from 'native-base';
+import { Input } from 'react-native-elements'
 
 import Header from '../../../Helper/Header';
+import FontAwesome from 'react-native-vector-icons/FontAwesome';
 
 const { height, width } = Dimensions.get("window");
 
@@ -55,7 +57,25 @@ class Budget extends Component {
                 />
                 <View style={styles.contentDiv}>
                     <View style={{ alignSelf: 'center' }}>
-                        <Text>Post Budget</Text>
+                        <View>
+                            <Input
+                                label={'What is your budget?'}
+                                labelStyle={{ fontSize: 18, padding: 5 }}
+                                placeholder="15,000"
+                                keyboardType="numeric"
+                                inputContainerStyle={{
+                                    width: width * 0.9
+                                }}
+                                leftIcon={
+                                    <FontAwesome
+                                        name='money'
+                                        size={24}
+                                        color='black'
+                                    />
+                                }
+                            />
+
+                        </View>
                     </View>
 
 

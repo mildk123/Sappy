@@ -8,10 +8,10 @@ import Header from '../../../Helper/Header';
 
 import { Button } from "react-native-elements";
 import IconMaterial from "react-native-vector-icons/MaterialCommunityIcons";
+import FontAwesome from 'react-native-vector-icons/FontAwesome';
 
 import { CheckBox } from "react-native-elements";
 
-import FontAwesome from 'react-native-vector-icons/FontAwesome';
 import { Input } from 'react-native-elements';
 
 const { height, width } = Dimensions.get("window");

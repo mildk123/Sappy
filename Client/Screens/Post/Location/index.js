@@ -131,38 +131,23 @@ class Map extends Component {
                     region={region}
                 >
                     <MapView.Marker
-                        pinColor="#ffff00"
+                        pinColor="red"
                         title={markers.myMarker.title}
                         description={markers.myMarker.description}
                         key={markers.myMarker.title}
                         coordinate={markers.myMarker}
                     />
 
-                    {/* <MapView.Marker
-                        pinColor="lightblue"
-                        title={markers.venueMarker.title}
-                        description={markers.venueMarker.description}
-                        key={markers.venueMarker.title}
-                        coordinate={markers.venueMarker} />
-
-                    <MapViewDirections
-                        origin={markers.myMarker}
-                        destination={markers.venueMarker}
-                        apikey={"AIzaSyAhKK1zYTiJfLvdq4Fv7UFEFx-XSMwUZMo"}
-                        strokeWidth={10}
-                        strokeColor="hotpink"
-                    /> */}
-
                 </MapView>
 
-                <View style={{ position: 'absolute', bottom: 1 }}>
-                    <Button
-                        onPress={() => this.props.navigation.navigate('Budget')}
-                        title={"Next"}
-                        containerStyle={{ padding: 15 }}
-                        buttonStyle={{ padding: 10, backgroundColor: '#47bc72', borderRadius: 15, elevation: 0 }}
-                    />
-                </View>
+
+                <Button
+                    onPress={() => this.props.navigation.navigate('Budget')}
+                    title={"Next"}
+                    containerStyle={{ padding: 15 }}
+                    buttonStyle={{ padding: 10, backgroundColor: '#47bc72', borderRadius: 15, elevation: 0 }}
+                />
+
 
 
             </View>
