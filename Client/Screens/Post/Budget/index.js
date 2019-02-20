@@ -143,7 +143,7 @@ class Budget extends Component {
 
                         <Button
                             onPress={() => this.props.navigation.navigate('HomeStack')}
-                            title={"Next"}
+                            title={"Done"}
                             containerStyle={{ padding: 15 }}
                             buttonStyle={{ padding: 10, backgroundColor: '#47bc72', borderRadius: 15, elevation: 0 }}
                         />

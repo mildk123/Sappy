@@ -9,6 +9,8 @@ import MaterialIcons from "react-native-vector-icons/MaterialIcons";
 import Octicons from "react-native-vector-icons/Octicons";
 import AntDesign from "react-native-vector-icons/AntDesign";
 
+import AuthLoading from '../Screens/AuthLoading'
+
 import Homescreen from "../Screens/Homescreen";
 import Inbox from "../Screens/Inbox";
 
@@ -18,8 +20,9 @@ import Location from '../Screens/Post/Location'
 import Budget from '../Screens/Post/Budget'
 
 import MyTasks from "../Screens/MyTasks";
-import Settings from "../Screens/Settings";
 
+import Settings from "../Screens/Settings";
+import SetLocation from '../Screens/Settings/Location'
 
 
 const HomeStack = createStackNavigator({
@@ -91,7 +94,10 @@ MyTasksStack.navigationOptions = {
 
 
 const SettingsStack = createStackNavigator({
-  Settings: Settings
+  Settings: Settings,
+  AuthLoading: AuthLoading,
+  SetLocation : SetLocation
+
 }, { headerMode: 'none' });
 
 SettingsStack.navigationOptions = {
@@ -106,11 +112,11 @@ SettingsStack.navigationOptions = {
 
 export default createBottomTabNavigator(
   {
+    SettingsStack,
     HomeStack,
     MyTasksStack,
     PostStack,
     InboxStack,
-    SettingsStack
   },
   {
     tabBarOptions: {

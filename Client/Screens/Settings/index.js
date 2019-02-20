@@ -1,16 +1,15 @@
 import React, { Component } from 'react';
-import { Text, View, StyleSheet, Dimensions } from 'react-native';
+import { Text, View, StyleSheet, Dimensions, ScrollView , AsyncStorage } from 'react-native';
 
-import { Content, ListItem, Icon, Left, Body, Button, Spinner } from 'native-base';
-import { createStackNavigator } from 'react-navigation'
-
+import { List, ListItem, Icon, Left, Right, Switch } from 'native-base';
+import { Button } from "react-native-elements";
 import Header from '../../Helper/Header';
-import Location from './Location'
 
 import firebase from '../../config'
-const database = firebase.database().ref()
 
-const { height } = Dimensions.get("window");
+
+
+const { height, width } = Dimensions.get("window");
 
 class Settings extends Component {
   constructor() {
@@ -20,12 +19,22 @@ class Settings extends Component {
     }
   }
 
+
+  SignOut = () => {
+    // await AsyncStorage.removeItem("userLoggedIn");
+    AsyncStorage.removeItem("userLoggedIn");
+    AsyncStorage.setItem('userUID')
+    AsyncStorage.removeItem("newUser");
+    this.props.navigation.navigate("AuthLoading");
+  };
+
   static navigationOptions = {
     header: null
   };
 
 
   render() {
+    console.log(this.props)
     const { isLoading } = this.state;
     if (isLoading) {
       return (
@@ -49,7 +58,7 @@ class Settings extends Component {
       <View style={styles.container}>
         <Header
           headerColor="#47bc72"
-          
+
           title={"Settings"}
           hasTabs={false}
           searchBar={false}
@@ -57,43 +66,135 @@ class Settings extends Component {
           threeDots={false}
         />
 
-        <Content style={{ marginTop: 10 }}>
-          <ListItem icon style={{ marginVertical: 5 }} onPress={() => { this.props.navigation.navigate('Location') }} >
-            <Left>
-              <Button style={{ backgroundColor: "#FF9501" }}>
-                <Icon active name='map-marker' type='FontAwesome' style={{ fontSize: 20 }} />
-              </Button>
-            </Left>
-            <Body>
-              <Text>Change My Location</Text>
-            </Body>
-            <Button style={{ backgroundColor: "#FF9501" }}>
-              <Icon active name='arrow-right-bold-circle-outline' type='MaterialCommunityIcons' style={{ fontSize: 24 }} />
-            </Button>
-          </ListItem>
 
-        </Content>
+        {/* NON USER ///////////////////////// */}
 
+        <ScrollView>
+
+          <List>
+
+            <ListItem onPress={() => alert('button')}>
+              <Left>
+                <Text>About us</Text>
+              </Left>
+              <Right>
+                <Icon type='MaterialCommunityIcons' name="arrow-right" />
+              </Right>
+            </ListItem>
+
+            <ListItem onPress={() => this.props.navigation.navigate('SetLocation')}>
+              <Left>
+                <Text>Change Location</Text>
+              </Left>
+              <Right>
+                <Icon type='MaterialCommunityIcons' name="arrow-right" />
+              </Right>
+            </ListItem>
+
+            <ListItem onPress={() => alert('button')}>
+              <Left>
+                <Text>Language</Text>
+              </Left>
+              <Right><Icon type='MaterialCommunityIcons' name="arrow-right" />
+              </Right>
+            </ListItem>
+
+            <ListItem onPress={() => alert('button')}>
+              <Left>
+                <Text>Community Guidelines</Text>
+              </Left>
+              <Right><Icon type='MaterialCommunityIcons' name="arrow-right" />
+              </Right>
+            </ListItem>
+
+            <ListItem onPress={() => alert('button')}>
+              <Left>
+                <Text>Terms and Conditions</Text>
+              </Left>
+              <Right><Icon type='MaterialCommunityIcons' name="arrow-right" />
+              </Right>
+            </ListItem>
+
+            <ListItem onPress={() => alert('button')}>
+              <Left>
+                <Text>Privacy Policy</Text>
+              </Left>
+              <Right><Icon type='MaterialCommunityIcons' name="arrow-right" />
+              </Right>
+            </ListItem>
+
+
+            <ListItem onPress={() => alert('button')}>
+              <Left>
+                <Text>Contact us</Text>
+              </Left>
+              <Right><Icon type='MaterialCommunityIcons' name="arrow-right" />
+              </Right>
+            </ListItem>
+
+
+            <ListItem onPress={() => alert('button')}>
+              <Left>
+                <Text>Login</Text>
+              </Left>
+              <Right><Icon type='MaterialCommunityIcons' name="arrow-right" />
+              </Right>
+            </ListItem>
+
+            <ListItem onPress={() => alert('button')}>
+              <Left>
+                <Text>Signup</Text>
+              </Left>
+              <Right><Icon type='MaterialCommunityIcons' name="arrow-right" />
+              </Right>
+            </ListItem>
+          </List>
+
+          <View style={styles.socialContainer}>
+
+            <Button
+              title="Sign out"
+              onPress={() => this.SignOut()}
+              icon={<Icon type='MaterialCommunityIcons' name="logout" style={{ color: 'white', fontSize: 16 }} />}
+              titleStyle={{
+                color: 'white'
+              }}
+              buttonStyle={{
+                backgroundColor: 'red',
+                width: width * 0.4,
+                padding: 1,
+                borderRadius: 10,
+                elevation: 0
+              }}
+            />
+
+            <Button
+              title="Delete Account"
+              onPress={() => alert('Not Yet Complete')}
+              icon={<Icon type='FontAwesome' name='trash-o' style={{ color: 'white', fontSize: 16 }} />}
+              titleStyle={{
+                color: 'white'
+              }}
+              buttonStyle={{
+                backgroundColor: 'red',
+                width: width * 0.4,
+                padding: 1,
+                borderRadius: 10,
+                elevation: 0
+              }}
+            />
+
+
+          </View>
+
+        </ScrollView>
 
       </View>
     )
   }
 }
 
-
-const SettingsStackNavigator = createStackNavigator({
-  Settings,
-  Location
-});
-
-SettingsStackNavigator.navigationOptions = {
-  drawerLabel: "Settings",
-  drawerIcon: ({ tintColor }) => (
-    <Icon name="gear" type='FontAwesome' style={{ color: tintColor, fontSize: 25 }} />
-  )
-};
-
-export default SettingsStackNavigator;
+export default Settings;
 
 
 const styles = StyleSheet.create({
@@ -105,5 +206,10 @@ const styles = StyleSheet.create({
     padding: 20,
     flexDirection: "column",
     alignItems: "center"
-  }
+  },
+  socialContainer: {
+    padding: 15,
+    flexDirection: "row",
+    justifyContent: 'space-evenly',
+  },
 });
