@@ -23,6 +23,10 @@ class Budget extends Component {
         }
     }
 
+    componentDidMount = () => {
+        console.log(this.props.navigation.state.params)
+    }
+
     static navigationOptions = {
         header: null
     };
