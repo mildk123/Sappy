@@ -13,9 +13,9 @@ import Icon from "react-native-vector-icons/MaterialCommunityIcons";
 
 import Header from "../../../Helper/Header";
 import { ImagePicker, Permissions } from "expo";
-import placeholder from '../../Assets/place.png'
+import firebase from '../../../config'
+import placeholder from '../../../Assets/place.png'
 
-import firebase from '../../config'
 const database = firebase.database().ref()
 
 const { width } = Dimensions.get("window");
