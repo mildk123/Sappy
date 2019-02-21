@@ -1,7 +1,7 @@
 import React, { Component } from "react";
+import { StyleSheet, View, AsyncStorage, ScrollView } from "react-native";
 
 import Icon from "react-native-vector-icons/AntDesign";
-import { StyleSheet, View, AsyncStorage } from "react-native";
 import { Input, Button } from "react-native-elements";
 
 
@@ -18,6 +18,7 @@ class SignUp extends Component {
       password: ''
     };
   }
+
   static navigationOptions = {
     title: "Create Account",
     headerStyle: {
@@ -60,26 +61,19 @@ class SignUp extends Component {
         .then(res => {
           let firebaseUid = res.user.uid
 
-          // let username = `${fname} ${lname}`
-          // let photoURL = 'Placeholder';
-          // let providerId = 'Authentication'
-          // let fbUid = firebaseUid;
-
           database.child("Users/").child(firebaseUid).set({
             email,
-            username :  `${fname} ${lname}`,
-            photoURL :  'Placeholder',
-            providerId :  'Authentication',
-            fbUi :  firebaseUid,
+            username: `${fname} ${lname}`,
+            photoURL: 'Placeholder',
+            providerId: 'Authentication',
+            fbUi: firebaseUid,
           }
           )
           AsyncStorage.setItem('userLoggedIn', res.user.refreshToken)
-          AsyncStorage.setItem(firebaseUid, 'userUID' )
+          AsyncStorage.setItem('userUID', firebaseUid)
           AsyncStorage.setItem('newUser', 'true')
 
-          this.props.navigation.navigate("App");
-
-
+          this.props.navigation.navigate("AuthLoading");
         })
         .catch(function (error) {
           // Handle Errors here.
@@ -95,78 +89,83 @@ class SignUp extends Component {
   render() {
     return (
       <View style={styles.container}>
-        <View style={styles.inputDiv}>
-          <Input
-            labelStyle={{
-              margin: 7,
-              fontSize: 22,
-              color: "#47bc72",
-            }}
-            label="~ First Name"
-            onChangeText={fname => {
-              this.setState({ fname: fname });
-            }}
-            placeholder="Abdullah"
-            leftIcon={<Icon size={20} name="user" />}
-          />
-          <Input
-            labelStyle={{
-              margin: 7,
-              fontSize: 22,
-              color: "#47bc72",
-            }}
-            label="~ Last Name"
-            onChangeText={lname => {
-              this.setState({ lname: lname });
-            }}
-            placeholder="Khan"
-            leftIcon={<Icon size={20} name="user" />}
-          />
-          <Input
-            label="~ Email"
-            labelStyle={{
-              margin: 7,
-              fontSize: 22,
-              color: "#47bc72",
-            }}
-            placeholder="abec@domain.com"
-            onChangeText={email => {
-              this.setState({ email: email });
-            }}
-            leftIcon={<Icon size={20} name="mail" />}
-          />
-          <Input
-            labelStyle={{
-              margin: 7,
-              fontSize: 22,
-              color: "#47bc72",
-            }}
-            label="~ Password"
-            placeholder="********"
-            onChangeText={password => {
-              this.setState({ password: password });
-            }}
-            leftIcon={<Icon size={20} name="lock" />}
-          />
-        </View>
 
-        <View style={styles.btnDiv}>
-          <Button
-            title="Done"
-            iconRight
-            onPress={() => this._onPress()}
-            icon={<Icon name="check" size={15} color="white" />}
-            buttonStyle={{
-              backgroundColor: "#47bc72",
-              width: 150,
-              height: 55,
-              borderColor: "transparent",
-              borderWidth: 0,
-              borderRadius: 5,
-              elevation: 0
-            }}
-          />
-        </View>
+        <ScrollView>
+          <View style={styles.inputDiv}>
+            <Input
+              labelStyle={{
+                margin: 7,
+                fontSize: 22,
+                color: "#47bc72",
+              }}
+              label="~ First Name"
+              onChangeText={fname => {
+                this.setState({ fname: fname });
+              }}
+              placeholder="Abdullah"
+              leftIcon={<Icon size={20} name="user" />}
+            />
+            <Input
+              labelStyle={{
+                margin: 7,
+                fontSize: 22,
+                color: "#47bc72",
+              }}
+              label="~ Last Name"
+              onChangeText={lname => {
+                this.setState({ lname: lname });
+              }}
+              placeholder="Khan"
+              leftIcon={<Icon size={20} name="user" />}
+            />
+            <Input
+              keyboardType="email-address"
+              label="~ Email"
+              labelStyle={{
+                margin: 7,
+                fontSize: 22,
+                color: "#47bc72",
+              }}
+              placeholder="abec@domain.com"
+              onChangeText={email => {
+                this.setState({ email: email });
+              }}
+              leftIcon={<Icon size={20} name="mail" />}
+            />
+            <Input
+              keyboardType="visible-password"
+              labelStyle={{
+                margin: 7,
+                fontSize: 22,
+                color: "#47bc72",
+              }}
+              label="~ Password"
+              placeholder="********"
+              onChangeText={password => {
+                this.setState({ password: password });
+              }}
+              leftIcon={<Icon size={20} name="lock" />}
+            />
+          </View>
+
+          <View style={styles.btnDiv}>
+            <Button
+              title="Done"
+              iconRight
+              onPress={() => this._onPress()}
+              icon={<Icon name="check" size={15} color="white" />}
+              buttonStyle={{
+                backgroundColor: "#47bc72",
+                width: 150,
+                height: 55,
+                borderColor: "transparent",
+                borderWidth: 0,
+                borderRadius: 5,
+                elevation: 0
+              }}
+            />
+          </View>
+        </ScrollView>
       </View>
     );
   }
@@ -180,7 +179,6 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     backgroundColor: "#ffffff",
-    marginTop: 24
   },
   inputDiv: {
     marginTop: 18,

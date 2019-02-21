@@ -14,9 +14,21 @@ export class AuthLoading extends Component {
   }
 
   _loadApp = async () => {
+    const firstScreen = await AsyncStorage.getItem('completeStart')
     const userLoggedIn = await AsyncStorage.getItem("userLoggedIn");
-    this.props.navigation.navigate(userLoggedIn ? "App" : "Auth");
+
+    console.log('firstScreen', firstScreen)
+    console.log('userLoggedIn', userLoggedIn)
+
+    if (firstScreen) {
+      await this.props.navigation.navigate(userLoggedIn ? "App" : "Auth");
+
+    } else {
+      await this.props.navigation.navigate('StartScreen');
+    }
+
   };
+  
 
   render() {
     return (

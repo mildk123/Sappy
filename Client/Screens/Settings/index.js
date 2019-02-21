@@ -1,13 +1,11 @@
 import React, { Component } from 'react';
-import { Text, View, StyleSheet, Dimensions, ScrollView , AsyncStorage } from 'react-native';
+import { Text, View, StyleSheet, Dimensions, ScrollView, AsyncStorage } from 'react-native';
 
 import { List, ListItem, Icon, Left, Right, Switch } from 'native-base';
 import { Button } from "react-native-elements";
 import Header from '../../Helper/Header';
 
 import firebase from '../../config'
-
-
 
 const { height, width } = Dimensions.get("window");
 
@@ -34,7 +32,6 @@ class Settings extends Component {
 
 
   render() {
-    console.log(this.props)
     const { isLoading } = this.state;
     if (isLoading) {
       return (
@@ -133,7 +130,7 @@ class Settings extends Component {
             </ListItem>
 
 
-            <ListItem onPress={() => alert('button')}>
+            <ListItem onPress={() => this.props.navigation.navigate("AuthLoading")}>
               <Left>
                 <Text>Login</Text>
               </Left>
@@ -141,7 +138,7 @@ class Settings extends Component {
               </Right>
             </ListItem>
 
-            <ListItem onPress={() => alert('button')}>
+            <ListItem onPress={() => this.props.navigation.navigate("AuthLoading")}>
               <Left>
                 <Text>Signup</Text>
               </Left>

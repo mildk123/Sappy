@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { View, Dimensions, Image, StyleSheet } from 'react-native'
+import { View, Dimensions, Image, StyleSheet, AsyncStorage } from 'react-native'
 
 import { Button } from 'react-native-elements'
 import { Card, CardItem, Text, Body } from "native-base";
@@ -37,6 +37,11 @@ export class StartScreen extends Component {
                 </CardItem>
             </View>
         );
+    }
+
+    _CompleteStartScreen = () => {
+        AsyncStorage.setItem('completeStart' , 'true')
+        this.props.navigation.navigate('AuthLoading')
     }
 
     render() {
@@ -82,7 +87,7 @@ export class StartScreen extends Component {
 
                     <Button
                         title="Get Started"
-                        onPress={() => this.props.navigation.navigate('AuthLoading')}
+                        onPress={() => this._CompleteStartScreen()}
                         titleStyle={{
                             color: '#00A84A'
                         }}

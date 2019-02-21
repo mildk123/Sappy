@@ -12,6 +12,7 @@ import AntDesign from "react-native-vector-icons/AntDesign";
 import AuthLoading from '../Screens/AuthLoading'
 
 import Homescreen from "../Screens/Homescreen";
+import Profile from '../Screens/Profile'
 import Inbox from "../Screens/Inbox";
 
 import PostTask from "../Screens/Post";
@@ -29,6 +30,9 @@ const HomeStack = createStackNavigator({
   Home: {
     screen: Homescreen,
   },
+  Profile : {
+    screen : Profile
+  }
 }, { headerMode: 'none' });
 
 HomeStack.navigationOptions = {
@@ -112,11 +116,11 @@ SettingsStack.navigationOptions = {
 
 export default createBottomTabNavigator(
   {
-    SettingsStack,
     HomeStack,
     MyTasksStack,
     PostStack,
     InboxStack,
+    SettingsStack,
   },
   {
     tabBarOptions: {

@@ -25,7 +25,7 @@ class Profile extends Component {
         super();
         this.state = {
             // phone: null,
-            selectedImage: null
+            // selectedImage: null
         };
     }
 
@@ -141,6 +141,7 @@ class Profile extends Component {
                         <Icon active name='home' type='FontAwesome' style={{ fontSize: 30, margin: 5 }} />
                         <Input
                             value={this.state.phone}
+                            keyboardType="numeric"
                             placeholder="Phone Number"
                             onChangeText={text => this.setState({ phone: text })}
                         />

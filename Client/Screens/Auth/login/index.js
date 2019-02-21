@@ -1,14 +1,14 @@
 import React, { Component } from "react";
+import { StyleSheet, View, AsyncStorage, ScrollView } from "react-native";
 
 
 import Icon from "react-native-vector-icons/FontAwesome";
-import { StyleSheet, View, AsyncStorage } from "react-native";
 import { Input, Button } from "react-native-elements";
 
 
 import firebase from '../../../config';
 
-export class SignIn extends Component {
+class SignIn extends Component {
   constructor() {
     super()
     this.state = {
@@ -82,52 +82,58 @@ export class SignIn extends Component {
   render() {
     return (
       <View style={styles.container}>
-        <View style={styles.inputDiv}>
-          <Input
-            label="~ Email"
-            labelStyle={{
-              margin: 7,
-              fontSize: 22,
-              color: "#47bc72",
-            }}
-            onChangeText={email => {
-              this.setState({ email: email });
-            }}
-            placeholder="abc@domain.com"
-            leftIcon={<Icon size={20} name="envelope-o" />}
-          />
-          <Input
-            label="~ Password"
-            labelStyle={{
-              margin: 17,
-              fontSize: 22,
-              color: "#47bc72",
-            }}
-            onChangeText={password => {
-              this.setState({ password: password });
-            }}
-            placeholder="********"
-            leftIcon={<Icon size={20} name="lock" />}
-          />
-        </View>
+        <ScrollView>
+          <View style={styles.inputDiv}>
+            <Input
+              label="~ Email"
+              keyboardType="email-address"
+              labelStyle={{
+                margin: 7,
+                fontSize: 22,
+                color: "#47bc72",
+              }}
+              onChangeText={email => {
+                this.setState({ email: email });
+              }}
+              placeholder="abc@domain.com"
+              leftIcon={<Icon size={20} name="envelope-o" />}
+            />
 
-        <View style={styles.btnDiv}>
-          <Button
-            title="Done"
-            iconRight
-            onPress={() => this._onPress()}
-            icon={<Icon name="chevron-right" size={15} color="white" />}
-            buttonStyle={{
-              backgroundColor: "#47bc72",
-              width: 150,
-              height: 55,
-              borderColor: "transparent",
-              borderWidth: 0,
-              borderRadius: 5,
-              elevation: 0
-            }}
-          />
-        </View>
+            <Input
+              label="~ Password"
+
+              labelStyle={{
+                margin: 17,
+                fontSize: 22,
+                color: "#47bc72",
+              }}
+              onChangeText={password => {
+                this.setState({ password: password });
+              }}
+              placeholder="********"
+              leftIcon={<Icon size={20} name="lock" />}
+            />
+
+          </View>
+
+          <View style={styles.btnDiv}>
+            <Button
+              title="Done"
+              iconRight
+              onPress={() => this._onPress()}
+              icon={<Icon name="chevron-right" size={15} color="white" />}
+              buttonStyle={{
+                backgroundColor: "#47bc72",
+                width: 150,
+                height: 55,
+                borderColor: "transparent",
+                borderWidth: 0,
+                borderRadius: 5,
+                elevation: 0
+              }}
+            />
+          </View>
+        </ScrollView>
       </View>
     );
   }
