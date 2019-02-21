@@ -53,6 +53,8 @@ class Map extends Component {
         let title = this.props.navigation.state.params.title
         let desc = this.props.navigation.state.params.desc
 
+        console.log(serviceType,serviceProcedure,title,desc,)
+
         if (serviceProcedure) {
             this.setState({
                 serviceType,
@@ -66,6 +68,7 @@ class Map extends Component {
     }
 
     componentWillMount() {
+        this.getDataFromProps()
         if (Platform.OS === 'android' && !Constants.isDevice) {
             this.setState({
                 errorMessage: 'Oops, this will not work on Sketch in an Android emulator. Try it on your device!',

@@ -33,7 +33,6 @@ class Details extends Component {
 
     componentDidMount = () => {
         let serviceType = this.props.navigation.state.params.serviceType
-
         if (serviceType) {
             this.setState({
                 serviceType: serviceType
@@ -64,10 +63,10 @@ class Details extends Component {
             alert('Please fill all the text fields')
         } else {
             if (physical) {
-                this.props.navigation.navigate('Location', { serviceType, title, desc, serviceProcedure: 'online' })
-            }
-            if (online) {
                 this.props.navigation.navigate('Location', { serviceType, title, desc, serviceProcedure: 'physical' })
+            }
+            else if (online) {
+                this.props.navigation.navigate('Location', { serviceType, title, desc, serviceProcedure: 'online' })
 
             } else {
                 alert('Please select task type')
