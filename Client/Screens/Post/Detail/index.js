@@ -22,23 +22,23 @@ class Details extends Component {
             isLoading: false,
             physical: false,
             online: false,
+            title: '',
+            desc: '',
             serviceType: ''
-            
         }
     }
-
-
     static navigationOptions = {
         header: null
     };
 
     componentDidMount = () => {
         let serviceType = this.props.navigation.state.params.serviceType
-        if(serviceType){
+
+        if (serviceType) {
             this.setState({
                 serviceType: serviceType
             })
-        }else{
+        } else {
             this.props.navigation.goBack()
         }
     }
@@ -51,6 +51,26 @@ class Details extends Component {
         })
     }
 
+    onChange = (name, Text) => {
+        this.setState({
+            [name]: Text
+        })
+    }
+
+    next = () => {
+        const { serviceType, title, desc, physical, online } = this.state;
+
+        if (!serviceType || !title || !desc) {
+            alert('Please fill all the text fields')
+        } else {
+            if (physical || online) {
+                this.props.navigation.navigate('Location', { serviceType, title, desc, physical, online })
+            } else {
+                alert('Please select task type')
+            }
+        }
+    }
+    
     render() {
         const { isLoading } = this.state;
         if (isLoading) {
@@ -89,6 +109,7 @@ class Details extends Component {
 
                     <View style={{ margin: 10 }}>
                         <Input
+                            onChangeText={(Text) => this.onChange('title', Text)}
                             labelStyle={{ fontSize: 18, padding: 5 }}
                             label={'Task title'}
                             placeholder='e.g Clean my house'
@@ -107,6 +128,7 @@ class Details extends Component {
 
                     <View style={{ margin: 10 }}>
                         <Input
+                            onChangeText={(Text) => this.onChange('desc', Text)}
                             label="Description"
                             labelStyle={{ fontSize: 18, padding: 10 }}
                             placeholder='e.g i want my house clean top to bottom...'
@@ -165,10 +187,10 @@ class Details extends Component {
                         </View>
                     </View>
 
-                    <View style={{alignSelf: 'flex-end'}}>
+                    <View style={{ alignSelf: 'flex-end' }}>
                         <Button
                             title="Next"
-                            onPress={() => this.props.navigation.navigate('Location', {...this.state})}
+                            onPress={() => this.next()}
                             iconRight
                             icon={<IconMaterial name='arrow-right' size={15} color="gray" />}
                             titleStyle={{

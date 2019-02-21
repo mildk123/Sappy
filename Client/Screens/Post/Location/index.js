@@ -21,7 +21,7 @@ class Map extends Component {
         this.state = {
             isLoading: false,
             region: {
-                latitude: 24.918266,
+                latitude: 24.918266, 
                 longitude: 67.10272,
                 latitudeDelta: 0.0922,
                 longitudeDelta: 0.0421
@@ -30,14 +30,8 @@ class Map extends Component {
                 myMarker: {
                     latitude: 24.918266,
                     longitude: 67.10272,
-                    title: "My Marker",
+                    title: "My Location",
                     description: "My marker"
-                },
-                venueMarker: {
-                    latitude: 25.918266,
-                    longitude: 67.10272,
-                    title: "Venue's marker",
-                    description: "Venue's marker"
                 }
             }
 
@@ -80,6 +74,9 @@ class Map extends Component {
         alert(location.coords)
     };
 
+    next = () => {
+        this.props.navigation.navigate('Budget')
+    }
 
 
 
@@ -126,6 +123,7 @@ class Map extends Component {
                     showsCompass={true}
                     zoomControlEnabled={true}
                     loadingEnabled={true}
+                    followsUserLocation={true}
                     mapType="hybrid"
                     showsUserLocation={true}
                     region={region}
@@ -142,7 +140,7 @@ class Map extends Component {
 
 
                 <Button
-                    onPress={() => this.props.navigation.navigate('Budget')}
+                    onPress={() => this.next()}
                     title={"Next"}
                     containerStyle={{ padding: 15 }}
                     buttonStyle={{ padding: 10, backgroundColor: '#47bc72', borderRadius: 15, elevation: 0 }}
