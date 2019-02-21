@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { Text, View, StyleSheet, Dimensions, TouchableHighlight, Image } from 'react-native';
-
+import { ImagePicker } from 'expo'
 import { Spinner } from 'native-base';
 import { Input } from 'react-native-elements'
 
@@ -31,7 +31,8 @@ class Budget extends Component {
             title: '',
             desc: '',
             myLocation: {},
-            budget: ''
+            budget: '',
+            selectedImage: null
         }
     }
 
@@ -167,7 +168,7 @@ class Budget extends Component {
     }
 
     render() {
-        const { isLoading } = this.state;
+        const { isLoading, selectedImage } = this.state;
         if (isLoading) {
             return (
                 <View style={styles.container}>
@@ -302,7 +303,7 @@ class Budget extends Component {
                     }}>
                         <TouchableHighlight onPress={this.selectImage}>
                             <Image
-                                source={placeholder}
+                                source={selectedImage ? { uri: selectedImage } : placeholder}
                                 alt="placeholder"
                                 style={{ height: width * 0.4, width: width * 0.4 }}
                             />
