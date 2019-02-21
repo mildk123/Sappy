@@ -63,14 +63,18 @@ class Details extends Component {
         if (!serviceType || !title || !desc) {
             alert('Please fill all the text fields')
         } else {
-            if (physical || online) {
-                this.props.navigation.navigate('Location', { serviceType, title, desc, physical, online })
+            if (physical) {
+                this.props.navigation.navigate('Location', { serviceType, title, desc, serviceProcedure: 'online' })
+            }
+            if (online) {
+                this.props.navigation.navigate('Location', { serviceType, title, desc, serviceProcedure: 'physical' })
+
             } else {
                 alert('Please select task type')
             }
         }
     }
-    
+
     render() {
         const { isLoading } = this.state;
         if (isLoading) {

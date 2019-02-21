@@ -20,8 +20,12 @@ class Map extends Component {
         super()
         this.state = {
             isLoading: false,
+            serviceType: '',
+            serviceProcedure: '',
+            title: '',
+            desc: '',
             region: {
-                latitude: 24.918266, 
+                latitude: 24.918266,
                 longitude: 67.10272,
                 latitudeDelta: 0.0922,
                 longitudeDelta: 0.0421
@@ -42,6 +46,24 @@ class Map extends Component {
     static navigationOptions = {
         header: null
     };
+
+    getDataFromProps = () => {
+        let serviceType = this.props.navigation.state.params.serviceType
+        let serviceProcedure = this.props.navigation.state.params.serviceProcedure
+        let title = this.props.navigation.state.params.title
+        let desc = this.props.navigation.state.params.desc
+
+        if (serviceProcedure) {
+            this.setState({
+                serviceType,
+                serviceProcedure,
+                title,
+                desc,
+            })
+        } else {
+            this.props.navigation.goBack()
+        }
+    }
 
     componentWillMount() {
         if (Platform.OS === 'android' && !Constants.isDevice) {
@@ -75,10 +97,21 @@ class Map extends Component {
     };
 
     next = () => {
-        this.props.navigation.navigate('Budget')
+        const { serviceType, title, desc, serviceProcedure } = this.state;
+
+        if (!serviceType || !title || !desc || !serviceProcedure) {
+            alert('Please go back to previous page')
+        } else {
+            this.props.navigation.navigate('Budget', {
+                serviceType, title, desc, serviceProcedure, myLocation: {
+                    latitude: 24.918266,
+                    longitude: 67.10272,
+                }
+            })
+
+        }
+
     }
-
-
 
     render() {
         const { isLoading } = this.state;

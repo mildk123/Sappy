@@ -60,9 +60,9 @@ InboxStack.navigationOptions = {
 
 
 const PostStack = createStackNavigator({
-  Location,
   PostTask,
   Detail,
+  Location,
   Budget,
 }, { headerMode: 'none' });
 
