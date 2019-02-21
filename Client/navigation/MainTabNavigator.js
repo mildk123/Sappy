@@ -29,9 +29,6 @@ import SetLocation from '../Screens/Settings/Location'
 const HomeStack = createStackNavigator({
   Home: {
     screen: Homescreen,
-  },
-  Profile : {
-    screen : Profile
   }
 }, { headerMode: 'none' });
 
