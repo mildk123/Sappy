@@ -80,7 +80,7 @@ class Authentication extends Component {
             fbUid
           },
           () => {
-            this.props.navigation.navigate("App");
+            this.props.navigation.navigate("AuthLoading");
           }
         );
       }

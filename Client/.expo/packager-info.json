@@ -2,8 +2,8 @@
   "expoServerPort": 19000,
   "expoServerNgrokUrl": "https://zb-fzs.anonymous.client.exp.direct",
   "packagerNgrokUrl": "https://packager.zb-fzs.anonymous.client.exp.direct",
-  "ngrokPid": 2144,
+  "ngrokPid": 6576,
   "packagerPort": 19001,
-  "packagerPid": 4836,
+  "packagerPid": 1384,
   "devToolsPort": 19002
 }
