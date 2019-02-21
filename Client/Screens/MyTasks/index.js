@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Text, View, StyleSheet, Dimensions, Image } from 'react-native';
+import { Text, View, StyleSheet, Dimensions, Image, AsyncStorage } from 'react-native';
 
 import { Spinner } from 'native-base';
 import FontAwesome from "react-native-vector-icons/FontAwesome";
@@ -20,9 +20,27 @@ class MyTasks extends Component {
     super()
     this.state = {
       isLoading: false,
+      userLoggedIn: false
     }
   }
 
+
+  componentDidMount = async () => {
+    let userLoggedInToken = await await AsyncStorage.getItem('userLoggedIn');
+
+    if (userLoggedInToken === 'true') {
+      this.setState({
+        userLoggedIn: true,
+      })
+      return userLoggedInToken
+
+    } else {
+      this.setState({
+        userLoggedIn: false,
+      })
+      return userLoggedInToken
+    }
+  }
 
 
   static navigationOptions = {
@@ -31,8 +49,8 @@ class MyTasks extends Component {
 
 
   render() {
-    const { isLoading, Categories } = this.state;
-    if (isLoading) {
+    const { isLoading, userLoggedIn, Categories } = this.state;
+    if (isLoading === true) {
       return (
         <View style={styles.container}>
           <Header
@@ -50,67 +68,82 @@ class MyTasks extends Component {
       )
     }
 
-    return (
-      <View style={styles.container}>
+    if (userLoggedIn === false) {
+      return (<View style={styles.container}>
         <Header
           headerColor="#47bc72"
-          
           title={"My Tasks"}
           hasTabs={false}
           searchBar={false}
           favBtn={false}
           threeDots={false}
         />
+        <View style={{
+          padding: 20,
+          flexDirection: "column",
+          alignItems: "center",
+          backgroundColor: "#ffffff",
+        }}>
+          <Text>You need to login first</Text>
+        </View>
+      </View>)
+    } else {
+      return (
+        <View style={styles.container}>
+          <Header
+            headerColor="#47bc72"
 
-        <View style={styles.contentDiv}>
+            title={"My Tasks"}
+            hasTabs={false}
+            searchBar={false}
+            favBtn={false}
+            threeDots={false}
+          />
 
-          <View>
-            <Text style={{ fontSize: 25, fontStyle: 'italic' }}>My Tasks</Text>
-          </View>
+          <View style={styles.contentDiv}>
 
-          <View style={{
-            justifyContent: "center",
-            alignItems: "center"
-          }}>
-            <Image style={{ width: width, height: height * 0.5 }} source={require('../../Assets/MyTasks/noTask.png')} alt="No Tasks" />
-          </View>
+            <View>
+              <Text style={{ fontSize: 25, fontStyle: 'italic' }}>My Tasks</Text>
+            </View>
 
-          <View style={{
-            flexDirection: "row",
-            justifyContent: 'space-around',
-          }}>
-            <Button
-              title="Post a task"
-              onPress={() => this.props.navigation.navigate('PostStack')}
-              titleStyle={{
-                color: '#ffffff'
-              }}
-              containerStyle={{ padding: 25 }}
-              buttonStyle={{
-                backgroundColor: '#00A84A',
-                // borderColor: '#00A84A',
-                // borderWidth: 0,
-                width: width * 0.35,
-                padding: 5,
-                borderRadius: 5,
-                elevation: 0
-              }}
-            />
+            <View style={{
+              justifyContent: "center",
+              alignItems: "center"
+            }}>
+              <Image style={{ width: width, height: height * 0.5 }} source={require('../../Assets/MyTasks/noTask.png')} alt="No Tasks" />
+            </View>
+
+            <View style={{
+              flexDirection: "row",
+              justifyContent: 'space-around',
+            }}>
+              <Button
+                title="Post a task"
+                onPress={() => this.props.navigation.navigate('PostStack')}
+                titleStyle={{
+                  color: '#ffffff'
+                }}
+                containerStyle={{ padding: 25 }}
+                buttonStyle={{
+                  backgroundColor: '#00A84A',
+                  // borderColor: '#00A84A',
+                  // borderWidth: 0,
+                  width: width * 0.35,
+                  padding: 5,
+                  borderRadius: 5,
+                  elevation: 0
+                }}
+              />
+            </View>
+
           </View>
 
         </View>
-
-      </View>
-    )
+      )
+    }
   }
 }
 
-MyTasks.navigationOptions = {
-  drawerLabel: "My Tasks",
-  drawerIcon: ({ tintColor }) => (
-    <FontAwesome name="tasks" style={{ color: tintColor, fontSize: 25 }} />
-  )
-};
 
 export default MyTasks;
 

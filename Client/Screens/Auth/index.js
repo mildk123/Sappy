@@ -43,13 +43,15 @@ class Authentication extends Component {
         .then(response => {
           let newUser = response.additionalUserInfo.isNewUser
           if (newUser) {
-            AsyncStorage.setItem("userLoggedIn", response.credential.accessToken);
-            AsyncStorage.setItem('userUID', response.user.uid)
+            AsyncStorage.setItem("userLoggedIn", 'true');
             AsyncStorage.setItem('newUser', 'true')
+            AsyncStorage.setItem("userToken", response.credential.accessToken);
+            AsyncStorage.setItem('userUID', response.user.uid)
             this._pushToDB();
           }
           else {
-            AsyncStorage.setItem("userLoggedIn", response.credential.accessToken);
+            AsyncStorage.setItem("userLoggedIn", 'true');
+            AsyncStorage.setItem("userToken", response.credential.accessToken);
             AsyncStorage.setItem('userUID', response.user.uid)
             this._pushToDB();
           }
@@ -161,12 +163,12 @@ class Authentication extends Component {
     return (
       <View style={styles.container}>
 
-        <View style={{alignSelf: 'flex-end'}}>
+        <View style={{ alignSelf: 'flex-end' }}>
           <Button
             title="Skip"
             onPress={() => this.props.navigation.navigate('App')}
             iconRight
-            icon={<IconMaterial name='arrow-right'  size={15} color="gray" />}
+            icon={<IconMaterial name='arrow-right' size={15} color="gray" />}
             titleStyle={{
               color: 'gray'
             }}

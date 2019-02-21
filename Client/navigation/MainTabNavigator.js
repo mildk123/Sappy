@@ -12,7 +12,6 @@ import AntDesign from "react-native-vector-icons/AntDesign";
 import AuthLoading from '../Screens/AuthLoading'
 
 import Homescreen from "../Screens/Homescreen";
-import Profile from '../Screens/Profile'
 import Inbox from "../Screens/Inbox";
 
 import PostTask from "../Screens/Post";
@@ -23,6 +22,7 @@ import Budget from '../Screens/Post/Budget'
 import MyTasks from "../Screens/MyTasks";
 
 import Settings from "../Screens/Settings";
+import SetProfile from '../Screens/Settings/Profile'
 import SetLocation from '../Screens/Settings/Location'
 
 
@@ -97,7 +97,8 @@ MyTasksStack.navigationOptions = {
 const SettingsStack = createStackNavigator({
   Settings: Settings,
   AuthLoading: AuthLoading,
-  SetLocation : SetLocation
+  SetLocation : SetLocation,
+  SetProfile : SetProfile
 
 }, { headerMode: 'none' });
 

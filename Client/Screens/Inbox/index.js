@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Text, View, StyleSheet, Dimensions, Image } from 'react-native';
+import { Text, View, StyleSheet, Dimensions, Image, AsyncStorage } from 'react-native';
 
 import { Spinner } from 'native-base';
 import FontAwesome from "react-native-vector-icons/FontAwesome";
@@ -18,6 +18,23 @@ class Inbox extends Component {
     super()
     this.state = {
       isLoading: false,
+      userLoggedIn: false
+    }
+  }
+
+  componentDidMount = async () => {
+    let userLoggedInToken = await await AsyncStorage.getItem('userLoggedIn');
+    if (userLoggedInToken === 'true') {
+      this.setState({
+        userLoggedIn: true,
+      })
+      return userLoggedInToken
+
+    } else {
+      this.setState({
+        userLoggedIn: false,
+      })
+      return userLoggedInToken
     }
   }
 
@@ -29,13 +46,13 @@ class Inbox extends Component {
 
 
   render() {
-    const { isLoading } = this.state;
-    if (isLoading) {
+    const { isLoading, userLoggedIn } = this.state;
+    if (isLoading === true) {
       return (
         <View style={styles.container}>
           <Header
             headerColor="#47bc72"
-            title={"My Tasks"}
+            title={"Inbox"}
             hasTabs={false}
             searchBar={false}
             favBtn={false}
@@ -48,51 +65,65 @@ class Inbox extends Component {
       )
     }
 
-    return (
-      <View style={styles.container}>
+    if (userLoggedIn === false) {
+      return (<View style={styles.container}>
         <Header
           headerColor="#47bc72"
-          
           title={"Inbox"}
           hasTabs={false}
           searchBar={false}
           favBtn={false}
           threeDots={false}
         />
+        <View style={{
+          padding: 20,
+          flexDirection: "column",
+          alignItems: "center",
+          backgroundColor: "#ffffff",
+        }}>
+          <Text>You need to login first</Text>
+        </View>
+      </View>)
+    } else {
+      return (
+        <View style={styles.container}>
+          <Header
+            headerColor="#47bc72"
+            title={"Inbox"}
+            hasTabs={false}
+            searchBar={false}
+            favBtn={false}
+            threeDots={false}
+          />
 
-        <View style={styles.contentDiv}>
+          <View style={styles.contentDiv}>
+
+            <View style={{
+              justifyContent: "center",
+              alignItems: "center"
+            }}>
+              <Image
+                style={{ width: width * 0.5, height: height * 0.3 }}
+                source={require('../../Assets/Inbox/empty.png')} alt="No Tasks" />
+            </View>
+
+          </View>
 
           <View style={{
-            backgroundColor: 'red',
             justifyContent: "center",
             alignItems: "center"
           }}>
-            <Image
-              style={{ width: width * 0.5, height: height * 0.3 }}
-              source={require('../../Assets/Inbox/empty.png')} alt="No Tasks" />
+            <Text>
+              You haven't got any messages yet
+          </Text>
           </View>
 
         </View>
-        <View style={{
-          justifyContent: "center",
-          alignItems: "center"
-        }}>
-          <Text>
-            You haven't got any messages yet
-          </Text>
-        </View>
-
-      </View>
-    )
+      )
+    }
   }
 }
 
-Inbox.navigationOptions = {
-  drawerLabel: "My Tasks",
-  drawerIcon: ({ tintColor }) => (
-    <FontAwesome name="tasks" style={{ color: tintColor, fontSize: 25 }} />
-  )
-};
 
 export default Inbox;
 

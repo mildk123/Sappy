@@ -69,7 +69,9 @@ class SignUp extends Component {
             fbUi: firebaseUid,
           }
           )
-          AsyncStorage.setItem('userLoggedIn', res.user.refreshToken)
+          
+          AsyncStorage.setItem("userLoggedIn", 'true');
+          AsyncStorage.setItem('userToken', res.user.refreshToken)
           AsyncStorage.setItem('userUID', firebaseUid)
           // AsyncStorage.setItem('newUser', 'true')
 

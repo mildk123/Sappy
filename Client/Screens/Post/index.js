@@ -1,11 +1,9 @@
 import React, { Component } from 'react';
-import { Text, View, StyleSheet, Dimensions, Image, ScrollView, TouchableOpacity, } from 'react-native';
-
-import { createStackNavigator } from 'react-navigation'
+import { Text, View, StyleSheet, Dimensions, Image, ScrollView, TouchableOpacity, AsyncStorage } from 'react-native';
 
 import Header from '../../Helper/Header';
 import { Spinner } from 'native-base';
-import Icon from "react-native-vector-icons/FontAwesome";
+// import Icon from "react-native-vector-icons/FontAwesome";
 
 
 const { height, width } = Dimensions.get("window");
@@ -15,6 +13,7 @@ class PostTask extends Component {
     super()
     this.state = {
       isLoading: false,
+      userLoggedIn: false,
       Services: [
         {
           thumbnail: require('../../Assets/Post/cleaner.png'),
@@ -63,16 +62,34 @@ class PostTask extends Component {
     }
   }
 
+  componentDidMount = async () => {
+    let userLoggedInToken = await await AsyncStorage.getItem('userLoggedIn');
+
+    if (userLoggedInToken === 'true') {
+      this.setState({
+        userLoggedIn: true,
+      })
+      return userLoggedInToken
+
+    } else {
+      this.setState({
+        userLoggedIn: false,
+      })
+      return userLoggedInToken
+    }
+  }
+
+
   static navigationOptions = {
     header: null
   };
 
   _ServiceType = (serviceType) => {
-    this.props.navigation.navigate('Detail', {serviceType: serviceType})
+    this.props.navigation.navigate('Detail', { serviceType: serviceType })
   }
 
   render() {
-    const { isLoading, Services } = this.state;
+    const { isLoading, Services, userLoggedIn } = this.state;
     if (isLoading) {
       return (
         <View style={styles.container}>
@@ -91,33 +108,54 @@ class PostTask extends Component {
       )
     }
 
-    return (
-      <View style={styles.container}>
+    if (userLoggedIn === false) {
+      return (<View style={styles.container}>
         <Header
           headerColor="#47bc72"
-          
           title={"Post Task"}
-          {...this.props}
+          hasTabs={false}
+          searchBar={false}
+          favBtn={false}
+          threeDots={false}
         />
+        <View style={{
+          padding: 20,
+          flexDirection: "column",
+          alignItems: "center",
+          backgroundColor: "#ffffff",
+        }}>
+          <Text>You need to login first</Text>
+        </View>
+      </View>)
+    } else {
+      return (
+        <View style={styles.container}>
+          <Header
+            headerColor="#47bc72"
 
-        <View style={styles.contentDiv}>
+            title={"Post Task"}
+            {...this.props}
+          />
 
-          <ScrollView>
-            <View style={{ height: height, flexWrap: 'wrap', justifyContent: 'flex-start', alignSelf: 'center' }}>
-              {Services.map((item, Index) => {
-                return <TouchableOpacity key={Index} onPress={() => this._ServiceType(item.name)}>
-                  <Image style={styles.Images} source={item.thumbnail} alt={item.name} />
-                  <Text style={{ fontSize: 20, alignSelf: 'center' }}>{item.name}</Text>
-                </TouchableOpacity>
-              })
-              }
-            </View>
-          </ScrollView>
+          <View style={styles.contentDiv}>
+
+            <ScrollView>
+              <View style={{ height: height, flexWrap: 'wrap', justifyContent: 'flex-start', alignSelf: 'center' }}>
+                {Services.map((item, Index) => {
+                  return <TouchableOpacity key={Index} onPress={() => this._ServiceType(item.name)}>
+                    <Image style={styles.Images} source={item.thumbnail} alt={item.name} />
+                    <Text style={{ fontSize: 20, alignSelf: 'center' }}>{item.name}</Text>
+                  </TouchableOpacity>
+                })
+                }
+              </View>
+            </ScrollView>
+
+          </View>
 
         </View>
-
-      </View>
-    )
+      )
+    }
   }
 }
 

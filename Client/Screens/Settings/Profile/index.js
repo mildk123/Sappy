@@ -11,7 +11,7 @@ import {
 
 import Icon from "react-native-vector-icons/MaterialCommunityIcons";
 
-import Header from "../../Helper/Header";
+import Header from "../../../Helper/Header";
 import { ImagePicker, Permissions } from "expo";
 import placeholder from '../../Assets/place.png'
 
@@ -41,8 +41,6 @@ class Profile extends Component {
                 database.child('Users').child(MyUid).once('value', (payload) => {
                     this.setState({
                         selectedImage: payload.val().photoURL
-                    }, () => {
-                        console.log(this.state)
                     })
                 })
             } else {

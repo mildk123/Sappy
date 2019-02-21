@@ -14,9 +14,26 @@ class Settings extends Component {
     super()
     this.state = {
       isLoading: false,
+      userLoggedIn: false
     }
   }
 
+  componentDidMount = async () => {
+    let userLoggedInToken = await await AsyncStorage.getItem('userLoggedIn');
+
+    if (userLoggedInToken === 'true') {
+      this.setState({
+        userLoggedIn: true,
+      })
+      return userLoggedInToken
+
+    } else {
+      this.setState({
+        userLoggedIn: false,
+      })
+      return userLoggedInToken
+    }
+  }
 
   SignOut = () => {
     // await AsyncStorage.removeItem("userLoggedIn");
@@ -30,9 +47,8 @@ class Settings extends Component {
     header: null
   };
 
-
   render() {
-    const { isLoading } = this.state;
+    const { isLoading, userLoggedIn } = this.state;
     if (isLoading) {
       return (
         <View style={styles.container}>
@@ -67,7 +83,6 @@ class Settings extends Component {
         {/* NON USER ///////////////////////// */}
 
         <ScrollView>
-
           <List>
 
             <ListItem onPress={() => alert('button')}>
@@ -85,6 +100,14 @@ class Settings extends Component {
               </Left>
               <Right>
                 <Icon type='MaterialCommunityIcons' name="arrow-right" />
+              </Right>
+            </ListItem>
+
+            <ListItem onPress={() => this.props.navigation.navigate('SetProfile')}>
+              <Left>
+                <Text>Edit Profile</Text>
+              </Left>
+              <Right><Icon type='MaterialCommunityIcons' name="arrow-right" />
               </Right>
             </ListItem>
 
@@ -129,26 +152,33 @@ class Settings extends Component {
               </Right>
             </ListItem>
 
+            <ListItem onPress={() => alert('button')}>
+              <Left>
+                <Text>As Service Provider</Text>
+              </Left>
+              <Right><Icon type='MaterialCommunityIcons' name="arrow-right" />
+              </Right>
+            </ListItem>
 
-            <ListItem onPress={() => this.props.navigation.navigate("AuthLoading")}>
+
+            {!userLoggedIn && <ListItem onPress={() => this.props.navigation.navigate("AuthLoading")}>
               <Left>
                 <Text>Login</Text>
               </Left>
               <Right><Icon type='MaterialCommunityIcons' name="arrow-right" />
               </Right>
-            </ListItem>
+            </ListItem>}
 
-            <ListItem onPress={() => this.props.navigation.navigate("AuthLoading")}>
+            {!userLoggedIn && <ListItem onPress={() => this.props.navigation.navigate("AuthLoading")}>
               <Left>
-                <Text>Signup</Text>
+                <Text>Create Account</Text>
               </Left>
               <Right><Icon type='MaterialCommunityIcons' name="arrow-right" />
               </Right>
-            </ListItem>
+            </ListItem>}
           </List>
 
-          <View style={styles.socialContainer}>
-
+          {userLoggedIn && <View style={styles.socialContainer}>
             <Button
               title="Sign out"
               onPress={() => this.SignOut()}
@@ -164,7 +194,6 @@ class Settings extends Component {
                 elevation: 0
               }}
             />
-
             <Button
               title="Delete Account"
               onPress={() => alert('Not Yet Complete')}
@@ -180,12 +209,9 @@ class Settings extends Component {
                 elevation: 0
               }}
             />
-
-
-          </View>
+          </View>}
 
         </ScrollView>
-
       </View>
     )
   }
